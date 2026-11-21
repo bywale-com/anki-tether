@@ -11,9 +11,7 @@ COPY pyproject.toml README.md ./
 COPY app ./app
 COPY pipeline ./pipeline
 
-RUN --mount=type=secret,id=pip_ca \
-    if [ -f /run/secrets/pip_ca ]; then export PIP_CERT=/run/secrets/pip_ca; fi; \
-    pip install --no-cache-dir ".[app]"
+RUN pip install --no-cache-dir ".[app]"
 
 ENV ANKI_DATA_DIR=/data \
     ANKI_COLLECTION=/data/collection.anki2 \
