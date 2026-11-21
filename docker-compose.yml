@@ -1,0 +1,23 @@
+services:
+  study:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      STUDY_USERNAME: ${STUDY_USERNAME:-tester}
+      STUDY_PASSWORD: ${STUDY_PASSWORD:-changeme}
+      SESSION_SECRET: ${SESSION_SECRET:-dev-secret-change-me}
+      IMPORT_TOKEN: ${IMPORT_TOKEN:-dev-import-token}
+      ANKI_DATA_DIR: /data
+      ANKI_COLLECTION: /data/collection.anki2
+      SECURE_COOKIES: "false"
+    volumes:
+      - study-data:/data
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/healthz')"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  study-data:

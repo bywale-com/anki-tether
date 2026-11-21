@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Stats · Anki Tether{% endblock %}
+{% block body %}
+<section class="card">
+  <h2>Collection</h2>
+  <p>{{ stats.notes }} notes · {{ stats.cards }} cards · {{ stats.reviews_logged }} logged reviews</p>
+  <div class="counts">
+    <span class="pill">New {{ stats.new }}</span>
+    <span class="pill">Learning {{ stats.learn }}</span>
+    <span class="pill">Due {{ stats.review }}</span>
+  </div>
+</section>
+<section class="card">
+  <h2>95% recall metric</h2>
+  <p>Window: last {{ perf.window_days }} days · cards reviewed: {{ perf.cards_reviewed }}</p>
+  {% if perf.first_attempt_percent is not none %}
+    <p><strong>{{ "%.1f"|format(perf.first_attempt_percent) }}%</strong> first-attempt success
+      {% if perf.meets_target %}— target met{% else %}— below 95% target{% endif %}
+    </p>
+  {% else %}
+    <p>No reviews in this window yet.</p>
+  {% endif %}
+  <p class="muted">{{ perf.definition }}</p>
+  <p class="muted">Flashcard scores do not prove you can write working C# programs. Treat labs as a separate, independent criterion.</p>
+</section>
+{% endblock %}

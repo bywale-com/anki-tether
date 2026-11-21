@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}Decks · Anki Tether{% endblock %}
+{% block body %}
+<section class="card">
+  <h2>Progress</h2>
+  <div class="counts">
+    <span class="pill">New {{ stats.new }}</span>
+    <span class="pill">Learning {{ stats.learn }}</span>
+    <span class="pill">Due {{ stats.review }}</span>
+    <span class="pill">Notes {{ stats.notes }}</span>
+  </div>
+  <p>
+    7-day first-attempt success:
+    {% if perf.first_attempt_percent is not none %}
+      <strong>{{ "%.1f"|format(perf.first_attempt_percent) }}%</strong>
+      {% if perf.meets_target %}(at or above 95%){% else %}(target 95%){% endif %}
+    {% else %}
+      no reviews in this window yet
+    {% endif %}
+  </p>
+  <p class="muted">{{ perf.definition }}</p>
+</section>
+<section class="card">
+  <h2>Decks</h2>
+  {% for deck in decks %}
+  <div class="deck-row">
+    <div>
+      <div class="deck-name">{{ deck.name }}</div>
+      <div class="muted">{{ deck.new }} new · {{ deck.learn }} learning · {{ deck.review }} due</div>
+    </div>
+    <form method="post" action="/study/{{ deck.id }}">
+      <input type="hidden" name="csrf" value="{{ csrf }}">
+      <button type="submit">Study</button>
+    </form>
+  </div>
+  {% else %}
+  <p class="muted">No decks yet. Publish approved cards from the pipeline.</p>
+  {% endfor %}
+</section>
+{% endblock %}

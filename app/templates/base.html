@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>{% block title %}Anki Tether{% endblock %}</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header class="top">
+    <h1>COIS-1020</h1>
+    <nav>
+      <a href="/">Decks</a>
+      <a href="/review">Study</a>
+      <a href="/stats">Stats</a>
+      {% if user %}
+      <form class="inline" method="post" action="/logout"><button type="submit" style="min-height:36px;padding:0.3rem 0.6rem">Log out</button></form>
+      {% endif %}
+    </nav>
+  </header>
+  <main class="wrap">
+    {% block body %}{% endblock %}
+  </main>
+</body>
+</html>

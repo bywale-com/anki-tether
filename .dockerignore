@@ -1,0 +1,11 @@
+.venv
+.git
+__pycache__
+data
+pipeline-data
+source-html
+source-material
+tests
+*.md
+.env
+.env.*
