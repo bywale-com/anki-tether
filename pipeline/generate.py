@@ -61,9 +61,9 @@ def _definition_cards(unit: dict[str, Any]) -> list[dict[str, Any]]:
         nxt = re.sub(r"^[\u0007•\-]+\s*", "", nxt).strip()
         # Pattern: term on one line, definition on the next
         if line and nxt and len(line) <= 80 and not line.endswith(".") and len(nxt) > 20:
-            question = f"In {unit['section']}, what is <strong>{_esc(line)}</strong>?"
+            question = f"In {_esc(unit['section'])}, what is <strong>{_esc(line)}</strong>?"
             answer = _esc(nxt)
-            cards.append(_card(unit, "concept", question, answer, confidence="high"))
+            cards.append(_card(unit, "concept", question, answer, confidence="medium"))
             i += 2
             continue
         i += 1
@@ -89,7 +89,7 @@ def _code_cards(unit: dict[str, Any], page_units: list[dict[str, Any]]) -> list[
     outputs = [u["text"] for u in page_units if u["content_type"] == "output"]
     cards = []
     intent = unit.get("code_intent") or "compiles"
-    if outputs:
+    if len(outputs) == 1 and sum(u["content_type"] == "code" for u in page_units) == 1 and intent == "compiles":
         cards.append(
             _card(
                 unit,
@@ -209,23 +209,28 @@ def _card(
 
 def _dedupe(cards: list[dict[str, Any]]) -> list[dict[str, Any]]:
     seen: set[str] = set()
-    out = []
+    by_id: dict[str, dict[str, Any]] = {}
     for card in cards:
         key = re.sub(r"\s+", " ", card["front"] + "|" + card["back"]).lower()
-        digest = hashlib.sha1(key.encode()).hexdigest()
-        if digest in seen:
+        if key in seen:
             continue
-        seen.add(digest)
-        out.append(card)
-    return out
+        seen.add(key)
+        prev = by_id.get(card["id"])
+        if prev:
+            prev["generation_issue"] = "Multiple generated answers or questions share this card ID"
+        else:
+            by_id[card["id"]] = card
+    return list(by_id.values())
 
 
 def ai_cards(units: list[dict[str, Any]]) -> list[dict[str, Any]]:
     api_key = os.environ.get("AI_API_KEY")
     base = os.environ.get("AI_API_BASE_URL") or "https://api.openai.com/v1"
-    model = os.environ.get("AI_MODEL") or "gpt-4.1-mini"
+    model = os.environ.get("AI_MODEL")
     if not api_key:
         return []
+    if not model:
+        raise RuntimeError("AI_MODEL is required when AI_API_KEY is set")
     sample = [
         {
             "id": u["id"],
@@ -292,18 +297,37 @@ def generate(include_ai: bool = True) -> list[dict[str, Any]]:
     units = load_all_units()
     cards = deterministic_cards(units)
     if include_ai:
-        cards.extend(ai_cards(units))
+        cards = _dedupe([*cards, *ai_cards(units)])
     existing = {c["id"]: c for c in load_drafts()}
+    active_hashes = {unit["source_file"]: unit["source_hash"] for unit in units}
+    changed_sources = {
+        card["source_file"] for card in existing.values()
+        if card["status"] in {"approved", "published", "needs_review"}
+        and card.get("source_hash") != active_hashes.get(card["source_file"])
+    }
     merged = []
     for card in cards:
         prev = existing.get(card["id"])
-        if prev and prev.get("status") in {"approved", "published", "rejected"}:
-            # Keep human decision; refresh content if source changed
-            card["status"] = prev["status"]
-            if prev.get("source_hash") != card.get("source_hash") and prev["status"] == "published":
+        if prev and prev["status"] in {"approved", "published", "rejected", "needs_review"}:
+            unchanged = all(prev.get(key) == card.get(key) for key in ("source_hash", "front", "back", "unit_id"))
+            if unchanged or prev["status"] == "rejected":
+                card["status"] = prev["status"]
+            else:
                 card["status"] = "needs_review"
-                card["flag"] = "source_changed_after_publish"
+                card["flag"] = "reviewed_card_changed"
+        elif not prev and card["source_file"] in changed_sources:
+            card["status"] = "needs_review"
+            card["flag"] = "possible_replacement_for_reviewed_card"
         merged.append(card)
+    generated_ids = {card["id"] for card in merged}
+    active_units = {(unit["id"], unit["source_hash"]) for unit in units}
+    for cid, prev in existing.items():
+        if cid not in generated_ids and (prev.get("unit_id"), prev.get("source_hash")) not in active_units:
+            prev["status"] = "needs_review"
+            prev["flag"] = "source_unit_changed_or_removed"
+            prev["validation"] = "failed"
+            prev["eligible_auto_approve"] = False
+            merged.append(prev)
     save_drafts(merged)
     queue = load_queue()
     for card in merged:

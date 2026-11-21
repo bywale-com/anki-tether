@@ -34,9 +34,9 @@ AI card generation is optional (`AI_API_KEY`). Deterministic cards run without a
 
 Lecture **PDFs** under `source-material/` are the source of truth (PowerPoint exports). HTML correlates exist under `source-html/` and are **not** ingested — they are accessibility dumps of the same slides, with code split across `<p>` tags.
 
-`HTML/PDF source → extract units JSON → generate drafts → validate → approve → POST /api/import`
+`PDF source → extract units JSON → generate drafts → validate → approve → POST /api/import`
 
-Stable `guid` values update existing notes instead of duplicating them. Review history stays on the cards. If a published note’s source hash changes, the draft is flagged `needs_review`.
+Stable `guid` values update existing notes instead of duplicating them. Review history stays on the cards. If an approved or published note’s source hash changes, the draft is flagged `needs_review`. Removed source units cannot be published.
 
 ## 95% metric
 

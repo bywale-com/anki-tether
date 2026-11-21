@@ -9,7 +9,7 @@ from pathlib import Path
 from typing import Any
 
 from pipeline.paths import REPORTS_DIR, ensure_dirs
-from pipeline.store import load_drafts, save_drafts, write_json
+from pipeline.store import load_all_units, load_drafts, save_drafts, write_json
 
 REQUIRED = ["id", "guid", "front", "back", "source_file", "origin", "kind"]
 
@@ -20,22 +20,38 @@ def _near_dup_key(text: str) -> str:
     return hashlib.sha1(norm.encode()).hexdigest()
 
 
+def source_matches(card: dict[str, Any], units: dict[str, dict[str, Any]]) -> bool:
+    unit = units.get(card.get("unit_id"))
+    return bool(
+        unit
+        and card.get("source_hash") == unit["source_hash"]
+        and card.get("source_file") == unit["source_file"]
+        and card.get("source_ref") == f"{unit['source_file']}#page-{unit['page']}"
+    )
+
+
 def validate(compile_csharp: bool = False) -> dict[str, Any]:
     ensure_dirs()
     cards = load_drafts()
     issues: list[dict[str, Any]] = []
+    units = {unit["id"]: unit for unit in load_all_units()}
     seen_front: dict[str, str] = {}
     seen_guid: dict[str, str] = {}
 
     for card in cards:
         card_issues = []
+        card["eligible_auto_approve"] = False
         for field in REQUIRED:
             if not card.get(field):
                 card_issues.append(f"missing {field}")
-        if card.get("origin") == "lecture" and not card.get("source_ref"):
-            card_issues.append("lecture card missing source_ref")
-        if card.get("origin") == "independent_exercise" and "independent" not in (card.get("origin") or ""):
-            card_issues.append("independent material not labeled")
+        if card.get("generation_issue"):
+            card_issues.append(card["generation_issue"])
+        if not source_matches(card, units):
+            card_issues.append("missing or stale source reference")
+            card["validation"] = "failed"
+            card["issues"] = card_issues
+            issues.append({"id": card["id"], "issues": card_issues})
+            continue
         key = _near_dup_key(card.get("front", ""))
         if key in seen_front:
             card_issues.append(f"near-duplicate of {seen_front[key]}")
@@ -49,11 +65,13 @@ def validate(compile_csharp: bool = False) -> dict[str, Any]:
         if compile_csharp and card.get("code_intent") == "compiles":
             snippet = _extract_code(card.get("front", ""))
             if snippet:
+                if not shutil.which("dotnet"):
+                    card["compile_status"] = "skipped_no_dotnet"
                 result = try_compile(snippet)
                 if result:
                     card_issues.append(result)
                     card["compile_status"] = "failed"
-                else:
+                elif shutil.which("dotnet"):
                     card["compile_status"] = "ok"
         if card_issues:
             card["validation"] = "failed"
@@ -64,7 +82,9 @@ def validate(compile_csharp: bool = False) -> dict[str, Any]:
         else:
             card["validation"] = "passed"
             card["issues"] = []
-            if card.get("confidence") == "high" and card.get("generation") == "deterministic":
+            if card.get("status") == "invalid":
+                card["status"] = "draft"
+            if card.get("confidence") == "high" and card.get("generation") == "deterministic" and card.get("status") == "draft":
                 card["eligible_auto_approve"] = True
             if card.get("generation") == "ai":
                 card["eligible_auto_approve"] = False

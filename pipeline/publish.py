@@ -6,7 +6,7 @@ from typing import Any
 import httpx
 
 from pipeline.approve import approved_cards
-from pipeline.store import load_drafts, save_drafts
+from pipeline.store import load_drafts, load_queue, save_drafts, save_queue
 
 
 def to_import_payload(cards: list[dict[str, Any]]) -> dict[str, Any]:
@@ -44,10 +44,15 @@ def publish(url: str | None = None, token: str | None = None) -> dict[str, Any]:
     )
     response.raise_for_status()
     data = response.json()
+    if data.get("ok") is not True or data.get("total") != len(cards):
+        raise RuntimeError("Study app did not acknowledge the full import batch")
     drafts = load_drafts()
+    queue = load_queue()
     approved_ids = {c["id"] for c in cards}
     for card in drafts:
         if card["id"] in approved_ids:
             card["status"] = "published"
+            queue.setdefault("cards", {}).setdefault(card["id"], {})["status"] = "published"
     save_drafts(drafts)
+    save_queue(queue)
     return {"ok": True, "result": data, "published": len(cards)}

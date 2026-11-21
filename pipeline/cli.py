@@ -44,7 +44,10 @@ def main(argv: list[str] | None = None) -> int:
 
     args = parser.parse_args(argv)
     if args.cmd == "ingest":
-        print(json.dumps(ingest(force=args.force), indent=2))
+        result = ingest(force=args.force)
+        print(json.dumps(result, indent=2))
+        if result["failures"]:
+            return 1
     elif args.cmd == "generate":
         cards = generate(include_ai=not args.no_ai)
         print(json.dumps({"cards": len(cards)}, indent=2))
@@ -55,12 +58,17 @@ def main(argv: list[str] | None = None) -> int:
         print(json.dumps({"sections": report["sections"], "covered": report["covered"],
                           "unaddressed": len(report["unaddressed"])}, indent=2))
     elif args.cmd == "approve":
+        if not args.ids and not args.high_confidence:
+            p_ap.error("select card IDs or use --high-confidence")
         status = "rejected" if args.reject else "approved"
         print(json.dumps(set_status(args.ids, status, high_confidence_only=args.high_confidence), indent=2))
     elif args.cmd == "publish":
         print(json.dumps(publish(url=args.url, token=args.token), indent=2))
     elif args.cmd == "run":
-        print(json.dumps(ingest(force=args.force), indent=2))
+        result = ingest(force=args.force)
+        print(json.dumps(result, indent=2))
+        if result["failures"]:
+            return 1
         cards = generate(include_ai=not args.no_ai)
         print(json.dumps({"cards": len(cards)}, indent=2))
         print(json.dumps(validate(), indent=2))

@@ -6,10 +6,13 @@ from contextlib import contextmanager
 from pathlib import Path
 from typing import Any, Iterator
 
+import nh3
+
 from app import config
 
 NOTE_TYPE = "COIS-1020"
 FIELD_NAMES = ["Front", "Back", "Source", "Origin"]
+CARD_HTML_TAGS = {"b", "blockquote", "br", "code", "div", "em", "hr", "i", "li", "ol", "p", "pre", "strong", "ul"}
 
 _lock = threading.Lock()
 _col = None
@@ -93,7 +96,9 @@ def open_collection():
         _col = Collection(str(config.COLLECTION_PATH))
         _ensure_v3(_col)
         _ensure_note_type(_col)
-        _ensure_deck(_col, config.DEFAULT_DECK)
+        deck_id = _ensure_deck(_col, config.DEFAULT_DECK)
+        if _col.decks.current()["id"] == 1 and not _col.find_cards("deck:Default"):
+            _col.decks.set_current(deck_id)
         _col.save()
     return _col
 
@@ -162,8 +167,8 @@ def _card_payload(col, queued_card) -> dict[str, Any]:
     card.start_timer()
     return {
         "card_id": int(card.id),
-        "question": card.question(),
-        "answer": card.answer(),
+        "question": nh3.clean(card.question(), tags=CARD_HTML_TAGS, attributes={}),
+        "answer": nh3.clean(card.answer(), tags=CARD_HTML_TAGS, attributes={}),
         "states": queued_card.states,
         "queue": str(queued_card.queue),
     }
@@ -205,6 +210,7 @@ def answer_card(card_id: int, rating: str) -> None:
         if int(card.id) != int(card_id):
             # Reload after another review; ignore stale answer rather than double-rate.
             return
+        card.start_timer()
         built = col.sched.build_answer(
             card=card, states=current.states, rating=rating_map[rating]
         )
@@ -212,14 +218,18 @@ def answer_card(card_id: int, rating: str) -> None:
         col.save()
 
 
+def _counts(col) -> dict[str, int]:
+    queued = col.sched.get_queued_cards(fetch_limit=1)
+    return {
+        "new": int(queued.new_count),
+        "learn": int(queued.learning_count),
+        "review": int(queued.review_count),
+    }
+
+
 def counts() -> dict[str, int]:
     with locked_collection() as col:
-        queued = col.sched.get_queued_cards(fetch_limit=1)
-        return {
-            "new": int(queued.new_count),
-            "learn": int(queued.learning_count),
-            "review": int(queued.review_count),
-        }
+        return _counts(col)
 
 
 def performance(days: int = 7) -> dict[str, Any]:
@@ -261,7 +271,7 @@ def performance(days: int = 7) -> dict[str, Any]:
 
 def stats_summary() -> dict[str, Any]:
     with locked_collection() as col:
-        due = counts()
+        due = _counts(col)
         card_count = col.card_count()
         note_count = col.note_count()
         studied = col.db.scalar("SELECT COUNT(*) FROM revlog") or 0

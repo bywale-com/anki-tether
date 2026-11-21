@@ -131,3 +131,49 @@ def test_unit_ids_stable():
     a = unit_id("f", 1, 0, "heading", "Hello")
     b = unit_id("f", 1, 0, "heading", "Hello")
     assert a == b
+
+
+def test_changed_pdf_requires_new_approval_and_invalidates_stale_units(tmp_path, monkeypatch):
+    import pymupdf
+
+    from pipeline.approve import approved_cards
+    from pipeline import validate as validate_mod
+
+    for module, name, filename in (
+        (store, "MANIFEST_PATH", "manifest.json"),
+        (store, "QUEUE_PATH", "review_queue.json"),
+        (store, "UNITS_DIR", "units"),
+        (store, "DRAFTS_DIR", "drafts"),
+        (validate_mod, "REPORTS_DIR", "reports"),
+    ):
+        monkeypatch.setattr(module, name, tmp_path / filename)
+
+    sources = tmp_path / "sources"
+    sources.mkdir()
+    pdf = sources / "lesson.pdf"
+
+    def write_pdf(definition, extra):
+        with pymupdf.open() as doc:
+            page = doc.new_page()
+            page.insert_text((50, 50), f"Iteration\nA loop is a control structure that {definition}.\n{extra}")
+            doc.save(pdf)
+
+    write_pdf("repeats a sequence", "A branch is an alternate execution path.")
+    assert ingest(root=sources)["changed"] == ["lesson.pdf"]
+    generate(include_ai=False)
+    validate()
+    card = next(c for c in store.load_drafts() if c["front"] == "What is A loop?")
+    assert set_status([card["id"]], "approved")["changed"] == 1
+
+    write_pdf("repeats a block of statements", "")
+    assert ingest(root=sources)["changed"] == ["lesson.pdf"]
+    assert not approved_cards()
+    assert all("alternate execution" not in u["text"] for u in store.load_all_units())
+    generate(include_ai=False)
+    validate()
+    revised = next(c for c in store.load_drafts() if c["id"] == card["id"])
+    assert revised["guid"] == card["guid"]
+    assert revised["status"] == "needs_review"
+    assert "repeats a block of statements" in revised["back"]
+    assert not revised["eligible_auto_approve"]
+    assert set_status([revised["id"]], "approved")["changed"] == 1

@@ -15,7 +15,10 @@ CSRF_COOKIE = "anki_tether_csrf"
 
 
 def serializer() -> URLSafeTimedSerializer:
-    return URLSafeTimedSerializer(config.SESSION_SECRET, salt="anki-tether-session")
+    secret = config.SESSION_SECRET
+    if not secret:
+        raise RuntimeError("SESSION_SECRET is required")
+    return URLSafeTimedSerializer(secret, salt="anki-tether-session")
 
 
 def create_session_token(username: str) -> str:
@@ -23,6 +26,8 @@ def create_session_token(username: str) -> str:
 
 
 def read_session_token(token: str) -> str | None:
+    if not config.auth_configured():
+        return None
     try:
         data = serializer().loads(token, max_age=60 * 60 * 24 * 14)
     except BadSignature:
@@ -36,8 +41,8 @@ def read_session_token(token: str) -> str | None:
 def credentials_valid(username: str, password: str) -> bool:
     if not config.auth_configured():
         return False
-    user_ok = hmac.compare_digest(username, config.STUDY_USERNAME)
-    pass_ok = hmac.compare_digest(password, config.STUDY_PASSWORD)
+    user_ok = hmac.compare_digest(username.encode(), config.STUDY_USERNAME.encode())
+    pass_ok = hmac.compare_digest(password.encode(), config.STUDY_PASSWORD.encode())
     return user_ok and pass_ok
 
 
@@ -101,7 +106,7 @@ def clear_session(response) -> None:
 
 def verify_csrf(request: Request, token: str | None) -> None:
     cookie = request.cookies.get(CSRF_COOKIE, "")
-    if not token or not cookie or not hmac.compare_digest(token, cookie):
+    if not token or not cookie or not hmac.compare_digest(token.encode(), cookie.encode()):
         raise HTTPException(status_code=400, detail="Invalid CSRF token")
 
 

@@ -7,5 +7,6 @@ source-html
 source-material
 tests
 *.md
+!README.md
 .env
 .env.*

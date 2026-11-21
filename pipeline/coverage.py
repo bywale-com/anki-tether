@@ -1,10 +1,11 @@
 from __future__ import annotations
 
-from collections import defaultdict
+from collections import Counter, defaultdict
 from typing import Any
 
 from pipeline.paths import REPORTS_DIR
 from pipeline.store import load_all_units, load_drafts, write_json
+from pipeline.validate import source_matches
 
 
 def coverage() -> dict[str, Any]:
@@ -13,7 +14,11 @@ def coverage() -> dict[str, Any]:
     by_section: dict[str, dict[str, Any]] = defaultdict(
         lambda: {"units": 0, "cards": 0, "source_file": "", "pages": set()}
     )
-    unit_ids_with_cards = {c.get("unit_id") for c in cards}
+    by_id = {unit["id"]: unit for unit in units}
+    card_counts = Counter(
+        card["unit_id"] for card in cards
+        if card.get("validation") != "failed" and card.get("status") != "rejected" and source_matches(card, by_id)
+    )
     for unit in units:
         key = f"{unit['source_file']}::{unit['section']}"
         row = by_section[key]
@@ -21,8 +26,7 @@ def coverage() -> dict[str, Any]:
         row["source_file"] = unit["source_file"]
         row["pages"].add(unit["page"])
         row["section"] = unit["section"]
-        if unit["id"] in unit_ids_with_cards:
-            row["cards"] += 1
+        row["cards"] += card_counts[unit["id"]]
     rows = []
     missing = []
     for key, row in sorted(by_section.items()):

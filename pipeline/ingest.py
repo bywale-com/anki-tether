@@ -9,7 +9,7 @@ from typing import Any
 import pymupdf
 
 from pipeline.paths import SOURCE_DIR, ensure_dirs
-from pipeline.store import load_manifest, save_manifest, save_units
+from pipeline.store import load_all_units, load_manifest, save_manifest, save_units, unit_path
 
 CODE_HINT = re.compile(
     r"^\s*(using\s+System|namespace\s+|public\s+|private\s+|protected\s+|static\s+|"
@@ -63,14 +63,14 @@ def extract_pdf(path: Path, rel: str) -> dict[str, Any]:
     chapter = _clean(path.stem)
     for page_index, page in enumerate(doc):
         try:
-            text = _clean(page.get_text("text"))
+            text = page.get_text("text")
         except Exception as exc:  # noqa: BLE001
             failures.append(f"{rel}:p{page_index + 1}: {exc}")
             continue
         if not text:
             continue
         lines = [ln.rstrip() for ln in text.splitlines() if ln.strip()]
-        heading = lines[0] if lines else f"Page {page_index + 1}"
+        heading = _clean(lines[0]) if lines else f"Page {page_index + 1}"
         # Skip slide numbers that are the only extra content
         body_lines = [ln for ln in lines[1:] if not re.fullmatch(r"\d{1,3}", ln.strip())]
         units.extend(
@@ -83,6 +83,7 @@ def extract_pdf(path: Path, rel: str) -> dict[str, Any]:
                 lines=body_lines or lines,
             )
         )
+    doc.close()
     return {"source": rel, "units": units, "failures": failures, "source_hash": source_hash}
 
 
@@ -197,8 +198,13 @@ def ingest(force: bool = False, root: Path | None = None) -> dict[str, Any]:
     all_units: list[dict[str, Any]] = []
     files_meta = manifest.setdefault("files", {})
 
-    for path in discover_pdfs(root):
-        rel = str(path.relative_to(root or SOURCE_DIR)).replace("\\", "/")
+    previous_units = load_all_units()
+    sources = {path.relative_to(root or SOURCE_DIR).as_posix(): path for path in discover_pdfs(root)}
+    removed = sorted(set(files_meta) - sources.keys())
+    replaced = set(removed)
+    for rel in removed:
+        del files_meta[rel]
+    for rel, path in sources.items():
         digest = file_hash(path)
         prev = files_meta.get(rel)
         if not force and prev and prev.get("sha256") == digest:
@@ -206,19 +212,28 @@ def ingest(force: bool = False, root: Path | None = None) -> dict[str, Any]:
             continue
         result = extract_pdf(path, rel)
         failures.extend(result["failures"])
+        replaced.add(rel)
+        if result["failures"]:
+            files_meta.pop(rel, None)
+            continue
         save_units(result["units"])
         all_units.extend(result["units"])
         files_meta[rel] = {
             "sha256": digest,
             "unit_count": len(result["units"]),
-            "pages": None,
+            "pages": len({unit["page"] for unit in result["units"]}),
         }
         changed.append(rel)
 
+    current_ids = {unit["id"] for unit in all_units}
+    for unit in previous_units:
+        if unit["source_file"] in replaced and unit["id"] not in current_ids:
+            unit_path(unit["id"]).unlink(missing_ok=True)
     save_manifest(manifest)
     return {
         "changed": changed,
         "unchanged": unchanged,
+        "removed": removed,
         "failures": failures,
         "units_written": len(all_units),
     }

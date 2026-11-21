@@ -26,7 +26,7 @@ HOST = env("HOST", "127.0.0.1") or "127.0.0.1"
 PORT = int(env("PORT", "8000") or "8000")
 STUDY_USERNAME = env("STUDY_USERNAME", "")
 STUDY_PASSWORD = env("STUDY_PASSWORD", "")
-SESSION_SECRET = env("SESSION_SECRET", "dev-only-insecure-secret")
+SESSION_SECRET = env("SESSION_SECRET")
 IMPORT_TOKEN = env("IMPORT_TOKEN", "")
 PIPELINE_DATA_DIR = Path(env("PIPELINE_DATA_DIR", "pipeline-data") or "pipeline-data")
 DEFAULT_DECK = env("DEFAULT_DECK", "COIS-1020") or "COIS-1020"
@@ -34,4 +34,4 @@ SECURE_COOKIES = env("SECURE_COOKIES", "true").lower() in {"1", "true", "yes"}
 
 
 def auth_configured() -> bool:
-    return bool(STUDY_USERNAME and STUDY_PASSWORD)
+    return bool(STUDY_USERNAME and STUDY_PASSWORD and SESSION_SECRET)

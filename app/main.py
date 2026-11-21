@@ -25,14 +25,25 @@ app = FastAPI(title="Anki Tether", docs_url=None, redoc_url=None, lifespan=lifes
 app.mount("/static", StaticFiles(directory="app/static"), name="static")
 
 
+class ImportCard(BaseModel):
+    front: str = Field(min_length=1)
+    back: str = Field(min_length=1)
+    guid: str | None = None
+    deck: str | None = None
+    source_file: str | None = None
+    source_ref: str | None = None
+    origin: str | None = None
+    tags: list[str] = Field(default_factory=list)
+
+
 class ImportPayload(BaseModel):
-    cards: list[dict[str, Any]] = Field(default_factory=list)
+    cards: list[ImportCard] = Field(default_factory=list)
 
 
 def _auth_or_login(request: Request):
     if not config.auth_configured():
         return None, JSONResponse(
-            {"error": "Set STUDY_USERNAME and STUDY_PASSWORD before accessing study data."},
+            {"error": "Set STUDY_USERNAME, STUDY_PASSWORD, and SESSION_SECRET before accessing study data."},
             status_code=503,
         )
     user = auth.current_user(request)
@@ -49,8 +60,9 @@ def healthz():
 @app.get("/login", response_class=HTMLResponse)
 def login_form(request: Request, error: str | None = None):
     return templates.TemplateResponse(
-        "login.html",
-        {"request": request, "error": error, "csrf": request.cookies.get(auth.CSRF_COOKIE, "")},
+        request=request,
+        name="login.html",
+        context={"error": error, "csrf": request.cookies.get(auth.CSRF_COOKIE, "")},
     )
 
 
@@ -58,8 +70,9 @@ def login_form(request: Request, error: str | None = None):
 def login(request: Request, username: str = Form(...), password: str = Form(...)):
     if not auth.credentials_valid(username, password):
         return templates.TemplateResponse(
-            "login.html",
-            {"request": request, "error": "Invalid username or password.", "csrf": ""},
+            request=request,
+            name="login.html",
+            context={ "error": "Invalid username or password.", "csrf": ""},
             status_code=401,
         )
     response = RedirectResponse("/", status_code=303)
@@ -83,9 +96,9 @@ def home(request: Request):
     stats = collection.stats_summary()
     perf = collection.performance(7)
     return templates.TemplateResponse(
-        "home.html",
-        {
-            "request": request,
+        request=request,
+        name="home.html",
+        context={
             "user": user,
             "decks": decks,
             "stats": stats,
@@ -112,9 +125,9 @@ def review(request: Request, show: int = 0):
         return err
     payload = collection.next_card()
     return templates.TemplateResponse(
-        "review.html",
-        {
-            "request": request,
+        request=request,
+        name="review.html",
+        context={
             "user": user,
             "payload": payload,
             "show_answer": bool(show) and payload and not payload.get("done"),
@@ -147,9 +160,9 @@ def stats_page(request: Request, days: int = 7):
     if err:
         return err
     return templates.TemplateResponse(
-        "stats.html",
-        {
-            "request": request,
+        request=request,
+        name="stats.html",
+        context={
             "user": user,
             "stats": collection.stats_summary(),
             "perf": collection.performance(days),
@@ -164,11 +177,11 @@ def import_cards(request: Request, payload: ImportPayload):
 
     header = request.headers.get("authorization", "")
     token = header.removeprefix("Bearer ").strip()
-    if not config.IMPORT_TOKEN or not hmac.compare_digest(token, config.IMPORT_TOKEN):
+    if not config.IMPORT_TOKEN or not hmac.compare_digest(token.encode(), config.IMPORT_TOKEN.encode()):
         raise HTTPException(status_code=401, detail="Invalid import token")
     if not payload.cards:
         return {"ok": True, "created": 0, "updated": 0, "skipped": 0, "total": 0}
-    result = collection.upsert_notes(payload.cards)
+    result = collection.upsert_notes([card.model_dump(exclude_none=True) for card in payload.cards])
     return {"ok": True, **result}
 
 

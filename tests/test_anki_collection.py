@@ -56,3 +56,43 @@ def test_upsert_updates_without_new_guid(tmp_path, monkeypatch):
     second = coll.upsert_notes([card])
     assert second["updated"] == 1
     assert second["created"] == 0
+
+
+def test_live_review_and_import_survive_app_restart():
+    from fastapi.testclient import TestClient
+
+    from app.main import app
+
+    coll.close_collection()
+    card = {
+        "guid": "live-review",
+        "front": "<pre><code>int x = 2;</code></pre><script>alert(1)</script>",
+        "back": "A unique answer",
+    }
+    headers = {"Authorization": "Bearer import-secret"}
+    credentials = {"username": "tester", "password": "secret"}
+    with TestClient(app, follow_redirects=False) as client:
+        assert client.get("/").headers["location"] == "/login"
+        assert client.post("/api/import", json={"cards": [card]}, headers=headers).json()["created"] == 1
+        assert client.post("/login", data=credentials).status_code == 303
+        assert "COIS-1020" in client.get("/").text
+        deck_id = next(d["id"] for d in coll.deck_summaries() if d["name"] == "COIS-1020")
+        csrf = client.cookies["anki_tether_csrf"]
+        assert client.post(f"/study/{deck_id}", data={"csrf": csrf}).status_code == 303
+        question = client.get("/review").text
+        assert "int x = 2;" in question
+        assert "alert(1)" not in question
+        assert "A unique answer" not in question
+        assert "A unique answer" in client.get("/review?show=1").text
+        cid = coll.next_card()["card"]["card_id"]
+        assert client.post("/review/answer", data={"csrf": csrf, "card_id": cid, "rating": "good"}).status_code == 303
+
+    with TestClient(app, follow_redirects=False) as client:
+        assert client.post("/login", data=credentials).status_code == 303
+        assert client.get("/stats").status_code == 200
+        card["back"] = "Updated answer"
+        result = client.post("/api/import", json={"cards": [card]}, headers=headers)
+        assert result.json()["updated"] == 1
+        assert coll.stats_summary()["reviews_logged"] == 1
+        with coll.locked_collection() as col:
+            assert col.get_card(cid).reps == 1
