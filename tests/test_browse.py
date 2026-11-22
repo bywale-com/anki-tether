@@ -67,3 +67,28 @@ def test_browse_paginates_results():
         assert second.status_code == 200
         assert "Page 2 of 2" in second.text
         assert second.text.count('href="/browse/') == 1
+
+
+def test_flags_survive_reopen_and_authored_update():
+    pytest.importorskip("anki")
+    from app import collection
+
+    collection.close_collection()
+    card = {"guid": "authored-flag-test", "front": "Flag me", "back": "Answer",
+            "source_ref": "https://example.org/lecture"}
+    with TestClient(app, follow_redirects=False) as client:
+        collection.upsert_notes([card])
+        cid = collection.next_card()["card"]["card_id"]
+        client.post("/login", data={"username": "tester", "password": "secret"})
+        path = f"/cards/{cid}/flag"
+        assert client.post(path, data={"reason": "need_practice"}).status_code == 400
+        csrf = client.cookies["anki_tether_csrf"]
+        assert client.post(path, data={"reason": "need_practice", "csrf": csrf}).status_code == 303
+        collection.upsert_notes([{**card, "back": "Edited answer"}])
+        collection.close_collection()
+        assert "Flag me" in client.get("/browse?flag=need_practice").text
+        assert "Flag me" not in client.get("/browse?flag=card_problem").text
+        assert 'href="https://example.org/lecture"' in client.get(f"/browse/{cid}").text
+        assert client.post(path, data={"resolve": "true", "csrf": csrf}).status_code == 303
+        assert "Flag me" not in client.get("/browse?flag=flagged").text
+        assert collection.stats_summary()["reviews_logged"] == 0

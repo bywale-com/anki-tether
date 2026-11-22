@@ -1,0 +1,20 @@
+{% if card.source %}
+<p class="muted card-source">Source:
+  {% if card.source_url %}<a href="{{ card.source_url }}" rel="noreferrer">{{ card.source }}</a>
+  {% else %}{{ card.source }}{% endif %}
+</p>
+{% endif %}
+<form action="/cards/{{ card.card_id }}/flag" method="post" class="flag-form">
+  <input type="hidden" name="csrf" value="{{ csrf }}">
+  <input type="hidden" name="view" value="{{ flag_view }}">
+  {% if all_due %}<input type="hidden" name="all_due" value="true">{% endif %}
+  <label for="flag-reason">Flag reason</label>
+  <select id="flag-reason" name="reason" required>
+    <option value="" disabled{% if not card.flag %} selected{% endif %}>Choose a reason</option>
+    {% for value, label in flag_reasons.items() %}
+    <option value="{{ value }}"{% if value == card.flag %} selected{% endif %}>{{ label }}</option>
+    {% endfor %}
+  </select>
+  <button type="submit">{{ "Update flag" if card.flag else "Flag" }}</button>
+  {% if card.flag %}<button type="submit" name="resolve" value="true" formnovalidate>Resolve flag</button>{% endif %}
+</form>

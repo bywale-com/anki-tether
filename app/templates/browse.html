@@ -17,6 +17,16 @@
       <label for="browse-query">Search cards</label>
       <input type="search" name="q" id="browse-query" value="{{ query }}" maxlength="150" placeholder="Card text or tag">
     </div>
+    <div>
+      <label for="browse-flag">Flag</label>
+      <select id="browse-flag" name="flag">
+        <option value="">All cards</option>
+        <option value="flagged"{% if flag == "flagged" %} selected{% endif %}>Any unresolved flag</option>
+        {% for value, label in flag_reasons.items() %}
+        <option value="{{ value }}"{% if flag == value %} selected{% endif %}>{{ label }}</option>
+        {% endfor %}
+      </select>
+    </div>
     <button type="submit">Search</button>
   </form>
 </section>
@@ -27,7 +37,7 @@
     {% for card in result.cards %}
     <li>
       <a href="/browse/{{ card.id }}?{{ filters | urlencode }}">{{ card.title or "Open card" }}</a>
-      <div class="muted">{{ card.deck }}</div>
+      <div class="muted">{{ card.deck }}{% if card.flag %} · {{ flag_reasons[card.flag] }}{% endif %}</div>
     </li>
     {% endfor %}
   </ul>

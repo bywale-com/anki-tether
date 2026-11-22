@@ -2,7 +2,9 @@ from __future__ import annotations
 
 from html import unescape
 import hashlib
+from urllib.parse import urlsplit
 import threading
+import time
 from contextlib import contextmanager
 from pathlib import Path
 from typing import Any, Iterator
@@ -158,10 +160,60 @@ def deck_summaries() -> list[dict[str, Any]]:
 def select_deck(deck_id: int) -> None:
     with locked_collection() as col:
         col.decks.set_current(deck_id)
-        col.save()
 
 
-def browse_cards(deck_id: int | None, query: str, page: int) -> dict[str, Any] | None:
+FLAG_REASONS = {
+    "dont_understand": "Don't understand",
+    "need_practice": "Need practice",
+    "card_problem": "Card problem",
+}
+FLAG_CONFIG = "anki_tether_card_flags"
+
+
+def _flags(col) -> dict[str, str]:
+    return col.get_config(FLAG_CONFIG, {})
+
+
+def set_card_flag(card_id: int, reason: str) -> bool:
+    if reason and reason not in FLAG_REASONS:
+        raise ValueError("Invalid flag reason")
+    with locked_collection() as col:
+        if not col.db.scalar("select 1 from cards where id = ?", card_id):
+            return False
+        flags = _flags(col)
+        if reason:
+            flags[str(card_id)] = reason
+        else:
+            flags.pop(str(card_id), None)
+        col.set_config(FLAG_CONFIG, flags, undoable=False)
+        return True
+
+
+def _card_details(col, card) -> dict[str, Any]:
+    deck = col.decks.get(card.odid or card.did, default=False)
+    note = card.note()
+    source = note["Source"].strip() if "Source" in note else ""
+    try:
+        url = urlsplit(source)
+        source_url = source if url.scheme in {"http", "https"} and url.hostname and not url.username else ""
+    except ValueError:
+        source_url = ""
+    return {
+        "card_id": int(card.id),
+        "deck": deck["name"] if deck else "",
+        "tags": note.tags,
+        "source": source,
+        "source_url": source_url,
+        "flag": _flags(col).get(str(card.id), ""),
+    }
+
+
+def _card_title(card) -> str:
+    text = " ".join(unescape(nh3.clean(card.question(), tags=set(), attributes={})).split())
+    return text[:160] + "…" if len(text) > 160 else text
+
+
+def browse_cards(deck_id: int | None, query: str, page: int, flag: str = "") -> dict[str, Any] | None:
     from anki.collection import SearchNode
 
     page_size = 30
@@ -179,17 +231,20 @@ def browse_cards(deck_id: int | None, query: str, page: int) -> dict[str, Any] |
             tagged = SearchNode(parsable_text=f'"tag:*{tag}*"')
             search.append(col.group_searches(text, tagged, joiner="OR"))
         ids = col.find_cards(col.build_search_string(*search) if search else "", order="c.id asc")
+        flags = _flags(col)
+        if flag:
+            ids = [cid for cid in ids if flags.get(str(cid)) and (flag == "flagged" or flags[str(cid)] == flag)]
         pages = max(1, (len(ids) + page_size - 1) // page_size)
         page = min(page, pages)
         start = (page - 1) * page_size
         cards = []
         for cid in ids[start:start + page_size]:
             card = col.get_card(cid)
-            text = " ".join(unescape(nh3.clean(card.question(), tags=set(), attributes={})).split())
             cards.append({
                 "id": cid,
-                "title": text[:160] + "…" if len(text) > 160 else text,
-                "deck": decks.get(card.did, ""),
+                "title": _card_title(card),
+                "deck": decks.get(card.odid or card.did, ""),
+                "flag": flags.get(str(cid), ""),
             })
         return {"decks": decks, "cards": cards, "page": page, "pages": pages, "total": len(ids)}
 
@@ -202,12 +257,7 @@ def browse_card(card_id: int) -> dict[str, Any] | None:
             card = col.get_card(card_id)
         except NotFoundError:
             return None
-        deck = col.decks.get(card.did, default=False)
-        return {
-            **_card_sides(card),
-            "deck": deck["name"] if deck else "",
-            "tags": card.note().tags,
-        }
+        return {**_card_sides(card), **_card_details(col, card)}
 
 
 def _card_sides(card) -> dict[str, str]:
@@ -224,28 +274,56 @@ def _card_payload(col, queued_card) -> dict[str, Any]:
     card._load_from_backend_card(queued_card.card)
     card.start_timer()
     return {
-        "card_id": int(card.id),
+        **_card_details(col, card),
         **_card_sides(card),
         "states": queued_card.states,
         "queue": str(queued_card.queue),
     }
 
 
-def next_card() -> dict[str, Any] | None:
+def _review_queue(col, all_due: bool):
+    """Find a native queued card, temporarily selecting course roots in all-due mode."""
+    from anki.scheduler_pb2 import QueuedCards
+
+    selected = col.decks.current()["id"]
+    if not all_due:
+        queued = col.sched.get_queued_cards()
+        return (queued.cards[0] if queued.cards else None), _counts_from_queue(queued), selected
+
+    counts = {"new": 0, "learn": 0, "review": 0}
+    next_card = None
+    next_deck = selected
+    for course in col.sched.deck_due_tree().children:
+        counts["learn"] += course.learn_count
+        counts["review"] += course.review_count
+        if next_card is not None or not (course.learn_count or course.review_count):
+            continue
+        if course.deck_id != selected:
+            col.decks.set_current(course.deck_id)
+        try:
+            queued = col.sched.get_queued_cards()
+            if queued.cards and queued.cards[0].queue == QueuedCards.NEW:
+                queued = col.sched.get_queued_cards(fetch_limit=queued.new_count + 1)
+            next_card = next((card for card in queued.cards if card.queue != QueuedCards.NEW), None)
+            next_deck = course.deck_id
+        finally:
+            # Undo only temporary deck selection, leaving the last review available.
+            if course.deck_id != selected:
+                col.undo()
+    return next_card, counts, next_deck
+
+
+def next_card(all_due: bool = False) -> dict[str, Any] | None:
     with locked_collection() as col:
-        queued = col.sched.get_queued_cards(fetch_limit=1)
-        counts = {
-            "new": int(queued.new_count),
-            "learn": int(queued.learning_count),
-            "review": int(queued.review_count),
-        }
-        if not queued.cards:
-            return {"done": True, "counts": counts, "card": None}
-        card = _card_payload(col, queued.cards[0])
-        return {"done": False, "counts": counts, "card": card}
+        queued, counts, _ = _review_queue(col, all_due)
+        card = _card_payload(col, queued) if queued else None
+        return {"done": card is None, "counts": counts, "card": card}
 
 
-def answer_card(card_id: int, rating: str) -> None:
+REVIEW_UNDO_LABEL = "Anki Tether review"
+
+
+def answer_card(card_id: int, rating: str, all_due: bool = False) -> None:
     _, CardAnswer = _import_anki()
     rating_map = {
         "again": CardAnswer.AGAIN,
@@ -256,27 +334,44 @@ def answer_card(card_id: int, rating: str) -> None:
     if rating not in rating_map:
         raise ValueError("rating must be again, hard, good, or easy")
     with locked_collection() as col:
-        queued = col.sched.get_queued_cards(fetch_limit=1)
-        if not queued.cards:
+        selected = col.decks.current()["id"]
+        current, _, deck_id = _review_queue(col, all_due)
+        if current is None or current.card.id != card_id:
             return
-        current = queued.cards[0]
-        from anki.cards import Card
+        undo_group = col.add_custom_undo_entry(REVIEW_UNDO_LABEL)
+        if deck_id != selected:
+            col.decks.set_current(deck_id)
+        try:
+            card = col.get_card(card_id)
+            card.start_timer()
+            built = col.sched.build_answer(
+                card=card, states=current.states, rating=rating_map[rating]
+            )
+            col.sched.answer_card(built)
+        finally:
+            if deck_id != selected:
+                col.decks.set_current(selected)
+        col.merge_undo_entries(undo_group)
 
-        card = Card(col)
-        card._load_from_backend_card(current.card)
-        if int(card.id) != int(card_id):
-            # Reload after another review; ignore stale answer rather than double-rate.
-            return
-        card.start_timer()
-        built = col.sched.build_answer(
-            card=card, states=current.states, rating=rating_map[rating]
-        )
-        col.sched.answer_card(built)
-        col.save()
+
+def _can_undo_review(col) -> bool:
+    return col.undo_status().undo == REVIEW_UNDO_LABEL
 
 
-def _counts(col) -> dict[str, int]:
-    queued = col.sched.get_queued_cards(fetch_limit=1)
+def can_undo_review() -> bool:
+    with locked_collection() as col:
+        return _can_undo_review(col)
+
+
+def undo_review() -> bool:
+    with locked_collection() as col:
+        if not _can_undo_review(col):
+            return False
+        col.undo()
+        return True
+
+
+def _counts_from_queue(queued) -> dict[str, int]:
     return {
         "new": int(queued.new_count),
         "learn": int(queued.learning_count),
@@ -284,46 +379,111 @@ def _counts(col) -> dict[str, int]:
     }
 
 
+def _counts(col) -> dict[str, int]:
+    return _counts_from_queue(col.sched.get_queued_cards())
+
+
 def counts() -> dict[str, int]:
     with locked_collection() as col:
         return _counts(col)
 
 
+def _recall(ratings) -> dict[str, Any]:
+    first = {}
+    for cid, ease in ratings:
+        first.setdefault(cid, ease)
+    total = len(first)
+    success = sum(ease >= 2 for ease in first.values())
+    pct = 100.0 * success / total if total else None
+    return {
+        "cards_reviewed": total,
+        "first_attempt_success": success,
+        "first_attempt_percent": pct,
+        "target_percent": 95.0,
+        "meets_target": pct is not None and pct >= 95.0,
+    }
+
+
+def _window_cutoff(days: int) -> int:
+    return int((time.time() - days * 86400) * 1000)
+
+
 def performance(days: int = 7) -> dict[str, Any]:
-    """First-attempt success rate over the selected window.
-
-    A successful first attempt is a Hard/Good/Easy rating (ease 2-4) on the
-    first review of that card in the window. Again (ease 1) is a miss.
-    This is not predicted retention.
-    """
     with locked_collection() as col:
-        import time
-
-        cutoff = int((time.time() - days * 86400) * 1000)
-        rows = col.db.all(
-            "SELECT cid, ease, id FROM revlog WHERE id >= ? ORDER BY id ASC",
-            cutoff,
+        ratings = col.db.all(
+            "select cid, ease from revlog where id >= ? and ease between 1 and 4 order by id",
+            _window_cutoff(days),
         )
-        first: dict[int, int] = {}
-        for cid, ease, _rid in rows:
-            if cid not in first:
-                first[cid] = ease
-        total = len(first)
-        success = sum(1 for ease in first.values() if ease >= 2)
-        pct = (100.0 * success / total) if total else None
         return {
+            **_recall(ratings),
             "window_days": days,
-            "cards_reviewed": total,
-            "first_attempt_success": success,
-            "first_attempt_percent": pct,
-            "target_percent": 95.0,
-            "meets_target": pct is not None and pct >= 95.0,
             "definition": (
                 "Percentage of cards reviewed in this window whose first rating "
                 "was Hard, Good, or Easy (not Again). Independent lab reproduction "
                 "is tracked separately and is not inferred from this number."
             ),
         }
+
+
+def learning_progress(days: int) -> dict[str, Any]:
+    with locked_collection() as col:
+        decks = {d.id: d.name for d in col.decks.all_names_and_ids()}
+        courses = {
+            decks[deck.deck_id]: {
+                "name": decks[deck.deck_id],
+                "due": deck.review_count + deck.learn_count,
+                "ratings": [],
+            }
+            for deck in col.sched.deck_due_tree().children
+            if deck.deck_id in decks
+        }
+        rows = col.db.all(
+            """select r.cid, r.ease, case when c.odid > 0 then c.odid else c.did end
+               from revlog r join cards c on c.id = r.cid
+               where r.id >= ? and r.ease between 1 and 4 order by r.id""",
+            _window_cutoff(days),
+        )
+        for cid, ease, did in rows:
+            name = decks.get(did, "").split("::")[0]
+            if name in courses:
+                courses[name]["ratings"].append((cid, ease))
+
+        flag_counts = dict.fromkeys(FLAG_REASONS, 0)
+        for cid, reason in _flags(col).items():
+            if reason in flag_counts and col.db.scalar("select 1 from cards where id = ?", int(cid)):
+                flag_counts[reason] += 1
+
+        recent = []
+        for cid in col.db.list(
+            """select r.cid from revlog r join cards c on c.id = r.cid
+               where r.id >= ? and r.ease = 1
+               group by r.cid order by max(r.id) desc limit 8""",
+            _window_cutoff(days),
+        ):
+            card = col.get_card(cid)
+            recent.append({"id": cid, "title": _card_title(card), "deck": decks.get(card.odid or card.did, "")})
+        course_rows = []
+        for course in courses.values():
+            ratings = course.pop("ratings")
+            if course["name"] == "Default" and not (course["due"] or ratings):
+                continue
+            course_rows.append({**course, "reviews": len(ratings), **_recall(ratings)})
+        return {"courses": course_rows, "flags": flag_counts, "recent": recent}
+
+
+def review_cursor() -> int:
+    with locked_collection() as col:
+        return col.db.scalar("select coalesce(max(id), 0) from revlog")
+
+
+def session_summary(after: int) -> dict[str, Any]:
+    with locked_collection() as col:
+        reviews, cards, again = col.db.first(
+            """select count(*), count(distinct cid), coalesce(sum(ease = 1), 0)
+               from revlog where id > ? and ease between 1 and 4""",
+            after,
+        )
+        return {"reviews": reviews, "cards": cards, "again": again}
 
 
 def stats_summary() -> dict[str, Any]:

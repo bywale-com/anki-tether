@@ -1,6 +1,11 @@
 {% extends "base.html" %}
 {% block title %}Decks · Anki Tether{% endblock %}
 {% block body %}
+<form method="post" action="/study" class="review-now">
+  <input type="hidden" name="csrf" value="{{ csrf }}">
+  <button type="submit">Review now</button>
+  <span class="muted">Due cards across all courses</span>
+</form>
 <section class="card">
   <h2>Progress</h2>
   <div class="counts">

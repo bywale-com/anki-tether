@@ -166,3 +166,9 @@ Anki-backed tests skip if `anki` is not installed. Pipeline tests use the real l
 ## Course-performance reminder
 
 The home/stats **95%** figure is first-attempt review success in a time window. It is not proof you can write C# labs. Lab prompts are intentionally unanswered.
+
+### Authored metadata conventions
+
+Use the course code as the first deck segment, a topic as the second, and add a narrower subtopic only when it helps navigation. Use existing JSON `tags` for searchable metadata: `topic-derivatives`, plus a knowledge type such as `type-concept`, `type-procedure`, `type-code-output`, `type-debugging`, or `type-application`. Keep IDs stable when editing metadata. Existing tags and batches remain valid.
+
+Use `source_ref` for an actual lecture title, document and page, or a verified URL. The reviewer and card browser show that reference, and standalone HTTP(S) URLs open directly. Omit the reference when the source is unknown.

@@ -1,9 +1,14 @@
 {% extends "base.html" %}
 {% block title %}Review · Anki Tether{% endblock %}
 {% block body %}
+{% if all_due %}<p class="muted">Due across all courses</p>{% endif %}
 {% if payload.done or not payload.card %}
   <section class="card">
     <h2>Done for now</h2>
+    {% if summary and summary.reviews %}
+    <p>{{ summary.reviews }} {{ "rating" if summary.reviews == 1 else "ratings" }} across
+       {{ summary.cards }} {{ "card" if summary.cards == 1 else "cards" }} this session · {{ summary.again }} Again</p>
+    {% endif %}
     <p>No cards are waiting. New, learning, and due counts:</p>
     <div class="counts">
       <span class="pill">New {{ payload.counts.new }}</span>
@@ -19,6 +24,7 @@
     <span class="pill">Learn {{ payload.counts.learn }}</span>
     <span class="pill">Due {{ payload.counts.review }}</span>
   </div>
+  {% if payload.card.deck %}<p class="muted">{{ payload.card.deck }}</p>{% endif %}
   <article class="card question">
     {% if show_answer %}
       {{ payload.card.answer | safe }}
@@ -27,10 +33,11 @@
     {% endif %}
   </article>
   {% if not show_answer %}
-    <p><a class="btn full" href="/review?show=1">Show answer</a></p>
+    <p><a class="btn full" href="/review?show=1{% if all_due %}&amp;all_due=1{% endif %}">Show answer</a></p>
   {% else %}
     <form class="ratings" method="post" action="/review/answer">
       <input type="hidden" name="csrf" value="{{ csrf }}">
+      {% if all_due %}<input type="hidden" name="all_due" value="true">{% endif %}
       <input type="hidden" name="card_id" value="{{ payload.card.card_id }}">
       <button class="again" name="rating" value="again">Again</button>
       <button class="hard" name="rating" value="hard">Hard</button>
@@ -38,5 +45,15 @@
       <button class="easy" name="rating" value="easy">Easy</button>
     </form>
   {% endif %}
+  {% set card = payload.card %}
+  {% set flag_view = "answer" if show_answer else "review" %}
+  {% include "card_tools.html" %}
+{% endif %}
+{% if can_undo %}
+<form method="post" action="/review/undo" class="review-undo">
+  <input type="hidden" name="csrf" value="{{ csrf }}">
+  {% if all_due %}<input type="hidden" name="all_due" value="true">{% endif %}
+  <button type="submit">Undo last review</button>
+</form>
 {% endif %}
 {% endblock %}

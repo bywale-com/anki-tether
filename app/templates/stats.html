@@ -21,6 +21,39 @@
     <p>No reviews in this window yet.</p>
   {% endif %}
   <p class="muted">{{ perf.definition }}</p>
-  <p class="muted">Flashcard scores do not prove you can write working C# programs. Treat labs as a separate, independent criterion.</p>
+  <p class="muted">Practise programming and solving maths problems separately to assess those skills.</p>
+</section>
+<section class="card">
+  <h2>Course progress</h2>
+  <p class="muted">Reviews and first-attempt recall over the last {{ perf.window_days }} days.</p>
+  <ul class="browse-results">
+    {% for course in progress.courses %}
+    <li>
+      <strong>{{ course.name }}</strong>
+      <div class="muted">{{ course.due }} due · {{ course.reviews }} reviews ·
+        {% if course.first_attempt_percent is not none %}{{ "%.1f"|format(course.first_attempt_percent) }}% recall
+        {% else %}No recall data{% endif %}
+      </div>
+    </li>
+    {% endfor %}
+  </ul>
+</section>
+<section class="card">
+  <h2>Unresolved flags</h2>
+  {% for reason, count in progress.flags.items() if count %}
+  <p><a href="/browse?flag={{ reason }}">{{ flag_reasons[reason] }} · {{ count }}</a></p>
+  {% else %}
+  <p>No unresolved flags.</p>
+  {% endfor %}
+</section>
+<section class="card">
+  <h2>Recently rated Again</h2>
+  <ul class="browse-results">
+    {% for card in progress.recent %}
+    <li><a href="/browse/{{ card.id }}">{{ card.title or "Open card" }}</a><div class="muted">{{ card.deck }}</div></li>
+    {% else %}
+    <li>No Again ratings in this window.</li>
+    {% endfor %}
+  </ul>
 </section>
 {% endblock %}
