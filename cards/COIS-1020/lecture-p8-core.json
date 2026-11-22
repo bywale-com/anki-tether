@@ -1,0 +1,247 @@
+{
+  "schema_version": 1,
+  "course": "COIS-1020",
+  "deck": "COIS-1020::Classes and Objects",
+  "cards": [
+    {
+      "id": "cois1020-p8-class",
+      "front": "What does a class define in object-oriented C#?",
+      "back": "A type that can specify fields, properties, methods, and constructors.",
+      "tags": [
+        "lecture_p8",
+        "topic_classes_and_objects",
+        "type_definition"
+      ],
+      "origin": "authored",
+      "source_ref": "P8ch09v4_Classes and Object.pdf PDF p.2"
+    },
+    {
+      "id": "cois1020-p8-object",
+      "front": "What is an object?",
+      "back": "An instance of a class created at runtime.",
+      "tags": [
+        "lecture_p8",
+        "topic_classes_and_objects",
+        "type_definition"
+      ],
+      "origin": "authored",
+      "source_ref": "P8ch09v4_Classes and Object.pdf PDF p.2"
+    },
+    {
+      "id": "cois1020-p8-field",
+      "front": "What is an instance field?",
+      "back": "Data stored separately for each object of a class.",
+      "tags": [
+        "lecture_p8",
+        "topic_classes_and_objects",
+        "type_definition"
+      ],
+      "origin": "authored",
+      "source_ref": "P8ch09v4_Classes and Object.pdf PDF p.3"
+    },
+    {
+      "id": "cois1020-p8-state",
+      "front": "What constitutes an object's state?",
+      "back": "The current values of its instance fields.",
+      "tags": [
+        "lecture_p8",
+        "topic_classes_and_objects",
+        "type_definition"
+      ],
+      "origin": "authored",
+      "source_ref": "P8ch09v4_Classes and Object.pdf PDF p.3"
+    },
+    {
+      "id": "cois1020-p8-instance",
+      "front": "What is an instance method?",
+      "back": "A method called on an object and able to access its instance members.",
+      "tags": [
+        "lecture_p8",
+        "topic_classes_and_objects",
+        "type_definition"
+      ],
+      "origin": "authored",
+      "source_ref": "P8ch09v4_Classes and Object.pdf PDF p.3"
+    },
+    {
+      "id": "cois1020-p8-declaration",
+      "front": "Does Employee worker; by itself create an Employee object?",
+      "back": "No; it declares a reference variable, not an instance.",
+      "tags": [
+        "lecture_p8",
+        "topic_classes_and_objects",
+        "type_counterexample"
+      ],
+      "origin": "authored",
+      "source_ref": "P8ch09v4_Classes and Object.pdf PDF p.9"
+    },
+    {
+      "id": "cois1020-p8-new",
+      "front": "What does new Employee() do?",
+      "back": "Creates an Employee instance and invokes an appropriate constructor.",
+      "tags": [
+        "lecture_p8",
+        "topic_classes_and_objects",
+        "type_recognition"
+      ],
+      "origin": "authored",
+      "source_ref": "P8ch09v4_Classes and Object.pdf PDF p.9"
+    },
+    {
+      "id": "cois1020-p8-private",
+      "front": "Why make data fields private?",
+      "back": "To restrict uncontrolled external access and enforce an interface.",
+      "tags": [
+        "lecture_p8",
+        "topic_classes_and_objects",
+        "type_concept"
+      ],
+      "origin": "authored",
+      "source_ref": "P8ch09v4_Classes and Object.pdf PDF p.7"
+    },
+    {
+      "id": "cois1020-p8-constructor",
+      "front": "What is a constructor used for?",
+      "back": "Initializing a new object at creation time.",
+      "tags": [
+        "lecture_p8",
+        "topic_classes_and_objects",
+        "type_definition"
+      ],
+      "origin": "authored",
+      "source_ref": "P8ch09v4_Classes and Object.pdf PDF p.12"
+    },
+    {
+      "id": "cois1020-p8-default",
+      "front": "When is an implicit parameterless constructor supplied to a class?",
+      "back": "When no instance constructor is explicitly declared.",
+      "tags": [
+        "lecture_p8",
+        "topic_classes_and_objects",
+        "type_rule"
+      ],
+      "origin": "authored",
+      "source_ref": "P8ch09v4_Classes and Object.pdf PDF p.12"
+    },
+    {
+      "id": "cois1020-p8-ctor-overload",
+      "front": "How can constructors be overloaded?",
+      "back": "By giving them distinct parameter signatures.",
+      "tags": [
+        "lecture_p8",
+        "topic_classes_and_objects",
+        "type_recognition"
+      ],
+      "origin": "authored",
+      "source_ref": "P8ch09v4_Classes and Object.pdf PDF p.13"
+    },
+    {
+      "id": "cois1020-p8-accessor",
+      "front": "What does an accessor do?",
+      "back": "Reads a field's value through a controlled interface.",
+      "tags": [
+        "lecture_p8",
+        "topic_classes_and_objects",
+        "type_definition"
+      ],
+      "origin": "authored",
+      "source_ref": "P8ch09v4_Classes and Object.pdf PDF p.19"
+    },
+    {
+      "id": "cois1020-p8-mutator",
+      "front": "What does a mutator do?",
+      "back": "Changes a field's value through a controlled interface.",
+      "tags": [
+        "lecture_p8",
+        "topic_classes_and_objects",
+        "type_definition"
+      ],
+      "origin": "authored",
+      "source_ref": "P8ch09v4_Classes and Object.pdf PDF p.19"
+    },
+    {
+      "id": "cois1020-p8-property",
+      "front": "What is a C# property?",
+      "back": "A class member that exposes controlled get/set access to data.",
+      "tags": [
+        "lecture_p8",
+        "topic_classes_and_objects",
+        "type_definition"
+      ],
+      "origin": "authored",
+      "source_ref": "P8ch09v4_Classes and Object.pdf PDF p.21"
+    },
+    {
+      "id": "cois1020-p8-get",
+      "front": "What does a get accessor do?",
+      "back": "Returns a value when the property is read.",
+      "tags": [
+        "lecture_p8",
+        "topic_classes_and_objects",
+        "type_syntax"
+      ],
+      "origin": "authored",
+      "source_ref": "P8ch09v4_Classes and Object.pdf PDF p.21"
+    },
+    {
+      "id": "cois1020-p8-set",
+      "front": "What is value inside a property set accessor?",
+      "back": "The implicit parameter holding the value assigned to the property.",
+      "tags": [
+        "lecture_p8",
+        "topic_classes_and_objects",
+        "type_syntax"
+      ],
+      "origin": "authored",
+      "source_ref": "P8ch09v4_Classes and Object.pdf PDF p.23"
+    },
+    {
+      "id": "cois1020-p8-read-only",
+      "front": "What is a get-only property?",
+      "back": "A property that provides a getter without a public setter.",
+      "tags": [
+        "lecture_p8",
+        "topic_classes_and_objects",
+        "type_recognition"
+      ],
+      "origin": "authored",
+      "source_ref": "P8ch09v4_Classes and Object.pdf PDF p.21"
+    },
+    {
+      "id": "cois1020-p8-auto",
+      "front": "Why use an auto-implemented property?",
+      "back": "C# generates the backing storage and simple accessors.",
+      "tags": [
+        "lecture_p8",
+        "topic_classes_and_objects",
+        "type_recognition"
+      ],
+      "origin": "authored",
+      "source_ref": "P8ch09v4_Classes and Object.pdf PDF p.26"
+    },
+    {
+      "id": "cois1020-p8-this",
+      "front": "What does this refer to in an instance method?",
+      "back": "The current object instance.",
+      "tags": [
+        "lecture_p8",
+        "topic_classes_and_objects",
+        "type_definition"
+      ],
+      "origin": "authored",
+      "source_ref": "P8ch09v4_Classes and Object.pdf PDF p.33"
+    },
+    {
+      "id": "cois1020-p8-array-objects",
+      "front": "Can an array contain references to class instances?",
+      "back": "Yes; an array's element type can be a class.",
+      "tags": [
+        "lecture_p8",
+        "topic_classes_and_objects",
+        "type_recognition"
+      ],
+      "origin": "authored",
+      "source_ref": "P8ch09v4_Classes and Object.pdf PDF p.43"
+    }
+  ]
+}
