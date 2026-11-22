@@ -9,10 +9,11 @@ from typing import Any, Iterator
 import nh3
 
 from app import config
+from app.card_format import CARD_HTML_TAGS
+from app.math_render import render_math
 
 NOTE_TYPE = "COIS-1020"
 FIELD_NAMES = ["Front", "Back", "Source", "Origin"]
-CARD_HTML_TAGS = {"b", "blockquote", "br", "code", "div", "em", "hr", "i", "li", "ol", "p", "pre", "strong", "ul"}
 
 _lock = threading.Lock()
 _col = None
@@ -167,8 +168,8 @@ def _card_payload(col, queued_card) -> dict[str, Any]:
     card.start_timer()
     return {
         "card_id": int(card.id),
-        "question": nh3.clean(card.question(), tags=CARD_HTML_TAGS, attributes={}),
-        "answer": nh3.clean(card.answer(), tags=CARD_HTML_TAGS, attributes={}),
+        "question": render_math(nh3.clean(card.question(), tags=CARD_HTML_TAGS, attributes={})),
+        "answer": render_math(nh3.clean(card.answer(), tags=CARD_HTML_TAGS, attributes={})),
         "states": queued_card.states,
         "queue": str(queued_card.queue),
     }
@@ -309,14 +310,27 @@ def upsert_notes(cards: list[dict[str, Any]]) -> dict[str, int]:
             tags = item.get("tags") or []
             if nid:
                 note = col.get_note(nid)
-                changed = any(note[k] != v for k, v in fields.items())
-                if not changed:
+                changed = (
+                    any(note[k] != v for k, v in fields.items())
+                    or {tag.casefold() for tag in note.tags} != {tag.casefold() for tag in tags}
+                )
+                # Authored batches own their deck metadata. Preserve existing PDF import behavior.
+                move = []
+                if guid.startswith("authored-"):
+                    for cid in note.card_ids():
+                        card = col.get_card(cid)
+                        if (card.odid or card.did) != deck_id:
+                            move.append(cid)
+                if not changed and not move:
                     skipped += 1
                     continue
-                for k, v in fields.items():
-                    note[k] = v
-                note.tags = list(tags)
-                col.update_note(note)
+                if changed:
+                    for k, v in fields.items():
+                        note[k] = v
+                    note.tags = list(tags)
+                    col.update_note(note)
+                if move:
+                    col.set_deck(move, deck_id)
                 updated += 1
             else:
                 note = col.new_note(model)

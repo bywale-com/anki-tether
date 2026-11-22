@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "course": "MATH-1110",
+  "deck": "MATH-1110::Derivatives",
+  "cards": [
+    {
+      "id": "math1110-power-rule-001",
+      "front": "Find the derivative of \\(y=x^3\\).",
+      "back": "\\(\\frac{dy}{dx}=3x^2\\)",
+      "tags": ["derivatives", "power-rule"],
+      "origin": "authored"
+    },
+    {
+      "id": "math1110-sine-limit-001",
+      "front": "What is this limit when the angle is measured in radians? \\[\\lim_{x\\to 0}\\frac{\\sin x}{x}\\]",
+      "back": "\\[\\lim_{x\\to 0}\\frac{\\sin x}{x}=1\\]",
+      "tags": ["limits"],
+      "origin": "authored"
+    },
+    {
+      "id": "math1110-power-integral-001",
+      "front": "Find the indefinite integral \\(\\int x^2\\,dx\\).",
+      "back": "\\[\\int x^2\\,dx=\\frac{x^3}{3}+C\\]",
+      "tags": ["integrals", "power-rule"],
+      "origin": "authored"
+    }
+  ]
+}

@@ -95,6 +95,19 @@ Authorization: Bearer <IMPORT_TOKEN>
 
 The same `guid` updates an existing note’s fields and **does not reset** scheduling.
 
+## Submit authored flashcards through GitHub
+
+Use the [authored card schema](cards/schema.json) and the example [C#](cards/COIS-1020/arrays-001.json) and [Calculus I](cards/MATH-1110/derivatives-001.json) batches. An author or agent opens a branch and pull request with UTF-8 JSON under `cards/<course>/`. Discovery is recursive. Set the course and full Anki deck explicitly, such as `MATH-1110::Limits`. IDs must be unique across all files and stay unchanged when revising a card. Moving a card to another deck under the same ID preserves its history. Removing its JSON does not delete the Anki card.
+
+- Use ordinary text or simple HTML without attributes, such as `<p>`, `<strong>`, and `<pre><code>`. Inside code blocks, encode HTML-sensitive characters such as `<` as `&lt;`.
+- Write inline math as `\\(x^2\\)` in JSON and display math as `\\[\\frac{1}{2}\\]`. The reviewer typesets both sides as native MathML in modern browsers.
+- Run `python -m scripts.authored_cards validate` after installing the dev extras. Validation checks structure, formatting, delimiters, and IDs. Review the content for factual accuracy and keep copyrighted or private source material out of batches.
+- Merge only after reviewing the card content and passing **Authored cards / validate**. In GitHub branch settings, require pull requests and this check on `main`, with bypass limited to trusted maintainers. Every pull request targeting `main` runs the check so unrelated PRs can satisfy it too.
+
+Set `STUDY_APP_URL` (the public Railway HTTPS origin) and `IMPORT_TOKEN` (the same value as the Railway service) in GitHub Actions secrets. A change to `cards/` on `main` publishes all validated authored cards through the existing bearer-authenticated endpoint. This workflow reports created, updated, skipped, and failed counts and can be retried through **Actions → Authored cards → Run workflow** on `main`. Routine card-only changes trigger publication without a Railway rebuild or PDF pipeline run. Retain a Railway volume mounted at `/data`.
+
+To verify the initial production setup, wait for the application deployment to become active, run **Authored cards** on `main`, and check that the GitHub job reports a successful import. Run it again and confirm the unchanged cards are skipped. Open both course decks on your phone, reveal a code answer and a math answer, and rate a card. Revise the rated card through a second pull request with the same ID and check that the note updates without losing its prior review.
+
 ## Railway
 
 1. Push the application changes to the branch Railway will deploy in `bywale-com/anki-tether`.
