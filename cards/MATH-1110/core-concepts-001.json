@@ -89,7 +89,7 @@
     },
     {
       "id": "math1110-core-second-derivative-max",
-      "front": "If \\(f'(c)=0\\), \\(f''(c)<0\\), and required differentiability holds, what follows?",
+      "front": "If \\(f'(c)=0\\) and \\(f''(c)\\) is negative, what follows (assuming differentiability)?",
       "back": "\\(f\\) has a local maximum at \\(c\\).",
       "tags": [
         "core-concepts",
