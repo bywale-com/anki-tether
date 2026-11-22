@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Card Details · Anki Tether{% endblock %}
+{% block body %}
+<p><a href="/browse?{{ filters | urlencode }}">Back to cards</a></p>
+{% if card.deck %}<p class="muted">{{ card.deck }}</p>{% endif %}
+<section class="card question">
+  <h2>Question</h2>
+  {{ card.question | safe }}
+</section>
+<section class="card question">
+  <h2>Answer</h2>
+  {{ card.answer | safe }}
+</section>
+{% if card.tags %}<p class="muted">Tags: {{ card.tags | join(", ") }}</p>{% endif %}
+{% endblock %}

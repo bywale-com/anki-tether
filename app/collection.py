@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from html import unescape
 import hashlib
 import threading
 from contextlib import contextmanager
@@ -160,6 +161,62 @@ def select_deck(deck_id: int) -> None:
         col.save()
 
 
+def browse_cards(deck_id: int | None, query: str, page: int) -> dict[str, Any] | None:
+    from anki.collection import SearchNode
+
+    page_size = 30
+    with locked_collection() as col:
+        decks = {deck.id: deck.name for deck in col.decks.all_names_and_ids()}
+        search = []
+        if deck_id is not None:
+            if deck_id not in decks:
+                return None
+            search.append(SearchNode(deck=decks[deck_id]))
+        if query:
+            text = SearchNode(literal_text=query)
+            tag = query.replace("\\", "\\\\").replace("*", "\\*").replace("_", "\\_")
+            tag = tag.replace('"', '\\"')
+            tagged = SearchNode(parsable_text=f'"tag:*{tag}*"')
+            search.append(col.group_searches(text, tagged, joiner="OR"))
+        ids = col.find_cards(col.build_search_string(*search) if search else "", order="c.id asc")
+        pages = max(1, (len(ids) + page_size - 1) // page_size)
+        page = min(page, pages)
+        start = (page - 1) * page_size
+        cards = []
+        for cid in ids[start:start + page_size]:
+            card = col.get_card(cid)
+            text = " ".join(unescape(nh3.clean(card.question(), tags=set(), attributes={})).split())
+            cards.append({
+                "id": cid,
+                "title": text[:160] + "…" if len(text) > 160 else text,
+                "deck": decks.get(card.did, ""),
+            })
+        return {"decks": decks, "cards": cards, "page": page, "pages": pages, "total": len(ids)}
+
+
+def browse_card(card_id: int) -> dict[str, Any] | None:
+    from anki.errors import NotFoundError
+
+    with locked_collection() as col:
+        try:
+            card = col.get_card(card_id)
+        except NotFoundError:
+            return None
+        deck = col.decks.get(card.did, default=False)
+        return {
+            **_card_sides(card),
+            "deck": deck["name"] if deck else "",
+            "tags": card.note().tags,
+        }
+
+
+def _card_sides(card) -> dict[str, str]:
+    return {
+        "question": render_math(nh3.clean(card.question(), tags=CARD_HTML_TAGS, attributes={})),
+        "answer": render_math(nh3.clean(card.answer(), tags=CARD_HTML_TAGS, attributes={})),
+    }
+
+
 def _card_payload(col, queued_card) -> dict[str, Any]:
     from anki.cards import Card
 
@@ -168,8 +225,7 @@ def _card_payload(col, queued_card) -> dict[str, Any]:
     card.start_timer()
     return {
         "card_id": int(card.id),
-        "question": render_math(nh3.clean(card.question(), tags=CARD_HTML_TAGS, attributes={})),
-        "answer": render_math(nh3.clean(card.answer(), tags=CARD_HTML_TAGS, attributes={})),
+        **_card_sides(card),
         "states": queued_card.states,
         "queue": str(queued_card.queue),
     }

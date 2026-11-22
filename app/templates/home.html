@@ -28,10 +28,13 @@
       <div class="deck-name">{{ deck.name }}</div>
       <div class="muted">{{ deck.new }} new · {{ deck.learn }} learning · {{ deck.review }} due</div>
     </div>
-    <form method="post" action="/study/{{ deck.id }}">
-      <input type="hidden" name="csrf" value="{{ csrf }}">
-      <button type="submit">Study</button>
-    </form>
+    <div class="deck-actions">
+      <a href="/browse?deck={{ deck.id }}">Browse</a>
+      <form method="post" action="/study/{{ deck.id }}">
+        <input type="hidden" name="csrf" value="{{ csrf }}">
+        <button type="submit">Study</button>
+      </form>
+    </div>
   </div>
   {% else %}
   <p class="muted">No decks yet. Publish approved cards from the pipeline.</p>

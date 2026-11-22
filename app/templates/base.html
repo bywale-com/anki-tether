@@ -4,19 +4,26 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>{% block title %}Anki Tether{% endblock %}</title>
+  <script src="/static/theme.js"></script>
   <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
   <header class="top">
     <h1>Anki Tether</h1>
-    <nav>
+    {% block navigation %}<nav>
       <a href="/">Decks</a>
       <a href="/review">Study</a>
+      <a href="/browse">Browse</a>
       <a href="/stats">Stats</a>
       {% if user %}
-      <form class="inline" method="post" action="/logout"><button type="submit" style="min-height:36px;padding:0.3rem 0.6rem">Log out</button></form>
+      <form class="inline" method="post" action="/logout"><button type="submit" class="logout">Log out</button></form>
       {% endif %}
-    </nav>
+    </nav>{% endblock %}
+    <select class="theme-select" id="theme" aria-label="Appearance" hidden>
+      <option value="system">System theme</option>
+      <option value="light">Light theme</option>
+      <option value="dark">Dark theme</option>
+    </select>
   </header>
   <main class="wrap">
     {% block body %}{% endblock %}

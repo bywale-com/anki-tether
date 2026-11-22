@@ -1,17 +1,21 @@
 from __future__ import annotations
 
 from contextlib import asynccontextmanager
-from typing import Any
+from typing import Annotated, Any
 
-from fastapi import FastAPI, Form, HTTPException, Request
+from fastapi import FastAPI, Form, HTTPException, Query, Request
 from fastapi.responses import HTMLResponse, JSONResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, BeforeValidator, Field
 
 from app import auth, collection, config
 
 templates = Jinja2Templates(directory="app/templates")
+DeckFilter = Annotated[
+    Annotated[int, Field(ge=1, le=2**63 - 1)] | None,
+    BeforeValidator(lambda value: None if value == "" else value),
+]
 
 
 @asynccontextmanager
@@ -152,6 +156,54 @@ def review_answer(
     except ValueError as exc:
         raise HTTPException(400, str(exc)) from exc
     return RedirectResponse("/review", status_code=303)
+
+
+@app.get("/browse", response_class=HTMLResponse)
+def browse(
+    request: Request,
+    deck: DeckFilter = None,
+    q: str = Query("", max_length=150),
+    page: int = Query(1, ge=1),
+):
+    user, err = _auth_or_login(request)
+    if err:
+        return err
+    query = q.strip()
+    result = collection.browse_cards(deck, query, page)
+    if result is None:
+        raise HTTPException(404, "Deck not found")
+    filters = {"q": query, "page": result["page"]}
+    if deck is not None:
+        filters["deck"] = deck
+    return templates.TemplateResponse(
+        request=request,
+        name="browse.html",
+        context={"user": user, "result": result, "deck": deck, "query": query, "filters": filters},
+    )
+
+
+@app.get("/browse/{card_id}", response_class=HTMLResponse)
+def browse_detail(
+    request: Request,
+    card_id: int,
+    deck: DeckFilter = None,
+    q: str = Query("", max_length=150),
+    page: int = Query(1, ge=1),
+):
+    user, err = _auth_or_login(request)
+    if err:
+        return err
+    card = collection.browse_card(card_id) if 0 < card_id < 2**63 else None
+    if card is None:
+        raise HTTPException(404, "Card not found")
+    filters = {"q": q, "page": page}
+    if deck is not None:
+        filters["deck"] = deck
+    return templates.TemplateResponse(
+        request=request,
+        name="browse_detail.html",
+        context={"user": user, "card": card, "filters": filters},
+    )
 
 
 @app.get("/stats", response_class=HTMLResponse)

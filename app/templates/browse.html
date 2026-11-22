@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %}Browse Cards · Anki Tether{% endblock %}
+{% block body %}
+<section class="card">
+  <h2>Browse Cards</h2>
+  <form action="/browse" method="get" class="browse-filters">
+    <div>
+      <label for="browse-deck">Deck</label>
+      <select name="deck" id="browse-deck">
+        <option value="">All decks</option>
+        {% for id, name in result.decks.items() %}
+        <option value="{{ id }}"{% if id == deck %} selected{% endif %}>{{ name }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div>
+      <label for="browse-query">Search cards</label>
+      <input type="search" name="q" id="browse-query" value="{{ query }}" maxlength="150" placeholder="Card text or tag">
+    </div>
+    <button type="submit">Search</button>
+  </form>
+</section>
+<section class="card" aria-label="Search results">
+  {% if result.cards %}
+  <p class="muted">{{ result.total }} {{ "card" if result.total == 1 else "cards" }}</p>
+  <ul class="browse-results">
+    {% for card in result.cards %}
+    <li>
+      <a href="/browse/{{ card.id }}?{{ filters | urlencode }}">{{ card.title or "Open card" }}</a>
+      <div class="muted">{{ card.deck }}</div>
+    </li>
+    {% endfor %}
+  </ul>
+  {% if result.pages > 1 %}
+  <nav class="browse-pages" aria-label="Results pages">
+    {% if result.page > 1 %}
+    <a href="/browse?{{ dict(filters, page=result.page - 1) | urlencode }}">Previous</a>
+    {% endif %}
+    <span>Page {{ result.page }} of {{ result.pages }}</span>
+    {% if result.page < result.pages %}
+    <a href="/browse?{{ dict(filters, page=result.page + 1) | urlencode }}">Next</a>
+    {% endif %}
+  </nav>
+  {% endif %}
+  {% else %}
+  <p>No cards match these filters.</p>
+  {% endif %}
+</section>
+{% endblock %}
