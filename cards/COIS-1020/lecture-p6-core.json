@@ -1,0 +1,187 @@
+{
+  "schema_version": 1,
+  "course": "COIS-1020",
+  "deck": "COIS-1020::Advanced Methods",
+  "cards": [
+    {
+      "id": "cois1020-p6-value",
+      "front": "What does passing an int argument by value mean?",
+      "back": "The method receives a copy of the value; reassignment does not change the caller's variable.",
+      "tags": [
+        "lecture_p6",
+        "topic_advanced_methods",
+        "type_concept"
+      ],
+      "origin": "authored",
+      "source_ref": "P6ch08v5_Methods Advanced Concepts.pdf PDF p.4"
+    },
+    {
+      "id": "cois1020-p6-ref",
+      "front": "What does ref let a method do?",
+      "back": "Read and modify the caller's variable through a reference parameter.",
+      "tags": [
+        "lecture_p6",
+        "topic_advanced_methods",
+        "type_concept"
+      ],
+      "origin": "authored",
+      "source_ref": "P6ch08v5_Methods Advanced Concepts.pdf PDF p.6"
+    },
+    {
+      "id": "cois1020-p6-ref-init",
+      "front": "Must a ref argument be assigned before its method call?",
+      "back": "Yes, it must have a value before the call.",
+      "tags": [
+        "lecture_p6",
+        "topic_advanced_methods",
+        "type_rule"
+      ],
+      "origin": "authored",
+      "source_ref": "P6ch08v5_Methods Advanced Concepts.pdf PDF p.6"
+    },
+    {
+      "id": "cois1020-p6-out",
+      "front": "Must an out argument be initialized before the call?",
+      "back": "No, but the called method must assign it before returning normally.",
+      "tags": [
+        "lecture_p6",
+        "topic_advanced_methods",
+        "type_rule"
+      ],
+      "origin": "authored",
+      "source_ref": "P6ch08v5_Methods Advanced Concepts.pdf PDF p.6"
+    },
+    {
+      "id": "cois1020-p6-ref-call",
+      "front": "Where must the ref modifier appear?",
+      "back": "On both the method parameter and corresponding call argument.",
+      "tags": [
+        "lecture_p6",
+        "topic_advanced_methods",
+        "type_syntax"
+      ],
+      "origin": "authored",
+      "source_ref": "P6ch08v5_Methods Advanced Concepts.pdf PDF p.7"
+    },
+    {
+      "id": "cois1020-p6-out-call",
+      "front": "Where must the out modifier appear?",
+      "back": "On the out parameter and the caller's argument.",
+      "tags": [
+        "lecture_p6",
+        "topic_advanced_methods",
+        "type_syntax"
+      ],
+      "origin": "authored",
+      "source_ref": "P6ch08v5_Methods Advanced Concepts.pdf PDF p.8"
+    },
+    {
+      "id": "cois1020-p6-multiple",
+      "front": "What can ref/out parameters accomplish beyond a single return value?",
+      "back": "Allow one method to assign multiple caller-visible values.",
+      "tags": [
+        "lecture_p6",
+        "topic_advanced_methods",
+        "type_recognition"
+      ],
+      "origin": "authored",
+      "source_ref": "P6ch08v5_Methods Advanced Concepts.pdf PDF p.9"
+    },
+    {
+      "id": "cois1020-p6-tradeoff",
+      "front": "What encapsulation tradeoff can ref/out introduce?",
+      "back": "Sharing mutable state across method boundaries weakens implementation hiding.",
+      "tags": [
+        "lecture_p6",
+        "topic_advanced_methods",
+        "type_concept"
+      ],
+      "origin": "authored",
+      "source_ref": "P6ch08v5_Methods Advanced Concepts.pdf PDF p.9"
+    },
+    {
+      "id": "cois1020-p6-recursion",
+      "front": "What makes a method recursive?",
+      "back": "It invokes itself.",
+      "tags": [
+        "lecture_p6",
+        "topic_advanced_methods",
+        "type_definition"
+      ],
+      "origin": "authored",
+      "source_ref": "P6ch08v5_Methods Advanced Concepts.pdf PDF p.10"
+    },
+    {
+      "id": "cois1020-p6-base",
+      "front": "What prevents a recursive method from calling itself indefinitely?",
+      "back": "A terminating base case reached by recursive calls.",
+      "tags": [
+        "lecture_p6",
+        "topic_advanced_methods",
+        "type_recognition"
+      ],
+      "origin": "authored",
+      "source_ref": "P6ch08v5_Methods Advanced Concepts.pdf PDF p.10"
+    },
+    {
+      "id": "cois1020-p6-factorial",
+      "front": "What is the recursive relationship for n! when n > 0?",
+      "back": "n! = n × (n−1)! with 0! = 1.",
+      "tags": [
+        "lecture_p6",
+        "topic_advanced_methods",
+        "type_rule"
+      ],
+      "origin": "authored",
+      "source_ref": "P6ch08v5_Methods Advanced Concepts.pdf PDF p.15"
+    },
+    {
+      "id": "cois1020-p6-overload",
+      "front": "When are methods overloaded?",
+      "back": "They share a name but have different parameter lists.",
+      "tags": [
+        "lecture_p6",
+        "topic_advanced_methods",
+        "type_definition"
+      ],
+      "origin": "authored",
+      "source_ref": "P6ch08v5_Methods Advanced Concepts.pdf PDF p.23"
+    },
+    {
+      "id": "cois1020-p6-overload-signature",
+      "front": "Can methods be overloaded by return type alone?",
+      "back": "No; parameter signatures must differ.",
+      "tags": [
+        "lecture_p6",
+        "topic_advanced_methods",
+        "type_counterexample"
+      ],
+      "origin": "authored",
+      "source_ref": "P6ch08v5_Methods Advanced Concepts.pdf PDF p.24"
+    },
+    {
+      "id": "cois1020-p6-resolution",
+      "front": "What is overload resolution?",
+      "back": "How C# chooses the applicable method signature for a call.",
+      "tags": [
+        "lecture_p6",
+        "topic_advanced_methods",
+        "type_definition"
+      ],
+      "origin": "authored",
+      "source_ref": "P6ch08v5_Methods Advanced Concepts.pdf PDF p.28"
+    },
+    {
+      "id": "cois1020-p6-optional",
+      "front": "What is an optional parameter?",
+      "back": "A parameter with a default argument value that callers may omit.",
+      "tags": [
+        "lecture_p6",
+        "topic_advanced_methods",
+        "type_definition"
+      ],
+      "origin": "authored",
+      "source_ref": "P6ch08v5_Methods Advanced Concepts.pdf PDF p.32"
+    }
+  ]
+}
