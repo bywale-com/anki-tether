@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "course": "COIS-1020",
+  "deck": "COIS-1020::Arrays",
+  "cards": [
+    {
+      "id": "cois1020-arrays-index-001",
+      "front": "What does this C# code print?<pre><code>int[] scores = { 4, 8, 15 };\nConsole.WriteLine(scores[1]);</code></pre>",
+      "back": "<code>8</code>. C# array indexing starts at zero.",
+      "tags": ["arrays", "code-output"],
+      "origin": "authored"
+    },
+    {
+      "id": "cois1020-arrays-bound-001",
+      "front": "What is wrong with this loop?<pre><code>int[] scores = { 4, 8, 15 };\nfor (int i = 0; i &lt;= scores.Length; i++)\n    Console.WriteLine(scores[i]);</code></pre>",
+      "back": "The loop reaches index <code>scores.Length</code>, which is out of bounds. Use <code>i &lt; scores.Length</code>.",
+      "tags": ["arrays", "debugging"],
+      "origin": "authored"
+    },
+    {
+      "id": "cois1020-arrays-mutation-001",
+      "front": "What does this C# code print?<pre><code>int[] scores = { 4, 8 };\nint[] alias = scores;\nalias[0] = 12;\nConsole.WriteLine(scores[0]);</code></pre>",
+      "back": "<code>12</code>. Both variables reference the same array.",
+      "tags": ["arrays", "references"],
+      "origin": "authored"
+    }
+  ]
+}

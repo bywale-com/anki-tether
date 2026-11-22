@@ -116,3 +116,21 @@ label { display: block; margin: 0.6rem 0 0.25rem; }
 @media (min-width: 640px) {
   .ratings { grid-template-columns: repeat(4, 1fr); }
 }
+
+.math-display {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  padding: 0.4rem 0;
+}
+
+.math-display math {
+  min-width: max-content;
+}
+
+.math-inline {
+  display: inline-block;
+  max-width: 100%;
+  overflow-x: auto;
+  vertical-align: middle;
+}
