@@ -1,0 +1,175 @@
+{
+  "schema_version": 1,
+  "course": "COIS-1020",
+  "deck": "COIS-1020::Methods",
+  "cards": [
+    {
+      "id": "cois1020-p5-method",
+      "front": "What is a method?",
+      "back": "A named sequence of statements performing a task that other code may call.",
+      "tags": [
+        "lecture_p5",
+        "topic_methods",
+        "type_definition"
+      ],
+      "origin": "authored",
+      "source_ref": "P5ch07_Methods.pdf PDF p.3"
+    },
+    {
+      "id": "cois1020-p5-hiding",
+      "front": "What does implementation hiding mean for a method?",
+      "back": "Callers rely on its interface rather than internal implementation details.",
+      "tags": [
+        "lecture_p5",
+        "topic_methods",
+        "type_concept"
+      ],
+      "origin": "authored",
+      "source_ref": "P5ch07_Methods.pdf PDF p.4"
+    },
+    {
+      "id": "cois1020-p5-header",
+      "front": "What belongs in a method declaration?",
+      "back": "Return type, name, parameter list, and any needed accessibility/static modifiers.",
+      "tags": [
+        "lecture_p5",
+        "topic_methods",
+        "type_syntax"
+      ],
+      "origin": "authored",
+      "source_ref": "P5ch07_Methods.pdf PDF p.7"
+    },
+    {
+      "id": "cois1020-p5-void",
+      "front": "When should a method return void?",
+      "back": "When it is not intended to return a value to the caller.",
+      "tags": [
+        "lecture_p5",
+        "topic_methods",
+        "type_recognition"
+      ],
+      "origin": "authored",
+      "source_ref": "P5ch07_Methods.pdf PDF p.10"
+    },
+    {
+      "id": "cois1020-p5-static",
+      "front": "What is distinctive about a static method?",
+      "back": "It can be invoked through its class without first creating an object.",
+      "tags": [
+        "lecture_p5",
+        "topic_methods",
+        "type_concept"
+      ],
+      "origin": "authored",
+      "source_ref": "P5ch07_Methods.pdf PDF p.9"
+    },
+    {
+      "id": "cois1020-p5-formal",
+      "front": "What is a formal parameter?",
+      "back": "A parameter variable declared in the method signature.",
+      "tags": [
+        "lecture_p5",
+        "topic_methods",
+        "type_definition"
+      ],
+      "origin": "authored",
+      "source_ref": "P5ch07_Methods.pdf PDF p.13"
+    },
+    {
+      "id": "cois1020-p5-actual",
+      "front": "What is an argument (actual parameter)?",
+      "back": "The value/expression supplied by the calling code.",
+      "tags": [
+        "lecture_p5",
+        "topic_methods",
+        "type_definition"
+      ],
+      "origin": "authored",
+      "source_ref": "P5ch07_Methods.pdf PDF p.13"
+    },
+    {
+      "id": "cois1020-p5-matching",
+      "front": "How must arguments correspond to method parameters?",
+      "back": "They must be compatible in number, order and type.",
+      "tags": [
+        "lecture_p5",
+        "topic_methods",
+        "type_rule"
+      ],
+      "origin": "authored",
+      "source_ref": "P5ch07_Methods.pdf PDF p.16"
+    },
+    {
+      "id": "cois1020-p5-return",
+      "front": "What does return do in a value-returning method?",
+      "back": "Ends that method execution and sends the result to its caller.",
+      "tags": [
+        "lecture_p5",
+        "topic_methods",
+        "type_definition"
+      ],
+      "origin": "authored",
+      "source_ref": "P5ch07_Methods.pdf PDF p.17"
+    },
+    {
+      "id": "cois1020-p5-return-type",
+      "front": "What return type belongs on a method that returns a double?",
+      "back": "double, not void.",
+      "tags": [
+        "lecture_p5",
+        "topic_methods",
+        "type_syntax"
+      ],
+      "origin": "authored",
+      "source_ref": "P5ch07_Methods.pdf PDF p.18"
+    },
+    {
+      "id": "cois1020-p5-captured",
+      "front": "How can a caller use a returned value?",
+      "back": "Assign it to a variable or use the call within an expression.",
+      "tags": [
+        "lecture_p5",
+        "topic_methods",
+        "type_recognition"
+      ],
+      "origin": "authored",
+      "source_ref": "P5ch07_Methods.pdf PDF p.18"
+    },
+    {
+      "id": "cois1020-p5-nested",
+      "front": "What is a nested method call?",
+      "back": "A method calling another method during its own execution.",
+      "tags": [
+        "lecture_p5",
+        "topic_methods",
+        "type_definition"
+      ],
+      "origin": "authored",
+      "source_ref": "P5ch07_Methods.pdf PDF p.20"
+    },
+    {
+      "id": "cois1020-p5-reuse",
+      "front": "Why break repeated operations into methods?",
+      "back": "To reduce repetition and keep code easier to follow and reuse.",
+      "tags": [
+        "lecture_p5",
+        "topic_methods",
+        "type_concept"
+      ],
+      "origin": "authored",
+      "source_ref": "P5ch07_Methods.pdf PDF p.5"
+    },
+    {
+      "id": "cois1020-p5-scope",
+      "front": "Where is a local variable declared inside a method directly accessible?",
+      "back": "Within that method's scope, not from unrelated methods.",
+      "tags": [
+        "lecture_p5",
+        "topic_methods",
+        "type_concept"
+      ],
+      "origin": "authored",
+      "source_ref": "P5ch07_Methods.pdf PDF p.13"
+    }
+  ]
+}
