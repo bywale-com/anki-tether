@@ -37,17 +37,6 @@
       "source_ref": "Guichard §2.4"
     },
     {
-      "id": "math1110-product-recognition-001",
-      "front": "What feature signals the product rule rather than the sum rule?",
-      "back": "Two nonconstant functions are multiplied: \\(f(x)=u(x)v(x)\\), so \\(f'=u'v+uv'\\).",
-      "tags": [
-        "product_rule",
-        "recognition"
-      ],
-      "origin": "authored",
-      "source_ref": "Guichard §3.3"
-    },
-    {
       "id": "math1110-quotient-rule-001",
       "front": "What is the derivative rule for \\(u(x)/v(x)\\)?",
       "back": "\\(\\frac{d}{dx}\\frac{u}{v}=\\frac{vu'-uv'}{v^2}\\) where \\(v\\ne0\\).",
@@ -57,17 +46,6 @@
       ],
       "origin": "authored",
       "source_ref": "Guichard §3.4"
-    },
-    {
-      "id": "math1110-chain-recognition-001",
-      "front": "When should you look for the chain rule?",
-      "back": "When one function is nested inside another: \\(f(x)=g(h(x))\\), so \\(f'=g'(h(x))h'(x)\\).",
-      "tags": [
-        "chain_rule",
-        "recognition"
-      ],
-      "origin": "authored",
-      "source_ref": "Guichard §3.5"
     },
     {
       "id": "math1110-trig-derivative-001",
@@ -81,50 +59,6 @@
       "source_ref": "Guichard §§4.2–4.5"
     },
     {
-      "id": "math1110-log-derivative-001",
-      "front": "For \\(x>0\\), what is \\(\\frac{d}{dx}\\ln x\\)?",
-      "back": "\\(\\frac{1}{x}\\).",
-      "tags": [
-        "logarithms",
-        "rule"
-      ],
-      "origin": "authored",
-      "source_ref": "Guichard §4.7"
-    },
-    {
-      "id": "math1110-critical-number-001",
-      "front": "When is an interior domain point \\(c\\) a critical number of \\(f\\)?",
-      "back": "When \\(f'(c)=0\\) or \\(f'(c)\\) does not exist, provided \\(f(c)\\) is defined.",
-      "tags": [
-        "critical_points",
-        "definition"
-      ],
-      "origin": "authored",
-      "source_ref": "Guichard §5.1"
-    },
-    {
-      "id": "math1110-first-derivative-test-001",
-      "front": "How does \\(f'\\) changing from positive to negative classify a critical point?",
-      "back": "It indicates a local maximum, assuming the sign change occurs across that point.",
-      "tags": [
-        "first_derivative_test",
-        "recognition"
-      ],
-      "origin": "authored",
-      "source_ref": "Guichard §5.2"
-    },
-    {
-      "id": "math1110-inflection-recognition-001",
-      "front": "Is \\(f''(c)=0\\) alone enough to prove an inflection point?",
-      "back": "No. Concavity must actually change across \\(c\\).",
-      "tags": [
-        "concavity",
-        "counterexample"
-      ],
-      "origin": "authored",
-      "source_ref": "Guichard §5.4"
-    },
-    {
       "id": "math1110-optimization-process-001",
       "front": "In an optimization word problem, what should you identify before differentiating?",
       "back": "The quantity to maximize/minimize, the constraints, and the feasible domain.",
@@ -134,39 +68,6 @@
       ],
       "origin": "authored",
       "source_ref": "Guichard §6.1"
-    },
-    {
-      "id": "math1110-ftc-evaluation-001",
-      "front": "How do you evaluate \\(\\int_a^b f(x)\\,dx\\) using an antiderivative \\(F\\)?",
-      "back": "If \\(F'=f\\) and the FTC conditions hold, compute \\(F(b)-F(a)\\).",
-      "tags": [
-        "fundamental_theorem",
-        "rule"
-      ],
-      "origin": "authored",
-      "source_ref": "Guichard §7.2"
-    },
-    {
-      "id": "math1110-substitution-recognition-001",
-      "front": "What pattern suggests substitution in \\(\\int f(g(x))g'(x)\\,dx\\)?",
-      "back": "An inner function \\(g(x)\\) appears together with its derivative; set \\(u=g(x)\\).",
-      "tags": [
-        "substitution",
-        "recognition"
-      ],
-      "origin": "authored",
-      "source_ref": "Guichard §8.1"
-    },
-    {
-      "id": "math1110-by-parts-001",
-      "front": "State the integration-by-parts formula.",
-      "back": "\\(\\int u\\,dv=uv-\\int v\\,du\\).",
-      "tags": [
-        "integration_by_parts",
-        "rule"
-      ],
-      "origin": "authored",
-      "source_ref": "Guichard §8.4"
     },
     {
       "id": "math1110-area-between-curves-001",
