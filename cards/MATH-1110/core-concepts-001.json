@@ -1,0 +1,247 @@
+{
+  "schema_version": 1,
+  "course": "MATH-1110",
+  "deck": "MATH-1110::Core Concepts",
+  "cards": [
+    {
+      "id": "math1110-core-critical-value",
+      "front": "What is a critical value (critical number) of \\(f\\)?",
+      "back": "A value \\(c\\) in the domain of \\(f\\) where \\(f'(c)=0\\) or \\(f'(c)\\) does not exist.",
+      "tags": [
+        "core-concepts",
+        "definition",
+        "critical-points"
+      ],
+      "origin": "authored",
+      "source_ref": "Guichard §5.1"
+    },
+    {
+      "id": "math1110-core-fermats-theorem",
+      "front": "If \\(f\\) has a local extremum at \\(c\\) and is differentiable at \\(c\\), what follows?",
+      "back": "\\(f'(c)=0\\). The converse does not generally hold.",
+      "tags": [
+        "core-concepts",
+        "theorem",
+        "critical-points"
+      ],
+      "origin": "authored",
+      "source_ref": "Guichard §5.1, Theorem 5.1.1"
+    },
+    {
+      "id": "math1110-core-stationary-not-extreme",
+      "front": "Does \\(f'(c)=0\\) guarantee a local maximum or minimum?",
+      "back": "No. For \\(f(x)=x^3\\), \\(f'(0)=0\\) but \\(x=0\\) is neither a local maximum nor minimum.",
+      "tags": [
+        "core-concepts",
+        "counterexample",
+        "critical-points"
+      ],
+      "origin": "authored",
+      "source_ref": "Guichard §5.1"
+    },
+    {
+      "id": "math1110-core-local-maximum",
+      "front": "Define a local maximum at \\(c\\).",
+      "back": "There is an open interval around \\(c\\) such that \\(f(c)\\ge f(x)\\) for all domain points \\(x\\) in that interval.",
+      "tags": [
+        "core-concepts",
+        "definition",
+        "extrema"
+      ],
+      "origin": "authored",
+      "source_ref": "Guichard §5.1"
+    },
+    {
+      "id": "math1110-core-first-derivative-inc",
+      "front": "What does \\(f'(x)>0\\) throughout an interval tell you?",
+      "back": "\\(f\\) is increasing throughout that interval.",
+      "tags": [
+        "core-concepts",
+        "recognition",
+        "monotonicity"
+      ],
+      "origin": "authored",
+      "source_ref": "Guichard §5.2"
+    },
+    {
+      "id": "math1110-core-first-derivative-max",
+      "front": "At a critical value, what sign change in \\(f'\\) signals a local maximum?",
+      "back": "From positive (left) to negative (right).",
+      "tags": [
+        "core-concepts",
+        "recognition",
+        "extrema"
+      ],
+      "origin": "authored",
+      "source_ref": "Guichard §5.2"
+    },
+    {
+      "id": "math1110-core-first-derivative-min",
+      "front": "At a critical value, what sign change in \\(f'\\) signals a local minimum?",
+      "back": "From negative (left) to positive (right).",
+      "tags": [
+        "core-concepts",
+        "recognition",
+        "extrema"
+      ],
+      "origin": "authored",
+      "source_ref": "Guichard §5.2"
+    },
+    {
+      "id": "math1110-core-second-derivative-max",
+      "front": "If \\(f'(c)=0\\) and \\(f''(c)\\) is negative, what follows (assuming differentiability)?",
+      "back": "\\(f\\) has a local maximum at \\(c\\).",
+      "tags": [
+        "core-concepts",
+        "theorem",
+        "extrema"
+      ],
+      "origin": "authored",
+      "source_ref": "Guichard §5.3"
+    },
+    {
+      "id": "math1110-core-second-derivative-zero",
+      "front": "If \\(f'(c)=0\\) and \\(f''(c)=0\\), can the second derivative test classify the point?",
+      "back": "No; the test is inconclusive. Analyze \\(f'\\) or use another method.",
+      "tags": [
+        "core-concepts",
+        "recognition",
+        "extrema"
+      ],
+      "origin": "authored",
+      "source_ref": "Guichard §5.3"
+    },
+    {
+      "id": "math1110-core-concavity-positive",
+      "front": "What does \\(f''(x)>0\\) on an interval indicate?",
+      "back": "The graph is concave up on that interval.",
+      "tags": [
+        "core-concepts",
+        "recognition",
+        "concavity"
+      ],
+      "origin": "authored",
+      "source_ref": "Guichard §5.4"
+    },
+    {
+      "id": "math1110-core-inflection-definition",
+      "front": "What makes a point an inflection point?",
+      "back": "The function's graph changes concavity there (up-to-down or down-to-up).",
+      "tags": [
+        "core-concepts",
+        "definition",
+        "concavity"
+      ],
+      "origin": "authored",
+      "source_ref": "Guichard §5.4"
+    },
+    {
+      "id": "math1110-core-inflection-zero-counterexample",
+      "front": "Does \\(f''(c)=0\\) alone prove there is an inflection point at \\(c\\)?",
+      "back": "No. \\(f(x)=x^4\\) has \\(f''(0)=0\\), but concavity does not change at 0.",
+      "tags": [
+        "core-concepts",
+        "counterexample",
+        "concavity"
+      ],
+      "origin": "authored",
+      "source_ref": "Guichard §5.4"
+    },
+    {
+      "id": "math1110-core-product-rule",
+      "front": "State the product rule for differentiable \\(u(x)\\) and \\(v(x)\\).",
+      "back": "\\((uv)'=u'v+uv'\\).",
+      "tags": [
+        "core-concepts",
+        "formula",
+        "differentiation"
+      ],
+      "origin": "authored",
+      "source_ref": "Guichard §3.3"
+    },
+    {
+      "id": "math1110-core-chain-rule",
+      "front": "State the chain rule for \\(f(g(x))\\).",
+      "back": "\\(\\frac{d}{dx}f(g(x))=f'(g(x))g'(x)\\).",
+      "tags": [
+        "core-concepts",
+        "formula",
+        "differentiation"
+      ],
+      "origin": "authored",
+      "source_ref": "Guichard §3.5"
+    },
+    {
+      "id": "math1110-core-ln-derivative",
+      "front": "What is \\(\\frac{d}{dx}\\ln x\\) for \\(x>0\\)?",
+      "back": "\\(1/x\\).",
+      "tags": [
+        "core-concepts",
+        "formula",
+        "logarithms"
+      ],
+      "origin": "authored",
+      "source_ref": "Guichard §4.7"
+    },
+    {
+      "id": "math1110-core-sine-limit",
+      "front": "In radians, what is \\(\\lim_{x\\to0}\\frac{\\sin x}{x}\\)?",
+      "back": "\\(1\\).",
+      "tags": [
+        "core-concepts",
+        "formula",
+        "trigonometry"
+      ],
+      "origin": "authored",
+      "source_ref": "Guichard §§4.2–4.4"
+    },
+    {
+      "id": "math1110-core-ftc-evaluate",
+      "front": "If \\(F'=f\\) and \\(f\\) is continuous on \\([a,b]\\), evaluate \\(\\int_a^b f(x)\\,dx\\).",
+      "back": "\\(F(b)-F(a)\\).",
+      "tags": [
+        "core-concepts",
+        "theorem",
+        "integration"
+      ],
+      "origin": "authored",
+      "source_ref": "Guichard §7.2, Theorem 7.2.1"
+    },
+    {
+      "id": "math1110-core-ftc-derivative",
+      "front": "If \\(G(x)=\\int_a^x f(t)\\,dt\\), \\(f\\) continuous, what is \\(G'(x)\\)?",
+      "back": "\\(f(x)\\).",
+      "tags": [
+        "core-concepts",
+        "theorem",
+        "integration"
+      ],
+      "origin": "authored",
+      "source_ref": "Guichard §7.2, Theorem 7.2.2"
+    },
+    {
+      "id": "math1110-core-u-substitution",
+      "front": "In \\(\\int 2x\\cos(x^2)\\,dx\\), what substitution simplifies the integral?",
+      "back": "Let \\(u=x^2\\); then \\(du=2x\\,dx\\), giving \\(\\int\\cos u\\,du\\).",
+      "tags": [
+        "core-concepts",
+        "recognition",
+        "integration"
+      ],
+      "origin": "authored",
+      "source_ref": "Guichard §8.1"
+    },
+    {
+      "id": "math1110-core-integration-by-parts",
+      "front": "State the integration-by-parts formula.",
+      "back": "\\(\\int u\\,dv=uv-\\int v\\,du\\).",
+      "tags": [
+        "core-concepts",
+        "formula",
+        "integration"
+      ],
+      "origin": "authored",
+      "source_ref": "Guichard §8.4"
+    }
+  ]
+}
