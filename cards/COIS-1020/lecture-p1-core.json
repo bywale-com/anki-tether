@@ -1,0 +1,163 @@
+{
+  "schema_version": 1,
+  "course": "COIS-1020",
+  "deck": "COIS-1020::Introduction",
+  "cards": [
+    {
+      "id": "cois1020-p1-program",
+      "front": "What is a computer program?",
+      "back": "A set of instructions telling a computer what to do.",
+      "tags": [
+        "lecture_p1",
+        "topic_introduction",
+        "type_definition"
+      ],
+      "origin": "authored",
+      "source_ref": "P1ch01v3_Introduction.pdf PDF p.5"
+    },
+    {
+      "id": "cois1020-p1-system-app",
+      "front": "Distinguish system software from application software.",
+      "back": "System software manages resources; application software serves user tasks.",
+      "tags": [
+        "lecture_p1",
+        "topic_introduction",
+        "type_concept"
+      ],
+      "origin": "authored",
+      "source_ref": "P1ch01v3_Introduction.pdf PDF p.5"
+    },
+    {
+      "id": "cois1020-p1-language",
+      "front": "Why write in a high-level programming language?",
+      "back": "It expresses instructions in human-readable constructs instead of machine bits.",
+      "tags": [
+        "lecture_p1",
+        "topic_introduction",
+        "type_concept"
+      ],
+      "origin": "authored",
+      "source_ref": "P1ch01v3_Introduction.pdf PDF p.6"
+    },
+    {
+      "id": "cois1020-p1-translation",
+      "front": "What does a compiler or interpreter do?",
+      "back": "Translates program instructions into a form a computer can execute.",
+      "tags": [
+        "lecture_p1",
+        "topic_introduction",
+        "type_definition"
+      ],
+      "origin": "authored",
+      "source_ref": "P1ch01v3_Introduction.pdf PDF p.8"
+    },
+    {
+      "id": "cois1020-p1-debugging",
+      "front": "What is debugging?",
+      "back": "Finding and correcting syntax and logical problems in a program.",
+      "tags": [
+        "lecture_p1",
+        "topic_introduction",
+        "type_definition"
+      ],
+      "origin": "authored",
+      "source_ref": "P1ch01v3_Introduction.pdf PDF p.8"
+    },
+    {
+      "id": "cois1020-p1-method",
+      "front": "What is a method in C#?",
+      "back": "A named unit of instructions that can be invoked to perform a task.",
+      "tags": [
+        "lecture_p1",
+        "topic_introduction",
+        "type_definition"
+      ],
+      "origin": "authored",
+      "source_ref": "P1ch01v3_Introduction.pdf PDF p.9"
+    },
+    {
+      "id": "cois1020-p1-namespace",
+      "front": "What purpose does a namespace serve?",
+      "back": "It groups related types such as classes.",
+      "tags": [
+        "lecture_p1",
+        "topic_introduction",
+        "type_definition"
+      ],
+      "origin": "authored",
+      "source_ref": "P1ch01v3_Introduction.pdf PDF p.12"
+    },
+    {
+      "id": "cois1020-p1-access-modifier",
+      "front": "What does an access modifier control?",
+      "back": "Where a type or member may be accessed from.",
+      "tags": [
+        "lecture_p1",
+        "topic_introduction",
+        "type_definition"
+      ],
+      "origin": "authored",
+      "source_ref": "P1ch01v3_Introduction.pdf PDF p.13"
+    },
+    {
+      "id": "cois1020-p1-method-body",
+      "front": "Where is the body of a C# method?",
+      "back": "Between its opening and closing braces, holding executable statements.",
+      "tags": [
+        "lecture_p1",
+        "topic_introduction",
+        "type_recognition"
+      ],
+      "origin": "authored",
+      "source_ref": "P1ch01v3_Introduction.pdf PDF p.15"
+    },
+    {
+      "id": "cois1020-p1-main",
+      "front": "What role does Main play in the lecture's console examples?",
+      "back": "It is the program entry-point method invoked when the program starts.",
+      "tags": [
+        "lecture_p1",
+        "topic_introduction",
+        "type_recognition"
+      ],
+      "origin": "authored",
+      "source_ref": "P1ch01v3_Introduction.pdf PDF p.16"
+    },
+    {
+      "id": "cois1020-p1-void",
+      "front": "What does void mean in a C# method declaration?",
+      "back": "The method does not return a value.",
+      "tags": [
+        "lecture_p1",
+        "topic_introduction",
+        "type_definition"
+      ],
+      "origin": "authored",
+      "source_ref": "P1ch01v3_Introduction.pdf PDF p.16"
+    },
+    {
+      "id": "cois1020-p1-comment",
+      "front": "What are // and /* ... */ used for?",
+      "back": "They introduce single-line and block comments; comments are not executed.",
+      "tags": [
+        "lecture_p1",
+        "topic_introduction",
+        "type_syntax"
+      ],
+      "origin": "authored",
+      "source_ref": "P1ch01v3_Introduction.pdf PDF p.24"
+    },
+    {
+      "id": "cois1020-p1-identifier",
+      "front": "Can a C# identifier begin with a digit?",
+      "back": "No; the lecture's identifier rules require a letter, underscore, or verbatim @ prefix.",
+      "tags": [
+        "lecture_p1",
+        "topic_introduction",
+        "type_counterexample"
+      ],
+      "origin": "authored",
+      "source_ref": "P1ch01v3_Introduction.pdf PDF p.17"
+    }
+  ]
+}

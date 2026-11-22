@@ -1,0 +1,211 @@
+{
+  "schema_version": 1,
+  "course": "COIS-1020",
+  "deck": "COIS-1020::Arrays",
+  "cards": [
+    {
+      "id": "cois1020-p7-array",
+      "front": "What is an array?",
+      "back": "A fixed-length indexed collection of elements of the same declared type.",
+      "tags": [
+        "lecture_p7",
+        "topic_arrays",
+        "type_definition"
+      ],
+      "origin": "authored",
+      "source_ref": "P7ch06v5_Arrays.pdf PDF p.2"
+    },
+    {
+      "id": "cois1020-p7-index",
+      "front": "What index identifies the first C# array element?",
+      "back": "0.",
+      "tags": [
+        "lecture_p7",
+        "topic_arrays",
+        "type_rule"
+      ],
+      "origin": "authored",
+      "source_ref": "P7ch06v5_Arrays.pdf PDF p.3"
+    },
+    {
+      "id": "cois1020-p7-bound",
+      "front": "For an array of length n, what is its last valid index?",
+      "back": "n−1.",
+      "tags": [
+        "lecture_p7",
+        "topic_arrays",
+        "type_rule"
+      ],
+      "origin": "authored",
+      "source_ref": "P7ch06v5_Arrays.pdf PDF p.4"
+    },
+    {
+      "id": "cois1020-p7-offbyone",
+      "front": "Why is using i <= array.Length risky in a loop?",
+      "back": "It tries to access index Length, outside valid bounds.",
+      "tags": [
+        "lecture_p7",
+        "topic_arrays",
+        "type_counterexample"
+      ],
+      "origin": "authored",
+      "source_ref": "P7ch06v5_Arrays.pdf PDF p.4"
+    },
+    {
+      "id": "cois1020-p7-init",
+      "front": "What does an array initializer do?",
+      "back": "Supplies initial element values when creating the array.",
+      "tags": [
+        "lecture_p7",
+        "topic_arrays",
+        "type_syntax"
+      ],
+      "origin": "authored",
+      "source_ref": "P7ch06v5_Arrays.pdf PDF p.7"
+    },
+    {
+      "id": "cois1020-p7-length",
+      "front": "What does array.Length report?",
+      "back": "The number of elements allocated in the array.",
+      "tags": [
+        "lecture_p7",
+        "topic_arrays",
+        "type_definition"
+      ],
+      "origin": "authored",
+      "source_ref": "P7ch06v5_Arrays.pdf PDF p.9"
+    },
+    {
+      "id": "cois1020-p7-foreach",
+      "front": "What is foreach useful for?",
+      "back": "Visiting each array element without explicitly managing an index.",
+      "tags": [
+        "lecture_p7",
+        "topic_arrays",
+        "type_recognition"
+      ],
+      "origin": "authored",
+      "source_ref": "P7ch06v5_Arrays.pdf PDF p.12"
+    },
+    {
+      "id": "cois1020-p7-foreach-limit",
+      "front": "Why choose for instead of foreach when changing positions by index?",
+      "back": "A for loop gives explicit control of indices and traversal order.",
+      "tags": [
+        "lecture_p7",
+        "topic_arrays",
+        "type_recognition"
+      ],
+      "origin": "authored",
+      "source_ref": "P7ch06v5_Arrays.pdf PDF p.14"
+    },
+    {
+      "id": "cois1020-p7-search",
+      "front": "What is linear search?",
+      "back": "Inspecting elements in sequence until a match is found or values are exhausted.",
+      "tags": [
+        "lecture_p7",
+        "topic_arrays",
+        "type_definition"
+      ],
+      "origin": "authored",
+      "source_ref": "P7ch06v5_Arrays.pdf PDF p.16"
+    },
+    {
+      "id": "cois1020-p7-not-found",
+      "front": "What sentinel index can represent a failed array search?",
+      "back": "-1, because valid array indices are nonnegative.",
+      "tags": [
+        "lecture_p7",
+        "topic_arrays",
+        "type_recognition"
+      ],
+      "origin": "authored",
+      "source_ref": "P7ch06v5_Arrays.pdf PDF p.16"
+    },
+    {
+      "id": "cois1020-p7-parallel",
+      "front": "What are parallel arrays?",
+      "back": "Arrays whose corresponding indices represent related fields of one record.",
+      "tags": [
+        "lecture_p7",
+        "topic_arrays",
+        "type_definition"
+      ],
+      "origin": "authored",
+      "source_ref": "P7ch06v5_Arrays.pdf PDF p.19"
+    },
+    {
+      "id": "cois1020-p7-pass-element",
+      "front": "If an int array element is passed by value, can a method reassign the original element through its parameter?",
+      "back": "No; reassignment changes only the copy.",
+      "tags": [
+        "lecture_p7",
+        "topic_arrays",
+        "type_concept"
+      ],
+      "origin": "authored",
+      "source_ref": "P7ch06v5_Arrays.pdf PDF p.20"
+    },
+    {
+      "id": "cois1020-p7-pass-array",
+      "front": "Can a method receiving an array parameter modify its elements?",
+      "back": "Yes; caller and callee can reference the same array object.",
+      "tags": [
+        "lecture_p7",
+        "topic_arrays",
+        "type_concept"
+      ],
+      "origin": "authored",
+      "source_ref": "P7ch06v5_Arrays.pdf PDF p.20"
+    },
+    {
+      "id": "cois1020-p7-array-ref",
+      "front": "Is an array argument automatically the same as a ref parameter?",
+      "back": "No. The array reference is copied by value unless the parameter itself is declared ref.",
+      "tags": [
+        "lecture_p7",
+        "topic_arrays",
+        "type_counterexample"
+      ],
+      "origin": "authored",
+      "source_ref": "P7ch06v5_Arrays.pdf PDF p.25"
+    },
+    {
+      "id": "cois1020-p7-return-array",
+      "front": "Can a C# method return an array?",
+      "back": "Yes; the return value is a reference to an array object.",
+      "tags": [
+        "lecture_p7",
+        "topic_arrays",
+        "type_recognition"
+      ],
+      "origin": "authored",
+      "source_ref": "P7ch06v5_Arrays.pdf PDF p.28"
+    },
+    {
+      "id": "cois1020-p7-seqsearch",
+      "front": "When is a sequential search appropriate?",
+      "back": "When checking elements one at a time, including unsorted data.",
+      "tags": [
+        "lecture_p7",
+        "topic_arrays",
+        "type_recognition"
+      ],
+      "origin": "authored",
+      "source_ref": "P7ch06v5_Arrays.pdf PDF p.31"
+    },
+    {
+      "id": "cois1020-p7-binary",
+      "front": "What precondition does binary search normally require?",
+      "back": "Data sorted according to the comparison order.",
+      "tags": [
+        "lecture_p7",
+        "topic_arrays",
+        "type_recognition"
+      ],
+      "origin": "authored",
+      "source_ref": "P7ch06v5_Arrays.pdf PDF p.36"
+    }
+  ]
+}

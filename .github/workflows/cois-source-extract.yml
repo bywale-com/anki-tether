@@ -1,0 +1,38 @@
+name: COIS source transcription (study branch)
+
+on:
+  push:
+    branches:
+      - study/cois1020-material-preparation
+    paths:
+      - "scripts/extract_cois_source.py"
+      - ".github/workflows/cois-source-extract.yml"
+      - "source-material/**"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  extract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install parser
+        run: pip install pymupdf==1.26.5
+      - name: Extract labelled source text
+        run: python scripts/extract_cois_source.py
+      - name: Commit transcriptions to study branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add study-material/COIS-1020/lectures study-material/COIS-1020/labs
+          if ! git diff --cached --quiet; then
+            git commit -m "Transcribe COIS lecture and lab PDFs for source review"
+            git push
+          fi

@@ -1,0 +1,175 @@
+{
+  "schema_version": 1,
+  "course": "COIS-1020",
+  "deck": "COIS-1020::Loops",
+  "cards": [
+    {
+      "id": "cois1020-p4-loop",
+      "front": "What is a loop body?",
+      "back": "The statements repeated by a looping structure.",
+      "tags": [
+        "lecture_p4",
+        "topic_loops",
+        "type_definition"
+      ],
+      "origin": "authored",
+      "source_ref": "P4ch05v2__Loops.pdf PDF p.2"
+    },
+    {
+      "id": "cois1020-p4-loop-types",
+      "front": "Name the three loop forms taught in the course.",
+      "back": "while, for, and do-while.",
+      "tags": [
+        "lecture_p4",
+        "topic_loops",
+        "type_definition"
+      ],
+      "origin": "authored",
+      "source_ref": "P4ch05v2__Loops.pdf PDF p.3"
+    },
+    {
+      "id": "cois1020-p4-while",
+      "front": "When is a while condition tested?",
+      "back": "Before each iteration; the body may execute zero times.",
+      "tags": [
+        "lecture_p4",
+        "topic_loops",
+        "type_concept"
+      ],
+      "origin": "authored",
+      "source_ref": "P4ch05v2__Loops.pdf PDF p.5"
+    },
+    {
+      "id": "cois1020-p4-control",
+      "front": "What three actions prevent an ordinary while loop from running forever?",
+      "back": "Initialize the control variable, test it, and update it appropriately.",
+      "tags": [
+        "lecture_p4",
+        "topic_loops",
+        "type_recognition"
+      ],
+      "origin": "authored",
+      "source_ref": "P4ch05v2__Loops.pdf PDF p.5"
+    },
+    {
+      "id": "cois1020-p4-infinite",
+      "front": "What is an infinite loop?",
+      "back": "A loop that never reaches a terminating condition.",
+      "tags": [
+        "lecture_p4",
+        "topic_loops",
+        "type_definition"
+      ],
+      "origin": "authored",
+      "source_ref": "P4ch05v2__Loops.pdf PDF p.8"
+    },
+    {
+      "id": "cois1020-p4-definite",
+      "front": "What makes a loop definite/count-controlled?",
+      "back": "Its intended number of iterations is known in advance.",
+      "tags": [
+        "lecture_p4",
+        "topic_loops",
+        "type_definition"
+      ],
+      "origin": "authored",
+      "source_ref": "P4ch05v2__Loops.pdf PDF p.9"
+    },
+    {
+      "id": "cois1020-p4-sentinel",
+      "front": "What is a sentinel-controlled loop?",
+      "back": "A loop that stops when it encounters a special input value.",
+      "tags": [
+        "lecture_p4",
+        "topic_loops",
+        "type_recognition"
+      ],
+      "origin": "authored",
+      "source_ref": "P4ch05v2__Loops.pdf PDF p.15"
+    },
+    {
+      "id": "cois1020-p4-for-components",
+      "front": "What three parts commonly appear in a for header?",
+      "back": "Initialization, continuation condition, and update.",
+      "tags": [
+        "lecture_p4",
+        "topic_loops",
+        "type_syntax"
+      ],
+      "origin": "authored",
+      "source_ref": "P4ch05v2__Loops.pdf PDF p.11"
+    },
+    {
+      "id": "cois1020-p4-for-boundary",
+      "front": "For i=0; i<n; i++, what indices are visited for n=4?",
+      "back": "0, 1, 2, and 3.",
+      "tags": [
+        "lecture_p4",
+        "topic_loops",
+        "type_recognition"
+      ],
+      "origin": "authored",
+      "source_ref": "P4ch05v2__Loops.pdf PDF p.11"
+    },
+    {
+      "id": "cois1020-p4-posttest",
+      "front": "Which loop form runs its body at least once?",
+      "back": "do-while, because it tests its condition afterward.",
+      "tags": [
+        "lecture_p4",
+        "topic_loops",
+        "type_recognition"
+      ],
+      "origin": "authored",
+      "source_ref": "P4ch05v2__Loops.pdf PDF p.18"
+    },
+    {
+      "id": "cois1020-p4-validate",
+      "front": "Why is do-while useful for input validation?",
+      "back": "It asks once, then repeats while the entered value is invalid.",
+      "tags": [
+        "lecture_p4",
+        "topic_loops",
+        "type_recognition"
+      ],
+      "origin": "authored",
+      "source_ref": "P4ch05v2__Loops.pdf PDF p.20"
+    },
+    {
+      "id": "cois1020-p4-division",
+      "front": "Why does total / count truncate when both are ints?",
+      "back": "Integer division discards any fractional part.",
+      "tags": [
+        "lecture_p4",
+        "topic_loops",
+        "type_counterexample"
+      ],
+      "origin": "authored",
+      "source_ref": "P4ch05v2__Loops.pdf PDF p.14"
+    },
+    {
+      "id": "cois1020-p4-zero",
+      "front": "Why check count > 0 before computing an average?",
+      "back": "To avoid division by zero when no items were entered.",
+      "tags": [
+        "lecture_p4",
+        "topic_loops",
+        "type_recognition"
+      ],
+      "origin": "authored",
+      "source_ref": "P4ch05v2__Loops.pdf PDF p.14"
+    },
+    {
+      "id": "cois1020-p4-semicolon",
+      "front": "Why can an accidental semicolon after while(condition) be dangerous?",
+      "back": "It creates an empty loop body and can lead to an infinite loop.",
+      "tags": [
+        "lecture_p4",
+        "topic_loops",
+        "type_counterexample"
+      ],
+      "origin": "authored",
+      "source_ref": "P4ch05v2__Loops.pdf PDF p.8"
+    }
+  ]
+}

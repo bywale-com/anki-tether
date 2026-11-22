@@ -1,0 +1,199 @@
+{
+  "schema_version": 1,
+  "course": "COIS-1020",
+  "deck": "COIS-1020::Variables and IO",
+  "cards": [
+    {
+      "id": "cois1020-p2-variable",
+      "front": "What is a variable?",
+      "back": "A named storage location whose value may change while a program runs.",
+      "tags": [
+        "lecture_p2",
+        "topic_variables_and_io",
+        "type_definition"
+      ],
+      "origin": "authored",
+      "source_ref": "P2ch02v2_Variables.pdf PDF p.3"
+    },
+    {
+      "id": "cois1020-p2-declaration",
+      "front": "What does int age = 25; do?",
+      "back": "Declares an int variable named age and initializes it to 25.",
+      "tags": [
+        "lecture_p2",
+        "topic_variables_and_io",
+        "type_syntax"
+      ],
+      "origin": "authored",
+      "source_ref": "P2ch02v2_Variables.pdf PDF p.5"
+    },
+    {
+      "id": "cois1020-p2-int",
+      "front": "What values are represented by int?",
+      "back": "Whole numbers within its signed 32-bit range.",
+      "tags": [
+        "lecture_p2",
+        "topic_variables_and_io",
+        "type_definition"
+      ],
+      "origin": "authored",
+      "source_ref": "P2ch02v2_Variables.pdf PDF p.11"
+    },
+    {
+      "id": "cois1020-p2-floating",
+      "front": "Which types support fractional numeric values?",
+      "back": "float, double, and decimal.",
+      "tags": [
+        "lecture_p2",
+        "topic_variables_and_io",
+        "type_recognition"
+      ],
+      "origin": "authored",
+      "source_ref": "P2ch02v2_Variables.pdf PDF p.12"
+    },
+    {
+      "id": "cois1020-p2-decimal",
+      "front": "Which type does the lecture recommend for monetary precision?",
+      "back": "decimal.",
+      "tags": [
+        "lecture_p2",
+        "topic_variables_and_io",
+        "type_recognition"
+      ],
+      "origin": "authored",
+      "source_ref": "P2ch02v2_Variables.pdf PDF p.12"
+    },
+    {
+      "id": "cois1020-p2-suffix",
+      "front": "What literal suffix is needed for decimal d = 12.55M;?",
+      "back": "M; an unsuffixed fractional literal is double by default.",
+      "tags": [
+        "lecture_p2",
+        "topic_variables_and_io",
+        "type_syntax"
+      ],
+      "origin": "authored",
+      "source_ref": "P2ch02v2_Variables.pdf PDF p.13"
+    },
+    {
+      "id": "cois1020-p2-placeholder",
+      "front": "In Console.WriteLine(\"{0}\", x), what does {0} mean?",
+      "back": "The first supplied formatting argument, x.",
+      "tags": [
+        "lecture_p2",
+        "topic_variables_and_io",
+        "type_recognition"
+      ],
+      "origin": "authored",
+      "source_ref": "P2ch02v2_Variables.pdf PDF p.8"
+    },
+    {
+      "id": "cois1020-p2-currency",
+      "front": "What does a C format specifier do?",
+      "back": "Formats a numeric value as currency according to the current culture.",
+      "tags": [
+        "lecture_p2",
+        "topic_variables_and_io",
+        "type_syntax"
+      ],
+      "origin": "authored",
+      "source_ref": "P2ch02v2_Variables.pdf PDF p.17"
+    },
+    {
+      "id": "cois1020-p2-fixed",
+      "front": "What does F3 request in numeric output?",
+      "back": "Fixed-point display with three digits after the decimal point.",
+      "tags": [
+        "lecture_p2",
+        "topic_variables_and_io",
+        "type_syntax"
+      ],
+      "origin": "authored",
+      "source_ref": "P2ch02v2_Variables.pdf PDF p.17"
+    },
+    {
+      "id": "cois1020-p2-precedence",
+      "front": "Which operators bind before + and - in ordinary arithmetic?",
+      "back": "Multiplication, division, and remainder (*, /, %) unless parentheses change order.",
+      "tags": [
+        "lecture_p2",
+        "topic_variables_and_io",
+        "type_rule"
+      ],
+      "origin": "authored",
+      "source_ref": "P2ch02v2_Variables.pdf PDF p.20"
+    },
+    {
+      "id": "cois1020-p2-increment",
+      "front": "What does count += 1 mean?",
+      "back": "Assigns count + 1 back to count.",
+      "tags": [
+        "lecture_p2",
+        "topic_variables_and_io",
+        "type_syntax"
+      ],
+      "origin": "authored",
+      "source_ref": "P2ch02v2_Variables.pdf PDF p.21"
+    },
+    {
+      "id": "cois1020-p2-bool",
+      "front": "What values can a bool store?",
+      "back": "true or false.",
+      "tags": [
+        "lecture_p2",
+        "topic_variables_and_io",
+        "type_definition"
+      ],
+      "origin": "authored",
+      "source_ref": "P2ch02v2_Variables.pdf PDF p.26"
+    },
+    {
+      "id": "cois1020-p2-char-string",
+      "front": "Distinguish char from string.",
+      "back": "char represents one UTF-16 code unit; string represents a sequence of characters.",
+      "tags": [
+        "lecture_p2",
+        "topic_variables_and_io",
+        "type_concept"
+      ],
+      "origin": "authored",
+      "source_ref": "P2ch02v2_Variables.pdf PDF p.28"
+    },
+    {
+      "id": "cois1020-p2-input",
+      "front": "What type is returned by Console.ReadLine()?",
+      "back": "string (or null at end of input). Numeric input requires parsing/conversion.",
+      "tags": [
+        "lecture_p2",
+        "topic_variables_and_io",
+        "type_recognition"
+      ],
+      "origin": "authored",
+      "source_ref": "P2ch02v2_Variables.pdf PDF p.37"
+    },
+    {
+      "id": "cois1020-p2-constant",
+      "front": "When should a named constant be preferred to a variable?",
+      "back": "For a value that must not be reassigned after declaration.",
+      "tags": [
+        "lecture_p2",
+        "topic_variables_and_io",
+        "type_recognition"
+      ],
+      "origin": "authored",
+      "source_ref": "P2ch02v2_Variables.pdf PDF p.42"
+    },
+    {
+      "id": "cois1020-p2-fraction",
+      "front": "Why is Convert.ToInt32 inappropriate for input like 22.5 hours?",
+      "back": "It cannot parse a decimal-formatted string as an integer; a fractional numeric type is needed.",
+      "tags": [
+        "lecture_p2",
+        "topic_variables_and_io",
+        "type_counterexample"
+      ],
+      "origin": "authored",
+      "source_ref": "P2ch02v2_Variables.pdf PDF p.39"
+    }
+  ]
+}
