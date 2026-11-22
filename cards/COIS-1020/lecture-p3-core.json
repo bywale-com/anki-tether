@@ -1,0 +1,175 @@
+{
+  "schema_version": 1,
+  "course": "COIS-1020",
+  "deck": "COIS-1020::Selection",
+  "cards": [
+    {
+      "id": "cois1020-p3-pseudocode",
+      "front": "What is pseudocode used for?",
+      "back": "Describing a program's planned logic using human-readable steps.",
+      "tags": [
+        "lecture_p3",
+        "topic_selection",
+        "type_definition"
+      ],
+      "origin": "authored",
+      "source_ref": "P3ch04v2_P3 Selection Statements_Conditions.pdf PDF p.2"
+    },
+    {
+      "id": "cois1020-p3-sequence",
+      "front": "What is sequential control flow?",
+      "back": "Statements execute one after another without branching.",
+      "tags": [
+        "lecture_p3",
+        "topic_selection",
+        "type_definition"
+      ],
+      "origin": "authored",
+      "source_ref": "P3ch04v2_P3 Selection Statements_Conditions.pdf PDF p.3"
+    },
+    {
+      "id": "cois1020-p3-decision",
+      "front": "What does an if statement do?",
+      "back": "Executes a branch only when its Boolean condition is true.",
+      "tags": [
+        "lecture_p3",
+        "topic_selection",
+        "type_definition"
+      ],
+      "origin": "authored",
+      "source_ref": "P3ch04v2_P3 Selection Statements_Conditions.pdf PDF p.6"
+    },
+    {
+      "id": "cois1020-p3-block",
+      "front": "What is a C# statement block?",
+      "back": "One or more statements enclosed in curly braces.",
+      "tags": [
+        "lecture_p3",
+        "topic_selection",
+        "type_syntax"
+      ],
+      "origin": "authored",
+      "source_ref": "P3ch04v2_P3 Selection Statements_Conditions.pdf PDF p.9"
+    },
+    {
+      "id": "cois1020-p3-nested",
+      "front": "What is a nested if?",
+      "back": "An if decision contained inside another decision's branch.",
+      "tags": [
+        "lecture_p3",
+        "topic_selection",
+        "type_recognition"
+      ],
+      "origin": "authored",
+      "source_ref": "P3ch04v2_P3 Selection Statements_Conditions.pdf PDF p.13"
+    },
+    {
+      "id": "cois1020-p3-if-else",
+      "front": "How is if/else different from a single if?",
+      "back": "It chooses one of two alternative branches.",
+      "tags": [
+        "lecture_p3",
+        "topic_selection",
+        "type_concept"
+      ],
+      "origin": "authored",
+      "source_ref": "P3ch04v2_P3 Selection Statements_Conditions.pdf PDF p.15"
+    },
+    {
+      "id": "cois1020-p3-and",
+      "front": "When is a && b true?",
+      "back": "Only when both a and b are true.",
+      "tags": [
+        "lecture_p3",
+        "topic_selection",
+        "type_rule"
+      ],
+      "origin": "authored",
+      "source_ref": "P3ch04v2_P3 Selection Statements_Conditions.pdf PDF p.19"
+    },
+    {
+      "id": "cois1020-p3-and-short",
+      "front": "What happens to b if a is false in a && b?",
+      "back": "b is not evaluated; the result is already false.",
+      "tags": [
+        "lecture_p3",
+        "topic_selection",
+        "type_rule"
+      ],
+      "origin": "authored",
+      "source_ref": "P3ch04v2_P3 Selection Statements_Conditions.pdf PDF p.19"
+    },
+    {
+      "id": "cois1020-p3-range",
+      "front": "Why is 0 <= grade <= 100 not valid C# range testing?",
+      "back": "Use two comparisons joined by &&: grade >= 0 && grade <= 100.",
+      "tags": [
+        "lecture_p3",
+        "topic_selection",
+        "type_counterexample"
+      ],
+      "origin": "authored",
+      "source_ref": "P3ch04v2_P3 Selection Statements_Conditions.pdf PDF p.20"
+    },
+    {
+      "id": "cois1020-p3-or",
+      "front": "When is a || b true?",
+      "back": "When at least one of a and b is true.",
+      "tags": [
+        "lecture_p3",
+        "topic_selection",
+        "type_rule"
+      ],
+      "origin": "authored",
+      "source_ref": "P3ch04v2_P3 Selection Statements_Conditions.pdf PDF p.21"
+    },
+    {
+      "id": "cois1020-p3-or-short",
+      "front": "What happens to b when a is true in a || b?",
+      "back": "b is not evaluated; the result is already true.",
+      "tags": [
+        "lecture_p3",
+        "topic_selection",
+        "type_rule"
+      ],
+      "origin": "authored",
+      "source_ref": "P3ch04v2_P3 Selection Statements_Conditions.pdf PDF p.21"
+    },
+    {
+      "id": "cois1020-p3-multi",
+      "front": "What is an else-if chain used for?",
+      "back": "Selecting among more than two ordered alternatives.",
+      "tags": [
+        "lecture_p3",
+        "topic_selection",
+        "type_recognition"
+      ],
+      "origin": "authored",
+      "source_ref": "P3ch04v2_P3 Selection Statements_Conditions.pdf PDF p.23"
+    },
+    {
+      "id": "cois1020-p3-dangling-else",
+      "front": "Which if does an else match when braces are absent?",
+      "back": "The nearest preceding unmatched if.",
+      "tags": [
+        "lecture_p3",
+        "topic_selection",
+        "type_counterexample"
+      ],
+      "origin": "authored",
+      "source_ref": "P3ch04v2_P3 Selection Statements_Conditions.pdf PDF p.24"
+    },
+    {
+      "id": "cois1020-p3-switch",
+      "front": "What problem can a switch statement simplify?",
+      "back": "Choosing among discrete cases based on one expression.",
+      "tags": [
+        "lecture_p3",
+        "topic_selection",
+        "type_recognition"
+      ],
+      "origin": "authored",
+      "source_ref": "P3ch04v2_P3 Selection Statements_Conditions.pdf PDF p.28"
+    }
+  ]
+}
