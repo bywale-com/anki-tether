@@ -1,0 +1,292 @@
+// @ts-check
+
+/* --- You do not need to defer this script, it adds its own `DOMContentLoaded` listener. */
+
+(function () { // IIFE for scope isolation
+    /**
+     * Prefixed before switch keys when setting cookies to avoid potential collisions with other
+     * more generic keys (also prevents inadvertently accessing other cookies willy-nilly by having
+     * a switch with a malicious `data-switch-key` attribute).
+     */
+    const COOKIE_PREFIX = 'switchkey-';
+
+    /**
+     * Shorthand for not having to type `document.documentElement` all the time.
+     */
+    const root = document.documentElement;
+
+    /**
+     * @typedef KeyValues The interface that gets returned by {@linkcode getButtonValues} and
+     * {@linkcode getSelectValues}.
+     * @property {string} key The key that was found on the given element.
+     * @property {string[]} values A list of all of the values this element has for its key.
+     */
+
+    // ---------------------------------------------------------------------------------------------
+    // Function definitions
+    // ---------------------------------------------------------------------------------------------
+
+    // The comments in here are quite exhaustive, but that's mostly just to make VS Code give me
+    // Intellisense with all the type comments and stuff.
+
+    /**
+     * Sets the value of a key in `document.cookie`.
+     * @param {string} key The key whose value should be set.
+     * @param {string} value The key's new value.
+     */
+    function setCookie(key, value) {
+        const cookieName = COOKIE_PREFIX + encodeURIComponent(key);
+        const cookieValue = encodeURIComponent(value);
+        document.cookie = `${cookieName}=${cookieValue}`;
+    }
+
+    /**
+     * Gets the value of a key from `document.cookie`.
+     * @param {string} key The key to get.
+     * @returns {string | undefined}
+     */
+    function getCookie(key) {
+        const cookieName = COOKIE_PREFIX + encodeURIComponent(key);
+        const regex = new RegExp(`(?:^| )${cookieName}=([^;]+)`);
+        const match = document.cookie.match(regex);
+        const value = match?.[1]; // first capture group, if found
+        if (value) return decodeURIComponent(value);
+    }
+
+    /**
+     * Updates all <select> elements with the relevant `data-switch-key` attribute to match the new
+     * value (buttons don't need anything for this, since they work with CSS hiding things).
+     * @param {string} key The key to update the value for (e.g., `browser` or `os`).
+     * @param {string} value The key's new value (e.g., `firefox` or `windows`).
+     */
+    function syncSelects(key, value) {
+        /** @type {NodeListOf<HTMLSelectElement>} */
+        const selects = document.querySelectorAll(`select[data-switch-key="${key}"]`);
+
+        for (const select of selects) {
+            // We use a loop instead of just setting `select.value` in order to double check that
+            // the select actually has the right option.
+            let found = false;
+            for (let i = 0; i < select.options.length && !found; i++) {
+                if (select.options[i].value.trim().toLowerCase() === value) {
+                    select.selectedIndex = i;
+                    found = true; // Break loop
+                }
+            }
+
+            if (!found) {
+                console.warn(`switches.js: switch %o is missing an <option> for value '${value}':`, select);
+            }
+        }
+    }
+
+    /**
+     * Gets the key and values for a <button>. If no `data-{key}-1`/`data-{key}-2` attributes are
+     * present on the button, this function falls back to searching the button's contents for any
+     * spans with classes. This enables backwards compatibility.
+     * @param {HTMLButtonElement} button The button to get the values for.
+     * @returns {KeyValues | null} Null is returned upon failure (an error will also be logged to
+     * console).
+     */
+    function getButtonValues(button) {
+        const key = button.dataset.switchKey?.trim();
+        if (!key) {
+            console.warn('switches.js: switch %o is missing its `data-switch-key` attribute.', this);
+            return null;
+        }
+
+        // Search for the button's two values; both `data-{key}-1` and `data-{key}1` are allowed.
+        let val1 = button.dataset[`${key}-1`] || button.dataset[`${key}1`];
+        let val2 = button.dataset[`${key}-2`] || button.dataset[`${key}2`];
+
+        // If both are missing, we search for spans within the button and use their first className.
+        if (!val1 && !val2) {
+            const spans = button.querySelectorAll('span[class]');
+            val2 = spans[0]?.classList[0]; // val2 comes from first span, since they're inverted.
+            val1 = spans[1]?.classList[0];
+        }
+
+        // Trim before error checking (to catch any empty strings)
+        val1 = val1?.trim();
+        val2 = val2?.trim();
+
+        if (!val1 || !val2) {
+            // More detailed error messages = better
+            if (!val1 && !val2) {
+                console.error(`switches.js: switch %o is missing values for key '${key}'.`, this);
+            } else if (!val1) {
+                console.error(`switches.js: switch %o is missing its first value for key '${key}'.`, this);
+            } else if (!val2) {
+                console.error(`switches.js: switch %o is missing its second value for key '${key}'.`, this);
+            }
+
+            return null;
+        }
+
+        return { key, values: [val1, val2] };
+    }
+
+    /**
+     * Gets the key and values for a <select>. Values are taken directly from the values of this
+     * select's <option> elements.
+     * @param {HTMLSelectElement} select
+     * @returns {KeyValues | null} Null is returned upon failure (an error will also be logged to
+     * console).
+     */
+    function getSelectValues(select) {
+        const key = select.dataset.switchKey?.trim();
+
+        if (!key) {
+            console.error('switches.js: switch %o is missing its `data-switch-key` attribute.', select);
+            return null;
+        }
+
+        if (select.options.length == 0) {
+            console.error('switches.js: switch %o has no <option> elements for its values.', select);
+            return null;
+        }
+
+        /** @type {string[]} */
+        const values = new Array(select.options.length); // constructor used to pre-allocate length
+
+        for (let i = 0; i < select.options.length; i++) {
+            values[i] = select.options[i].value.trim();
+        }
+
+        return { key, values };
+    }
+
+    /**
+     * Handles the `click` event on any <button> switches.
+     * @this {HTMLButtonElement}
+     */
+    function onButtonClick() {
+        const buttonValues = getButtonValues(this);
+        if (buttonValues) {
+            const { key, values: [val1, val2] } = buttonValues;
+            const newValue = (root.dataset[key] == val1) ? val2 : val1; // toggle
+            root.dataset[key] = newValue;
+            syncSelects(key, newValue);
+            setCookie(key, newValue);
+        }
+    }
+
+    /**
+     * Handles the `change` event on any <select> switches.
+     * @this {HTMLSelectElement}
+     */
+    function onSelectChange() {
+        const key = this.dataset.switchKey?.trim();
+        if (key) {
+            const newValue = this.value.trim();
+            root.dataset[key] = newValue;
+            syncSelects(key, newValue);
+            setCookie(key, newValue);
+        }
+    }
+
+    // ---------------------------------------------------------------------------------------------
+    // Startup script
+    // ---------------------------------------------------------------------------------------------
+
+    document.addEventListener('DOMContentLoaded', function () {
+        console.time('configuring switches');
+
+        // Add event listeners and tally up all keys and values.
+        // ----------------------------------------------------------
+
+        const buttons = /** @type {NodeListOf<HTMLButtonElement>} */ (document.querySelectorAll('button[data-switch-key]'));
+        const selects = /** @type {NodeListOf<HTMLSelectElement>} */ (document.querySelectorAll('select[data-switch-key]'));
+
+        /**
+         * As we loop through all of the buttons and selects to add their event listeners, we keep
+         * track of all of the values we find for each of the keys. Then, for each key we found, we:
+         * - set the root element's `dataset` attribute
+         * - generate all of the `display: none` CSS classes selectors and add it to the head.
+         * @type {Map<string, string[]>}
+         */
+        const allKeys = new Map();
+
+        /**
+         * Adds a key/value to the {@linkcode allKeys} map.
+         * @param {KeyValues} keyValues
+         */
+        const addKeyValues = ({ key, values }) => {
+            let list = allKeys.get(key);
+            if (!list) {
+                list = [];
+                allKeys.set(key, list);
+            }
+
+            for (const val of values) {
+                if (!list.includes(val))
+                    list.push(val);
+            }
+        }
+
+        for (const button of buttons) {
+            const parsed = getButtonValues(button);
+            if (parsed) {
+                addKeyValues(parsed);
+                button.addEventListener('click', onButtonClick);
+            }
+        }
+
+        for (const select of selects) {
+            const parsed = getSelectValues(select);
+            if (parsed) {
+                addKeyValues(parsed);
+                select.addEventListener('change', onSelectChange);
+            }
+        }
+
+        // Set root properties and generate CSS
+        // ----------------------------------------------------------
+
+        for (const [key, allValues] of allKeys.entries()) {
+            let value = getCookie(key);
+
+            if (!value) {
+                value = allValues[0]; // Default to whatever the one on the page was
+                setCookie(key, value);
+            }
+
+            root.dataset[key] = value;  // Add to root
+            syncSelects(key, value);    // Make sure the selects match
+        }
+
+        // If the root has `data-switches-css="none|off"`, we skip generating the `display: none`
+        // CSS to let the user add their own.
+        if (!(root.dataset.switchesCss === "none" || root.dataset.switchesCss === "off")) {
+            // Generate a big block of inline styles, built up from all of the keys and their
+            // values.
+            let inlineStyles = '';
+
+            const styleRule = (root.dataset.switchesCss === "no-important")
+                ? "display: none;"
+                : "display: none !important;";
+
+            for (const [key, allValues] of allKeys.entries()) {
+                // Cartesian product; all combinations. i.e. `[mac, win, linux]` creates
+                // `[ mac: [win, linux], win: [mac, linux], linux: [win, mac] ]`.
+                const selectors = [];
+                for (const valA of allValues) {
+                    for (const valB of allValues) {
+                        if (valA == valB) continue;
+                        // For example: `:root[data-os="macos"] :not(.macos).windows`
+                        // Hides all `.windows` objects unless they also have `.macos` on them.
+                        selectors.push(`:root[data-${key}="${valA}"] :not(.${valA}).${valB}`);
+                    }
+                }
+
+                inlineStyles += `${selectors.join(',\n')} {\n\t${styleRule}\n}`;
+            }
+
+            const styleTag = document.createElement('style');
+            styleTag.textContent = inlineStyles;
+            document.head.append(styleTag);
+        }
+
+        console.timeEnd('configuring switches');
+    });
+})();
