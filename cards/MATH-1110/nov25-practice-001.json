@@ -1,0 +1,547 @@
+{
+  "schema_version": 1,
+  "course": "MATH-1110",
+  "deck": "MATH-1110::Quiz Nov 25 Practice",
+  "cards": [
+    {
+      "id": "math1110-drill-ftc-01",
+      "front": "Compute \\(\\int_0^2(3x^2+2x)\\,dx\\).",
+      "back": "Antiderivative: \\(F(x)=x^3+x^2\\). Evaluate \\(F(2)-F(0)=8+4=12\\).",
+      "tags": [
+        "quiz-nov25",
+        "practice",
+        "ftc"
+      ],
+      "origin": "authored",
+      "source_ref": "Original practice item; aligned with Guichard §7.2"
+    },
+    {
+      "id": "math1110-drill-ftc-02",
+      "front": "Compute \\(\\int_1^3 2x\\,dx\\).",
+      "back": "Use \\(F(x)=x^2\\). Thus \\(F(3)-F(1)=9-1=8\\).",
+      "tags": [
+        "quiz-nov25",
+        "practice",
+        "ftc"
+      ],
+      "origin": "authored",
+      "source_ref": "Original practice item; aligned with Guichard §7.2"
+    },
+    {
+      "id": "math1110-drill-ftc-03",
+      "front": "Compute \\(\\int_0^\\pi\\sin x\\,dx\\).",
+      "back": "Antiderivative: \\(-\\cos x\\). Then \\(-\\cos\\pi+\\cos0=1+1=2\\).",
+      "tags": [
+        "quiz-nov25",
+        "practice",
+        "ftc"
+      ],
+      "origin": "authored",
+      "source_ref": "Original practice item; aligned with Guichard §7.2"
+    },
+    {
+      "id": "math1110-drill-ftc-04",
+      "front": "Compute \\(\\int_0^{\\pi/2}\\cos x\\,dx\\).",
+      "back": "Antiderivative \\(\\sin x\\). Evaluate \\(\\sin(\\pi/2)-\\sin0=1\\).",
+      "tags": [
+        "quiz-nov25",
+        "practice",
+        "ftc"
+      ],
+      "origin": "authored",
+      "source_ref": "Original practice item; aligned with Guichard §7.2"
+    },
+    {
+      "id": "math1110-drill-ftc-05",
+      "front": "Compute \\(\\int_1^e \\frac1x\\,dx\\).",
+      "back": "Antiderivative \\(\\ln x\\) on \\(x>0\\). Evaluate \\(\\ln e-\\ln1=1\\).",
+      "tags": [
+        "quiz-nov25",
+        "practice",
+        "ftc"
+      ],
+      "origin": "authored",
+      "source_ref": "Original practice item; aligned with Guichard §7.2"
+    },
+    {
+      "id": "math1110-drill-ftc-06",
+      "front": "Compute \\(\\int_0^1 e^x\\,dx\\).",
+      "back": "Antiderivative \\(e^x\\). Evaluate \\(e^1-e^0=e-1\\).",
+      "tags": [
+        "quiz-nov25",
+        "practice",
+        "ftc"
+      ],
+      "origin": "authored",
+      "source_ref": "Original practice item; aligned with Guichard §7.2"
+    },
+    {
+      "id": "math1110-drill-ftc-07",
+      "front": "Compute \\(\\int_0^1(4x^3-2x)\\,dx\\).",
+      "back": "Antiderivative \\(x^4-x^2\\). Evaluate \\((1-1)-(0-0)=0\\).",
+      "tags": [
+        "quiz-nov25",
+        "practice",
+        "ftc"
+      ],
+      "origin": "authored",
+      "source_ref": "Original practice item; aligned with Guichard §7.2"
+    },
+    {
+      "id": "math1110-drill-ftc-08",
+      "front": "Compute \\(\\int_0^2(x^2+1)\\,dx\\).",
+      "back": "Antiderivative \\(x^3/3+x\\). Evaluate \\(8/3+2=14/3\\).",
+      "tags": [
+        "quiz-nov25",
+        "practice",
+        "ftc"
+      ],
+      "origin": "authored",
+      "source_ref": "Original practice item; aligned with Guichard §7.2"
+    },
+    {
+      "id": "math1110-drill-ftc-09",
+      "front": "Differentiate \\(G(x)=\\int_0^x(t^3+2t)\\,dt\\).",
+      "back": "FTC Part 1: \\(G'(x)=x^3+2x\\). The upper limit is exactly \\(x\\).",
+      "tags": [
+        "quiz-nov25",
+        "practice",
+        "ftc"
+      ],
+      "origin": "authored",
+      "source_ref": "Original practice item; aligned with Guichard §7.2"
+    },
+    {
+      "id": "math1110-drill-ftc-10",
+      "front": "Differentiate \\(G(x)=\\int_1^{x^2}(t+1)\\,dt\\).",
+      "back": "FTC plus chain rule: \\(G'(x)=(x^2+1)\\cdot2x=2x^3+2x\\).",
+      "tags": [
+        "quiz-nov25",
+        "practice",
+        "ftc"
+      ],
+      "origin": "authored",
+      "source_ref": "Original practice item; aligned with Guichard §7.2"
+    },
+    {
+      "id": "math1110-drill-ftc-11",
+      "front": "Compute \\(\\int_2^2(\\sin x+x)\\,dx\\).",
+      "back": "A definite integral with identical bounds is \\(0\\), regardless of the continuous integrand.",
+      "tags": [
+        "quiz-nov25",
+        "practice",
+        "ftc"
+      ],
+      "origin": "authored",
+      "source_ref": "Original practice item; aligned with Guichard §7.2"
+    },
+    {
+      "id": "math1110-drill-ftc-12",
+      "front": "Compute \\(\\int_3^1 2x\\,dx\\).",
+      "back": "Antiderivative \\(x^2\\). Evaluate \\(F(1)-F(3)=1-9=-8\\). Reversing bounds changes the sign.",
+      "tags": [
+        "quiz-nov25",
+        "practice",
+        "ftc"
+      ],
+      "origin": "authored",
+      "source_ref": "Original practice item; aligned with Guichard §7.2"
+    },
+    {
+      "id": "math1110-drill-ftc-13",
+      "front": "Compute \\(\\int_0^1\\frac{1}{1+x}\\,dx\\).",
+      "back": "Antiderivative \\(\\ln(1+x)\\) here. Evaluate \\(\\ln2-\\ln1=\\ln2\\).",
+      "tags": [
+        "quiz-nov25",
+        "practice",
+        "ftc"
+      ],
+      "origin": "authored",
+      "source_ref": "Original practice item; aligned with Guichard §7.2"
+    },
+    {
+      "id": "math1110-drill-ftc-14",
+      "front": "Differentiate \\(G(x)=\\int_0^{3x}\\cos t\\,dt\\).",
+      "back": "FTC plus chain rule: \\(G'(x)=\\cos(3x)\\cdot3=3\\cos(3x)\\).",
+      "tags": [
+        "quiz-nov25",
+        "practice",
+        "ftc"
+      ],
+      "origin": "authored",
+      "source_ref": "Original practice item; aligned with Guichard §7.2"
+    },
+    {
+      "id": "math1110-drill-ftc-15",
+      "front": "Compute \\(\\int_1^4\\frac{1}{2\\sqrt{x}}\\,dx\\).",
+      "back": "Antiderivative \\(\\sqrt{x}\\) for \\(x>0\\). Evaluate \\(\\sqrt4-\\sqrt1=2-1=1\\).",
+      "tags": [
+        "quiz-nov25",
+        "practice",
+        "ftc"
+      ],
+      "origin": "authored",
+      "source_ref": "Original practice item; aligned with Guichard §7.2"
+    },
+    {
+      "id": "math1110-drill-substitution-01",
+      "front": "Evaluate \\(\\int2x\\cos(x^2)\\,dx\\).",
+      "back": "Let \\(u=x^2,\\ du=2x\\,dx\\). Then \\(\\int\\cos u\\,du=\\sin u+C=\\sin(x^2)+C\\).",
+      "tags": [
+        "quiz-nov25",
+        "practice",
+        "substitution"
+      ],
+      "origin": "authored",
+      "source_ref": "Original practice item; aligned with Guichard §8.1"
+    },
+    {
+      "id": "math1110-drill-substitution-02",
+      "front": "Evaluate \\(\\int3x^2e^{x^3}\\,dx\\).",
+      "back": "Let \\(u=x^3,\\ du=3x^2dx\\). Then \\(\\int e^u\\,du=e^{x^3}+C\\).",
+      "tags": [
+        "quiz-nov25",
+        "practice",
+        "substitution"
+      ],
+      "origin": "authored",
+      "source_ref": "Original practice item; aligned with Guichard §8.1"
+    },
+    {
+      "id": "math1110-drill-substitution-03",
+      "front": "Evaluate \\(\\int\\frac{2x}{1+x^2}\\,dx\\).",
+      "back": "Let \\(u=1+x^2,\\ du=2x\\,dx\\). Then \\(\\int du/u=\\ln(1+x^2)+C\\).",
+      "tags": [
+        "quiz-nov25",
+        "practice",
+        "substitution"
+      ],
+      "origin": "authored",
+      "source_ref": "Original practice item; aligned with Guichard §8.1"
+    },
+    {
+      "id": "math1110-drill-substitution-04",
+      "front": "Evaluate \\(\\int\\cos x\\,\\sin(\\sin x)\\,dx\\).",
+      "back": "Let \\(u=\\sin x,\\ du=\\cos x\\,dx\\). Then \\(\\int\\sin u\\,du=-\\cos(\\sin x)+C\\).",
+      "tags": [
+        "quiz-nov25",
+        "practice",
+        "substitution"
+      ],
+      "origin": "authored",
+      "source_ref": "Original practice item; aligned with Guichard §8.1"
+    },
+    {
+      "id": "math1110-drill-substitution-05",
+      "front": "Evaluate \\(\\int(2x+1)(x^2+x)^4\\,dx\\).",
+      "back": "Let \\(u=x^2+x,\\ du=(2x+1)dx\\). Then \\(\\int u^4du=(x^2+x)^5/5+C\\).",
+      "tags": [
+        "quiz-nov25",
+        "practice",
+        "substitution"
+      ],
+      "origin": "authored",
+      "source_ref": "Original practice item; aligned with Guichard §8.1"
+    },
+    {
+      "id": "math1110-drill-substitution-06",
+      "front": "Evaluate \\(\\int x\\sqrt{x^2+4}\\,dx\\).",
+      "back": "Let \\(u=x^2+4,\\ du=2x\\,dx\\). Then \\(\\frac12\\int u^{1/2}du=(x^2+4)^{3/2}/3+C\\).",
+      "tags": [
+        "quiz-nov25",
+        "practice",
+        "substitution"
+      ],
+      "origin": "authored",
+      "source_ref": "Original practice item; aligned with Guichard §8.1"
+    },
+    {
+      "id": "math1110-drill-substitution-07",
+      "front": "Evaluate \\(\\int\\sin(3x)\\,dx\\).",
+      "back": "Let \\(u=3x,\\ dx=du/3\\). Then \\(-\\cos(3x)/3+C\\).",
+      "tags": [
+        "quiz-nov25",
+        "practice",
+        "substitution"
+      ],
+      "origin": "authored",
+      "source_ref": "Original practice item; aligned with Guichard §8.1"
+    },
+    {
+      "id": "math1110-drill-substitution-08",
+      "front": "Evaluate \\(\\int e^{2x+1}\\,dx\\).",
+      "back": "Let \\(u=2x+1,\\ dx=du/2\\). Result: \\(e^{2x+1}/2+C\\).",
+      "tags": [
+        "quiz-nov25",
+        "practice",
+        "substitution"
+      ],
+      "origin": "authored",
+      "source_ref": "Original practice item; aligned with Guichard §8.1"
+    },
+    {
+      "id": "math1110-drill-substitution-09",
+      "front": "Evaluate \\(\\int\\frac{1}{3x+2}\\,dx\\).",
+      "back": "Let \\(u=3x+2,\\ dx=du/3\\). Result: \\(\\frac13\\ln|3x+2|+C\\).",
+      "tags": [
+        "quiz-nov25",
+        "practice",
+        "substitution"
+      ],
+      "origin": "authored",
+      "source_ref": "Original practice item; aligned with Guichard §8.1"
+    },
+    {
+      "id": "math1110-drill-substitution-10",
+      "front": "Evaluate \\(\\int\\frac{4x^3}{x^4+1}\\,dx\\).",
+      "back": "Let \\(u=x^4+1,\\ du=4x^3dx\\). Result: \\(\\ln(x^4+1)+C\\) since the argument is positive.",
+      "tags": [
+        "quiz-nov25",
+        "practice",
+        "substitution"
+      ],
+      "origin": "authored",
+      "source_ref": "Original practice item; aligned with Guichard §8.1"
+    },
+    {
+      "id": "math1110-drill-substitution-11",
+      "front": "Evaluate \\(\\int x e^{x^2}\\,dx\\).",
+      "back": "Let \\(u=x^2,\\ du=2x\\,dx\\). Result: \\(e^{x^2}/2+C\\).",
+      "tags": [
+        "quiz-nov25",
+        "practice",
+        "substitution"
+      ],
+      "origin": "authored",
+      "source_ref": "Original practice item; aligned with Guichard §8.1"
+    },
+    {
+      "id": "math1110-drill-substitution-12",
+      "front": "Evaluate \\(\\int\\frac{\\cos x}{1+\\sin x}\\,dx\\).",
+      "back": "Let \\(u=1+\\sin x,\\ du=\\cos x\\,dx\\). Result: \\(\\ln|1+\\sin x|+C\\) on intervals where defined.",
+      "tags": [
+        "quiz-nov25",
+        "practice",
+        "substitution"
+      ],
+      "origin": "authored",
+      "source_ref": "Original practice item; aligned with Guichard §8.1"
+    },
+    {
+      "id": "math1110-drill-substitution-13",
+      "front": "Compute \\(\\int_0^1 2x(x^2+1)^2\\,dx\\).",
+      "back": "Let \\(u=x^2+1\\); bounds become \\(1\\) to \\(2\\). Then \\(\\int_1^2u^2du=[u^3/3]_1^2=7/3\\).",
+      "tags": [
+        "quiz-nov25",
+        "practice",
+        "substitution"
+      ],
+      "origin": "authored",
+      "source_ref": "Original practice item; aligned with Guichard §8.1"
+    },
+    {
+      "id": "math1110-drill-substitution-14",
+      "front": "Compute \\(\\int_0^{\\pi/2}\\sin x\\cos x\\,dx\\).",
+      "back": "Let \\(u=\\sin x\\), bounds \\(0\\) to \\(1\\). Then \\(\\int_0^1u\\,du=1/2\\).",
+      "tags": [
+        "quiz-nov25",
+        "practice",
+        "substitution"
+      ],
+      "origin": "authored",
+      "source_ref": "Original practice item; aligned with Guichard §8.1"
+    },
+    {
+      "id": "math1110-drill-substitution-15",
+      "front": "Evaluate \\(\\int\\frac{x}{(x^2+1)^2}\\,dx\\).",
+      "back": "Let \\(u=x^2+1,\\ du=2x\\,dx\\). Then \\(\\frac12\\int u^{-2}du=-1/[2(x^2+1)]+C\\).",
+      "tags": [
+        "quiz-nov25",
+        "practice",
+        "substitution"
+      ],
+      "origin": "authored",
+      "source_ref": "Original practice item; aligned with Guichard §8.1"
+    },
+    {
+      "id": "math1110-drill-parts-01",
+      "front": "Evaluate \\(\\int xe^x\\,dx\\).",
+      "back": "Choose \\(u=x,\\ dv=e^x dx\\); then \\(du=dx,\\ v=e^x\\). Thus \\(xe^x-\\int e^xdx=e^x(x-1)+C\\).",
+      "tags": [
+        "quiz-nov25",
+        "practice",
+        "parts"
+      ],
+      "origin": "authored",
+      "source_ref": "Original practice item; aligned with Guichard §8.4"
+    },
+    {
+      "id": "math1110-drill-parts-02",
+      "front": "Evaluate \\(\\int x\\sin x\\,dx\\).",
+      "back": "Choose \\(u=x,\\ dv=\\sin x\\,dx\\); \\(v=-\\cos x\\). Thus \\(-x\\cos x+\\int\\cos x\\,dx=-x\\cos x+\\sin x+C\\).",
+      "tags": [
+        "quiz-nov25",
+        "practice",
+        "parts"
+      ],
+      "origin": "authored",
+      "source_ref": "Original practice item; aligned with Guichard §8.4"
+    },
+    {
+      "id": "math1110-drill-parts-03",
+      "front": "Evaluate \\(\\int x\\cos x\\,dx\\).",
+      "back": "Choose \\(u=x,\\ dv=\\cos xdx,\\ v=\\sin x\\). Result \\(x\\sin x-\\int\\sin x\\,dx=x\\sin x+\\cos x+C\\).",
+      "tags": [
+        "quiz-nov25",
+        "practice",
+        "parts"
+      ],
+      "origin": "authored",
+      "source_ref": "Original practice item; aligned with Guichard §8.4"
+    },
+    {
+      "id": "math1110-drill-parts-04",
+      "front": "Evaluate \\(\\int\\ln x\\,dx\\) for \\(x>0\\).",
+      "back": "Write \\(\\ln x\\cdot1\\). Let \\(u=\\ln x,\\ dv=dx\\), so \\(du=dx/x,\\ v=x\\). Result \\(x\\ln x-x+C\\).",
+      "tags": [
+        "quiz-nov25",
+        "practice",
+        "parts"
+      ],
+      "origin": "authored",
+      "source_ref": "Original practice item; aligned with Guichard §8.4"
+    },
+    {
+      "id": "math1110-drill-parts-05",
+      "front": "Evaluate \\(\\int x\\ln x\\,dx\\) for \\(x>0\\).",
+      "back": "Let \\(u=\\ln x,\\ dv=x\\,dx,\\ v=x^2/2\\). Then \\((x^2/2)\\ln x-(1/2)\\int x\\,dx=(x^2/2)\\ln x-x^2/4+C\\).",
+      "tags": [
+        "quiz-nov25",
+        "practice",
+        "parts"
+      ],
+      "origin": "authored",
+      "source_ref": "Original practice item; aligned with Guichard §8.4"
+    },
+    {
+      "id": "math1110-drill-parts-06",
+      "front": "Evaluate \\(\\int xe^{2x}\\,dx\\).",
+      "back": "Choose \\(u=x,\\ dv=e^{2x}dx,\\ v=e^{2x}/2\\). Result \\((x/2)e^{2x}-(1/4)e^{2x}+C\\).",
+      "tags": [
+        "quiz-nov25",
+        "practice",
+        "parts"
+      ],
+      "origin": "authored",
+      "source_ref": "Original practice item; aligned with Guichard §8.4"
+    },
+    {
+      "id": "math1110-drill-parts-07",
+      "front": "Evaluate \\(\\int x^2e^x\\,dx\\).",
+      "back": "First choose \\(u=x^2,\\ dv=e^xdx\\): \\(x^2e^x-2\\int xe^xdx\\). Parts again gives \\(e^x(x^2-2x+2)+C\\).",
+      "tags": [
+        "quiz-nov25",
+        "practice",
+        "parts"
+      ],
+      "origin": "authored",
+      "source_ref": "Original practice item; aligned with Guichard §8.4"
+    },
+    {
+      "id": "math1110-drill-parts-08",
+      "front": "Evaluate \\(\\int x^2\\sin x\\,dx\\).",
+      "back": "Parts with \\(u=x^2,\\ dv=\\sin xdx\\) gives \\(-x^2\\cos x+2\\int x\\cos xdx\\). Second parts gives \\(-x^2\\cos x+2x\\sin x+2\\cos x+C\\).",
+      "tags": [
+        "quiz-nov25",
+        "practice",
+        "parts"
+      ],
+      "origin": "authored",
+      "source_ref": "Original practice item; aligned with Guichard §8.4"
+    },
+    {
+      "id": "math1110-drill-parts-09",
+      "front": "Evaluate \\(\\int\\arctan x\\,dx\\).",
+      "back": "Let \\(u=\\arctan x,\\ dv=dx,\\ v=x\\). Result \\(x\\arctan x-\\int x/(1+x^2)dx=x\\arctan x-\\frac12\\ln(1+x^2)+C\\).",
+      "tags": [
+        "quiz-nov25",
+        "practice",
+        "parts"
+      ],
+      "origin": "authored",
+      "source_ref": "Original practice item; aligned with Guichard §8.4"
+    },
+    {
+      "id": "math1110-drill-parts-10",
+      "front": "Evaluate \\(\\int x^2\\ln x\\,dx\\) for \\(x>0\\).",
+      "back": "Let \\(u=\\ln x,\\ dv=x^2dx,\\ v=x^3/3\\). Then \\((x^3/3)\\ln x-\\frac13\\int x^2dx=(x^3/3)\\ln x-x^3/9+C\\).",
+      "tags": [
+        "quiz-nov25",
+        "practice",
+        "parts"
+      ],
+      "origin": "authored",
+      "source_ref": "Original practice item; aligned with Guichard §8.4"
+    },
+    {
+      "id": "math1110-drill-parts-11",
+      "front": "Evaluate \\(\\int e^x\\cos x\\,dx\\).",
+      "back": "Use parts twice. If \\(I=\\int e^x\\cos xdx\\), then \\(I=e^x\\sin x-\\int e^x\\sin xdx=e^x(\\sin x+\\cos x)-I\\). So \\(I=\\frac12e^x(\\sin x+\\cos x)+C\\).",
+      "tags": [
+        "quiz-nov25",
+        "practice",
+        "parts"
+      ],
+      "origin": "authored",
+      "source_ref": "Original practice item; aligned with Guichard §8.4"
+    },
+    {
+      "id": "math1110-drill-parts-12",
+      "front": "Evaluate \\(\\int e^x\\sin x\\,dx\\).",
+      "back": "Use parts twice. Let \\(I=\\int e^x\\sin xdx\\); \\(I=-e^x\\cos x+\\int e^x\\cos xdx=e^x(\\sin x-\\cos x)-I\\). So \\(I=\\frac12e^x(\\sin x-\\cos x)+C\\).",
+      "tags": [
+        "quiz-nov25",
+        "practice",
+        "parts"
+      ],
+      "origin": "authored",
+      "source_ref": "Original practice item; aligned with Guichard §8.4"
+    },
+    {
+      "id": "math1110-drill-parts-13",
+      "front": "Compute \\(\\int_0^1 xe^x\\,dx\\).",
+      "back": "Parts gives \\(F(x)=e^x(x-1)\\). Evaluate \\(F(1)-F(0)=0-(-1)=1\\).",
+      "tags": [
+        "quiz-nov25",
+        "practice",
+        "parts"
+      ],
+      "origin": "authored",
+      "source_ref": "Original practice item; aligned with Guichard §8.4"
+    },
+    {
+      "id": "math1110-drill-parts-14",
+      "front": "Compute \\(\\int_1^e\\ln x\\,dx\\).",
+      "back": "Parts yields \\(F(x)=x\\ln x-x\\). Evaluate \\(F(e)-F(1)=0-(-1)=1\\).",
+      "tags": [
+        "quiz-nov25",
+        "practice",
+        "parts"
+      ],
+      "origin": "authored",
+      "source_ref": "Original practice item; aligned with Guichard §8.4"
+    },
+    {
+      "id": "math1110-drill-parts-15",
+      "front": "Evaluate \\(\\int x^3e^x\\,dx\\).",
+      "back": "Use parts repeatedly, differentiating the polynomial: \\(e^x(x^3-3x^2+6x-6)+C\\). Differentiate to verify.",
+      "tags": [
+        "quiz-nov25",
+        "practice",
+        "parts"
+      ],
+      "origin": "authored",
+      "source_ref": "Original practice item; aligned with Guichard §8.4"
+    }
+  ]
+}
