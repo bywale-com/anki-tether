@@ -450,7 +450,7 @@
     {
       "id": "math1110-foundations-abs-piecewise",
       "front": "Rewrite \\(|x|\\) without absolute-value bars.",
-      "back": "\\(|x|=x\\) if \\(x\\ge0\\); \\(|x|=-x\\) if \\(x<0\\).",
+      "back": "\\(|x|=x\\) if \\(x\\ge0\\); \\(|x|=-x\\) if \\(x\\lt 0\\).",
       "origin": "authored",
       "tags": [
         "foundations",
@@ -462,7 +462,7 @@
     {
       "id": "math1110-foundations-abs-abs-xminus3",
       "front": "Write \\(|x-3|\\) as a piecewise expression.",
-      "back": "\\(x-3\\) when \\(x\\ge3\\); \\(3-x\\) when \\(x<3\\).",
+      "back": "\\(x-3\\) when \\(x\\ge3\\); \\(3-x\\) when \\(x\\lt 3\\).",
       "origin": "authored",
       "tags": [
         "foundations",
@@ -486,7 +486,7 @@
     {
       "id": "math1110-foundations-abs-lnabs-domain",
       "front": "Why is \\(\\ln|x|\\) defined for negative \\(x\\ne0\\)?",
-      "back": "If \\(x<0\\), then \\(|x|=-x>0\\), so the log receives a positive argument.",
+      "back": "If \\(x\\lt 0\\), then \\(|x|=-x>0\\), so the log receives a positive argument.",
       "origin": "authored",
       "tags": [
         "foundations",
