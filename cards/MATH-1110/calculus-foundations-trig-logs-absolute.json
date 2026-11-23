@@ -1,0 +1,487 @@
+{
+  "schema_version": 1,
+  "course": "MATH-1110",
+  "deck": "MATH-1110::Calculus Foundations",
+  "cards": [
+    {
+      "id": "math1110-found-trig-radian",
+      "front": "What does \\(\\pi\\) radians equal in degrees?",
+      "back": "\\(180^\\circ\\). In calculus, trig derivative rules assume radian inputs.",
+      "tags": [
+        "foundations",
+        "trig",
+        "calculus-relevant"
+      ],
+      "origin": "authored",
+      "source_ref": "Guichard, Single Variable Calculus: Early Transcendentals, §4.1"
+    },
+    {
+      "id": "math1110-found-trig-unit-circle",
+      "front": "On the unit circle, what are the coordinates at angle \\(x\\)?",
+      "back": "\\((\\cos x,\\sin x)\\): cosine is the horizontal coordinate; sine is vertical.",
+      "tags": [
+        "foundations",
+        "trig",
+        "calculus-relevant"
+      ],
+      "origin": "authored",
+      "source_ref": "Guichard, Single Variable Calculus: Early Transcendentals, §4.1"
+    },
+    {
+      "id": "math1110-found-trig-sinzero",
+      "front": "Evaluate \\(\\sin(0)\\).",
+      "back": "\\(0\\).",
+      "tags": [
+        "foundations",
+        "trig",
+        "calculus-relevant"
+      ],
+      "origin": "authored",
+      "source_ref": "Guichard, Single Variable Calculus: Early Transcendentals, §4.1"
+    },
+    {
+      "id": "math1110-found-trig-coszero",
+      "front": "Evaluate \\(\\cos(0)\\).",
+      "back": "\\(1\\).",
+      "tags": [
+        "foundations",
+        "trig",
+        "calculus-relevant"
+      ],
+      "origin": "authored",
+      "source_ref": "Guichard, Single Variable Calculus: Early Transcendentals, §4.1"
+    },
+    {
+      "id": "math1110-found-trig-sinpi2",
+      "front": "Evaluate \\(\\sin(\\pi/2)\\).",
+      "back": "\\(1\\).",
+      "tags": [
+        "foundations",
+        "trig",
+        "calculus-relevant"
+      ],
+      "origin": "authored",
+      "source_ref": "Guichard, Single Variable Calculus: Early Transcendentals, §4.1"
+    },
+    {
+      "id": "math1110-found-trig-cospi2",
+      "front": "Evaluate \\(\\cos(\\pi/2)\\).",
+      "back": "\\(0\\).",
+      "tags": [
+        "foundations",
+        "trig",
+        "calculus-relevant"
+      ],
+      "origin": "authored",
+      "source_ref": "Guichard, Single Variable Calculus: Early Transcendentals, §4.1"
+    },
+    {
+      "id": "math1110-found-trig-sinpi6",
+      "front": "Evaluate \\(\\sin(\\pi/6)\\).",
+      "back": "\\(1/2\\).",
+      "tags": [
+        "foundations",
+        "trig",
+        "calculus-relevant"
+      ],
+      "origin": "authored",
+      "source_ref": "Guichard, Single Variable Calculus: Early Transcendentals, §4.1"
+    },
+    {
+      "id": "math1110-found-trig-cospi3",
+      "front": "Evaluate \\(\\cos(\\pi/3)\\).",
+      "back": "\\(1/2\\).",
+      "tags": [
+        "foundations",
+        "trig",
+        "calculus-relevant"
+      ],
+      "origin": "authored",
+      "source_ref": "Guichard, Single Variable Calculus: Early Transcendentals, §4.1"
+    },
+    {
+      "id": "math1110-found-trig-tan-def",
+      "front": "Express \\(\\tan x\\) using sine and cosine.",
+      "back": "\\(\\tan x=\\sin x/\\cos x\\), wherever \\(\\cos x\\ne0\\).",
+      "tags": [
+        "foundations",
+        "trig",
+        "calculus-relevant"
+      ],
+      "origin": "authored",
+      "source_ref": "Guichard, Single Variable Calculus: Early Transcendentals, §4.1"
+    },
+    {
+      "id": "math1110-found-trig-identity",
+      "front": "Complete the identity: \\(\\sin^2x+\\cos^2x=\\ ?\\)",
+      "back": "\\(1\\). Note: \\(\\sin^2x\\) means \\((\\sin x)^2\\).",
+      "tags": [
+        "foundations",
+        "trig",
+        "calculus-relevant"
+      ],
+      "origin": "authored",
+      "source_ref": "Guichard, Single Variable Calculus: Early Transcendentals, §4.1"
+    },
+    {
+      "id": "math1110-found-trig-sin5meaning",
+      "front": "What does \\(\\sin(5x)\\) mean?",
+      "back": "Take the sine of the angle \\(5x\\). It is not generally \\(5\\sin x\\).",
+      "tags": [
+        "foundations",
+        "trig",
+        "calculus-relevant"
+      ],
+      "origin": "authored",
+      "source_ref": "Guichard, Single Variable Calculus: Early Transcendentals, §4.1"
+    },
+    {
+      "id": "math1110-found-trig-sin-derivative",
+      "front": "Differentiate \\(\\sin x\\).",
+      "back": "\\(\\cos x\\) (for radian-measured \\(x\\)).",
+      "tags": [
+        "foundations",
+        "trig",
+        "calculus-relevant"
+      ],
+      "origin": "authored",
+      "source_ref": "Guichard, Single Variable Calculus: Early Transcendentals, §4.2"
+    },
+    {
+      "id": "math1110-found-trig-cos-derivative",
+      "front": "Differentiate \\(\\cos x\\).",
+      "back": "\\(-\\sin x\\) (for radian-measured \\(x\\)).",
+      "tags": [
+        "foundations",
+        "trig",
+        "calculus-relevant"
+      ],
+      "origin": "authored",
+      "source_ref": "Guichard, Single Variable Calculus: Early Transcendentals, §4.5"
+    },
+    {
+      "id": "math1110-found-trig-sin5derivative",
+      "front": "Differentiate \\(\\sin(5x)\\).",
+      "back": "\\(5\\cos(5x)\\). Chain rule: derivative of the inside \\(5x\\) is \\(5\\).",
+      "tags": [
+        "foundations",
+        "trig",
+        "calculus-relevant"
+      ],
+      "origin": "authored",
+      "source_ref": "Guichard, Single Variable Calculus: Early Transcendentals, §3.5; 4.5"
+    },
+    {
+      "id": "math1110-found-trig-cos3derivative",
+      "front": "Differentiate \\(\\cos(3x)\\).",
+      "back": "\\(-3\\sin(3x)\\).",
+      "tags": [
+        "foundations",
+        "trig",
+        "calculus-relevant"
+      ],
+      "origin": "authored",
+      "source_ref": "Guichard, Single Variable Calculus: Early Transcendentals, §3.5; 4.5"
+    },
+    {
+      "id": "math1110-found-trig-sinx2derivative",
+      "front": "Differentiate \\(\\sin(x^2)\\).",
+      "back": "\\(2x\\cos(x^2)\\). The outside is sine; inside derivative is \\(2x\\).",
+      "tags": [
+        "foundations",
+        "trig",
+        "calculus-relevant"
+      ],
+      "origin": "authored",
+      "source_ref": "Guichard, Single Variable Calculus: Early Transcendentals, §3.5; 4.5"
+    },
+    {
+      "id": "math1110-found-trig-sin-antiderivative",
+      "front": "Find \\(\\int\\sin x\\,dx\\).",
+      "back": "\\(-\\cos x+C\\). Check: derivative of \\(-\\cos x\\) is \\(\\sin x\\).",
+      "tags": [
+        "foundations",
+        "trig",
+        "calculus-relevant"
+      ],
+      "origin": "authored",
+      "source_ref": "Guichard, Single Variable Calculus: Early Transcendentals, §7.2"
+    },
+    {
+      "id": "math1110-found-trig-cos-antiderivative",
+      "front": "Find \\(\\int\\cos x\\,dx\\).",
+      "back": "\\(\\sin x+C\\).",
+      "tags": [
+        "foundations",
+        "trig",
+        "calculus-relevant"
+      ],
+      "origin": "authored",
+      "source_ref": "Guichard, Single Variable Calculus: Early Transcendentals, §7.2"
+    },
+    {
+      "id": "math1110-found-trig-cos5-antiderivative",
+      "front": "Find \\(\\int\\cos(5x)\\,dx\\).",
+      "back": "\\(\\sin(5x)/5+C\\). Differentiate to check the factor \\(1/5\\).",
+      "tags": [
+        "foundations",
+        "trig",
+        "calculus-relevant"
+      ],
+      "origin": "authored",
+      "source_ref": "Guichard, Single Variable Calculus: Early Transcendentals, §8.1"
+    },
+    {
+      "id": "math1110-found-trig-sin5-antiderivative",
+      "front": "Find \\(\\int\\sin(5x)\\,dx\\).",
+      "back": "\\(-\\cos(5x)/5+C\\).",
+      "tags": [
+        "foundations",
+        "trig",
+        "calculus-relevant"
+      ],
+      "origin": "authored",
+      "source_ref": "Guichard, Single Variable Calculus: Early Transcendentals, §8.1"
+    },
+    {
+      "id": "math1110-found-trig-limit5",
+      "front": "Compute \\(\\lim_{x\\to0}\\sin(5x)/x\\) in radians.",
+      "back": "\\(5\\): rewrite as \\(5\\,[\\sin(5x)/(5x)]\\).",
+      "tags": [
+        "foundations",
+        "trig",
+        "calculus-relevant"
+      ],
+      "origin": "authored",
+      "source_ref": "Guichard, Single Variable Calculus: Early Transcendentals, §4.3"
+    },
+    {
+      "id": "math1110-found-logs-ln-meaning",
+      "front": "What is \\(\\ln x\\)?",
+      "back": "The logarithm to base \\(e\\): \\(\\ln x=y\\) means \\(e^y=x\\), for \\(x>0\\).",
+      "tags": [
+        "foundations",
+        "logs",
+        "calculus-relevant"
+      ],
+      "origin": "authored",
+      "source_ref": "Guichard, Single Variable Calculus: Early Transcendentals, §4.6"
+    },
+    {
+      "id": "math1110-found-logs-lne",
+      "front": "Evaluate \\(\\ln e\\).",
+      "back": "\\(1\\), since \\(e^1=e\\).",
+      "tags": [
+        "foundations",
+        "logs",
+        "calculus-relevant"
+      ],
+      "origin": "authored",
+      "source_ref": "Guichard, Single Variable Calculus: Early Transcendentals, §4.6"
+    },
+    {
+      "id": "math1110-found-logs-lnone",
+      "front": "Evaluate \\(\\ln1\\).",
+      "back": "\\(0\\), since \\(e^0=1\\).",
+      "tags": [
+        "foundations",
+        "logs",
+        "calculus-relevant"
+      ],
+      "origin": "authored",
+      "source_ref": "Guichard, Single Variable Calculus: Early Transcendentals, §4.6"
+    },
+    {
+      "id": "math1110-found-logs-ln-negative",
+      "front": "Is \\(\\ln(-2)\\) defined as a real number?",
+      "back": "No. The real natural logarithm requires a positive argument.",
+      "tags": [
+        "foundations",
+        "logs",
+        "calculus-relevant"
+      ],
+      "origin": "authored",
+      "source_ref": "Guichard, Single Variable Calculus: Early Transcendentals, §4.6"
+    },
+    {
+      "id": "math1110-found-logs-ln-ex",
+      "front": "Simplify \\(\\ln(e^{3x})\\) for real \\(x\\).",
+      "back": "\\(3x\\): \\(\\ln\\) undoes exponentiation with base \\(e\\).",
+      "tags": [
+        "foundations",
+        "logs",
+        "calculus-relevant"
+      ],
+      "origin": "authored",
+      "source_ref": "Guichard, Single Variable Calculus: Early Transcendentals, §4.6"
+    },
+    {
+      "id": "math1110-found-logs-ln-product",
+      "front": "For \\(a,b>0\\), expand \\(\\ln(ab)\\).",
+      "back": "\\(\\ln a+\\ln b\\).",
+      "tags": [
+        "foundations",
+        "logs",
+        "calculus-relevant"
+      ],
+      "origin": "authored",
+      "source_ref": "Guichard, Single Variable Calculus: Early Transcendentals, §4.6"
+    },
+    {
+      "id": "math1110-found-logs-ln-power",
+      "front": "For \\(a>0\\), simplify \\(\\ln(a^3)\\).",
+      "back": "\\(3\\ln a\\).",
+      "tags": [
+        "foundations",
+        "logs",
+        "calculus-relevant"
+      ],
+      "origin": "authored",
+      "source_ref": "Guichard, Single Variable Calculus: Early Transcendentals, §4.6"
+    },
+    {
+      "id": "math1110-found-logs-ln-deriv",
+      "front": "Differentiate \\(\\ln x\\) where \\(x>0\\).",
+      "back": "\\(1/x\\).",
+      "tags": [
+        "foundations",
+        "logs",
+        "calculus-relevant"
+      ],
+      "origin": "authored",
+      "source_ref": "Guichard, Single Variable Calculus: Early Transcendentals, §4.7"
+    },
+    {
+      "id": "math1110-found-logs-ln3x-deriv",
+      "front": "Differentiate \\(\\ln(3x+2)\\) where \\(3x+2>0\\).",
+      "back": "\\(3/(3x+2)\\). Chain rule: \\(u'/u\\) for \\(u=3x+2\\).",
+      "tags": [
+        "foundations",
+        "logs",
+        "calculus-relevant"
+      ],
+      "origin": "authored",
+      "source_ref": "Guichard, Single Variable Calculus: Early Transcendentals, §4.7"
+    },
+    {
+      "id": "math1110-found-logs-xlnx-deriv",
+      "front": "Differentiate \\(x\\ln x\\) for \\(x>0\\).",
+      "back": "\\(\\ln x+1\\). Product rule: \\(1\\cdot\\ln x+x\\cdot(1/x)\\).",
+      "tags": [
+        "foundations",
+        "logs",
+        "calculus-relevant"
+      ],
+      "origin": "authored",
+      "source_ref": "Guichard, Single Variable Calculus: Early Transcendentals, §3.3; 4.7"
+    },
+    {
+      "id": "math1110-found-logs-oneoverx-integral",
+      "front": "Evaluate \\(\\int(1/x)\\,dx\\) on intervals not crossing 0.",
+      "back": "\\(\\ln|x|+C\\), for \\(x\\ne0\\).",
+      "tags": [
+        "foundations",
+        "logs",
+        "calculus-relevant"
+      ],
+      "origin": "authored",
+      "source_ref": "Guichard, Single Variable Calculus: Early Transcendentals, §7.2"
+    },
+    {
+      "id": "math1110-found-absolute-meaning",
+      "front": "What does \\(|x|\\) mean for a real number?",
+      "back": "Distance from zero: \\(|x|=x\\) if \\(x\\ge0\\), otherwise \\(-x\\).",
+      "tags": [
+        "foundations",
+        "absolute",
+        "calculus-relevant"
+      ],
+      "origin": "authored",
+      "source_ref": "Guichard, Single Variable Calculus: Early Transcendentals, §1.3"
+    },
+    {
+      "id": "math1110-found-absolute-negative",
+      "front": "Evaluate \\(|-7|\\).",
+      "back": "\\(7\\). Absolute value is never negative.",
+      "tags": [
+        "foundations",
+        "absolute",
+        "calculus-relevant"
+      ],
+      "origin": "authored",
+      "source_ref": "Guichard, Single Variable Calculus: Early Transcendentals, §1.3"
+    },
+    {
+      "id": "math1110-found-absolute-lnbar",
+      "front": "Why is \\(\\ln|x|\\) used in \\(\\int1/x\\,dx\\)?",
+      "back": "\\(|x|>0\\) for \\(x\\ne0\\); \\(d[\\ln|x|]/dx=1/x\\) on either side of zero.",
+      "tags": [
+        "foundations",
+        "absolute",
+        "calculus-relevant"
+      ],
+      "origin": "authored",
+      "source_ref": "Guichard, Single Variable Calculus: Early Transcendentals, §4.7; 7.2"
+    },
+    {
+      "id": "math1110-found-absolute-deriv",
+      "front": "What is the derivative of \\(|x|\\)?",
+      "back": "\\(1\\) for \\(x>0\\); \\(-1\\) for \\(x<0\\); undefined at \\(x=0\\).",
+      "tags": [
+        "foundations",
+        "absolute",
+        "calculus-relevant"
+      ],
+      "origin": "authored",
+      "source_ref": "Guichard, Single Variable Calculus: Early Transcendentals, §2.4"
+    },
+    {
+      "id": "math1110-found-absolute-integral",
+      "front": "Evaluate \\(\\int|x|\\,dx\\) (real \\(x\\)).",
+      "back": "\\(x|x|/2+C\\). Check separately for \\(x>0\\) and \\(x<0\\).",
+      "tags": [
+        "foundations",
+        "absolute",
+        "calculus-relevant"
+      ],
+      "origin": "authored",
+      "source_ref": "Guichard, Single Variable Calculus: Early Transcendentals, §7.2"
+    },
+    {
+      "id": "math1110-found-absolute-bar-not-equal",
+      "front": "Does \\(|x|=x\\) hold for every real \\(x\\)?",
+      "back": "No: if \\(x<0\\), \\(|x|=-x\\). Example: \\(|-3|=3\\).",
+      "tags": [
+        "foundations",
+        "absolute",
+        "calculus-relevant"
+      ],
+      "origin": "authored",
+      "source_ref": "Guichard, Single Variable Calculus: Early Transcendentals, §1.3"
+    },
+    {
+      "id": "math1110-found-mixed-exp-deriv",
+      "front": "Differentiate \\(e^{5x}\\).",
+      "back": "\\(5e^{5x}\\) by the chain rule.",
+      "tags": [
+        "foundations",
+        "mixed",
+        "calculus-relevant"
+      ],
+      "origin": "authored",
+      "source_ref": "Guichard, Single Variable Calculus: Early Transcendentals, §4.7"
+    },
+    {
+      "id": "math1110-found-mixed-exp-integral",
+      "front": "Find \\(\\int e^{5x}\\,dx\\).",
+      "back": "\\(e^{5x}/5+C\\).",
+      "tags": [
+        "foundations",
+        "mixed",
+        "calculus-relevant"
+      ],
+      "origin": "authored",
+      "source_ref": "Guichard, Single Variable Calculus: Early Transcendentals, §8.1"
+    }
+  ]
+}
