@@ -1,0 +1,511 @@
+{
+  "schema_version": 1,
+  "course": "MATH-1110",
+  "deck": "MATH-1110::Trig Logs and Absolute Value",
+  "cards": [
+    {
+      "id": "math1110-foundations-trig-unit-circle",
+      "front": "On the unit circle, what do \\(\\cos\\theta\\) and \\(\\sin\\theta\\) represent?",
+      "back": "At angle \\(\\theta\\), the point is \\((\\cos\\theta,\\sin\\theta)\\): cosine is horizontal, sine vertical.",
+      "origin": "authored",
+      "tags": [
+        "foundations",
+        "trig",
+        "calculus"
+      ],
+      "source_ref": "Guichard §4.1"
+    },
+    {
+      "id": "math1110-foundations-trig-radians",
+      "front": "Why are radians used for the standard calculus derivatives of sine and cosine?",
+      "back": "The familiar derivative formulas hold when the angle is in radians; degrees introduce an extra conversion factor.",
+      "origin": "authored",
+      "tags": [
+        "foundations",
+        "trig",
+        "calculus"
+      ],
+      "source_ref": "Guichard §§4.1–4.2"
+    },
+    {
+      "id": "math1110-foundations-trig-pi-radians",
+      "front": "How many radians are \\(180^\\circ\\)?",
+      "back": "\\(\\pi\\) radians. Thus \\(90^\\circ=\\pi/2\\).",
+      "origin": "authored",
+      "tags": [
+        "foundations",
+        "trig",
+        "calculus"
+      ],
+      "source_ref": "Guichard §4.1"
+    },
+    {
+      "id": "math1110-foundations-trig-sin-zero",
+      "front": "Evaluate \\(\\sin0\\) and \\(\\cos0\\).",
+      "back": "\\(\\sin0=0\\), \\(\\cos0=1\\). Think of the unit-circle point \\((1,0)\\).",
+      "origin": "authored",
+      "tags": [
+        "foundations",
+        "trig",
+        "calculus"
+      ],
+      "source_ref": "Guichard §4.1"
+    },
+    {
+      "id": "math1110-foundations-trig-sin-halfpi",
+      "front": "Evaluate \\(\\sin(\\pi/2)\\) and \\(\\cos(\\pi/2)\\).",
+      "back": "\\(\\sin(\\pi/2)=1\\), \\(\\cos(\\pi/2)=0\\).",
+      "origin": "authored",
+      "tags": [
+        "foundations",
+        "trig",
+        "calculus"
+      ],
+      "source_ref": "Guichard §4.1"
+    },
+    {
+      "id": "math1110-foundations-trig-sin-pi",
+      "front": "Evaluate \\(\\sin\\pi\\) and \\(\\cos\\pi\\).",
+      "back": "\\(\\sin\\pi=0\\), \\(\\cos\\pi=-1\\).",
+      "origin": "authored",
+      "tags": [
+        "foundations",
+        "trig",
+        "calculus"
+      ],
+      "source_ref": "Guichard §4.1"
+    },
+    {
+      "id": "math1110-foundations-trig-sin-quarterpi",
+      "front": "Evaluate \\(\\sin(\\pi/4)\\) and \\(\\cos(\\pi/4)\\).",
+      "back": "Both equal \\(\\sqrt2/2\\).",
+      "origin": "authored",
+      "tags": [
+        "foundations",
+        "trig",
+        "calculus"
+      ],
+      "source_ref": "Guichard §4.1"
+    },
+    {
+      "id": "math1110-foundations-trig-sin-negative",
+      "front": "How does \\(\\sin(-x)\\) relate to \\(\\sin x\\)?",
+      "back": "\\(\\sin(-x)=-\\sin x\\). Sine is an odd function.",
+      "origin": "authored",
+      "tags": [
+        "foundations",
+        "trig",
+        "calculus"
+      ],
+      "source_ref": "Guichard §4.1"
+    },
+    {
+      "id": "math1110-foundations-trig-cos-negative",
+      "front": "How does \\(\\cos(-x)\\) relate to \\(\\cos x\\)?",
+      "back": "\\(\\cos(-x)=\\cos x\\). Cosine is an even function.",
+      "origin": "authored",
+      "tags": [
+        "foundations",
+        "trig",
+        "calculus"
+      ],
+      "source_ref": "Guichard §4.1"
+    },
+    {
+      "id": "math1110-foundations-trig-sin-five-input",
+      "front": "What does \\(\\sin(5x)\\) mean?",
+      "back": "First multiply \\(x\\) by 5, then take the sine of that angle. It is NOT \\(5\\sin x\\) in general.",
+      "origin": "authored",
+      "tags": [
+        "foundations",
+        "trig",
+        "calculus"
+      ],
+      "source_ref": "Guichard §§4.1, 4.4"
+    },
+    {
+      "id": "math1110-foundations-trig-sin-squared",
+      "front": "What does \\(\\sin^2 x\\) mean?",
+      "back": "\\((\\sin x)^2\\), not \\(\\sin(x^2)\\).",
+      "origin": "authored",
+      "tags": [
+        "foundations",
+        "trig",
+        "calculus"
+      ],
+      "source_ref": "Guichard §4.4"
+    },
+    {
+      "id": "math1110-foundations-trig-pythagorean",
+      "front": "Complete the identity: \\(\\sin^2x+\\cos^2x=\\ ?\\)",
+      "back": "\\(1\\). Holds for every real angle \\(x\\).",
+      "origin": "authored",
+      "tags": [
+        "foundations",
+        "trig",
+        "calculus"
+      ],
+      "source_ref": "Guichard §4.1"
+    },
+    {
+      "id": "math1110-foundations-trig-tan-ratio",
+      "front": "Express \\(\\tan x\\) using sine and cosine.",
+      "back": "\\(\\tan x=\\sin x/\\cos x\\) where \\(\\cos x\\ne0\\).",
+      "origin": "authored",
+      "tags": [
+        "foundations",
+        "trig",
+        "calculus"
+      ],
+      "source_ref": "Guichard §4.1"
+    },
+    {
+      "id": "math1110-foundations-trig-derivative-sin",
+      "front": "Differentiate \\(\\sin x\\).",
+      "back": "\\(\\cos x\\). The angle \\(x\\) is measured in radians.",
+      "origin": "authored",
+      "tags": [
+        "foundations",
+        "trig",
+        "calculus"
+      ],
+      "source_ref": "Guichard §4.2"
+    },
+    {
+      "id": "math1110-foundations-trig-derivative-cos",
+      "front": "Differentiate \\(\\cos x\\).",
+      "back": "\\(-\\sin x\\). The minus sign matters.",
+      "origin": "authored",
+      "tags": [
+        "foundations",
+        "trig",
+        "calculus"
+      ],
+      "source_ref": "Guichard §4.5"
+    },
+    {
+      "id": "math1110-foundations-trig-derivative-sin5x",
+      "front": "Differentiate \\(\\sin(5x)\\).",
+      "back": "\\(5\\cos(5x)\\). Chain rule: derivative of the inside \\(5x\\) is 5.",
+      "origin": "authored",
+      "tags": [
+        "foundations",
+        "trig",
+        "calculus"
+      ],
+      "source_ref": "Guichard §4.4"
+    },
+    {
+      "id": "math1110-foundations-trig-derivative-cos3x",
+      "front": "Differentiate \\(\\cos(3x)\\).",
+      "back": "\\(-3\\sin(3x)\\). Use the chain rule.",
+      "origin": "authored",
+      "tags": [
+        "foundations",
+        "trig",
+        "calculus"
+      ],
+      "source_ref": "Guichard §§4.4–4.5"
+    },
+    {
+      "id": "math1110-foundations-trig-derivative-sinsq",
+      "front": "Differentiate \\((\\sin x)^2\\).",
+      "back": "\\(2\\sin x\\cos x\\). Chain rule on the square.",
+      "origin": "authored",
+      "tags": [
+        "foundations",
+        "trig",
+        "calculus"
+      ],
+      "source_ref": "Guichard §4.4"
+    },
+    {
+      "id": "math1110-foundations-trig-sine-limit",
+      "front": "What is \\(\\lim_{x\\to0}\\sin(5x)/x\\)?",
+      "back": "\\(5\\). Rewrite as \\(5[\\sin(5x)/(5x)]\\) and use the standard radian limit.",
+      "origin": "authored",
+      "tags": [
+        "foundations",
+        "trig",
+        "calculus"
+      ],
+      "source_ref": "Guichard §§4.2–4.3"
+    },
+    {
+      "id": "math1110-foundations-trig-integral-sin",
+      "front": "Find \\(\\int\\sin x\\,dx\\).",
+      "back": "\\(-\\cos x+C\\). Check: derivative of \\(-\\cos x\\) is \\(\\sin x\\).",
+      "origin": "authored",
+      "tags": [
+        "foundations",
+        "trig",
+        "calculus"
+      ],
+      "source_ref": "Guichard §7.2; trig derivative §4.5"
+    },
+    {
+      "id": "math1110-foundations-trig-integral-cos",
+      "front": "Find \\(\\int\\cos x\\,dx\\).",
+      "back": "\\(\\sin x+C\\). Check by differentiating.",
+      "origin": "authored",
+      "tags": [
+        "foundations",
+        "trig",
+        "calculus"
+      ],
+      "source_ref": "Guichard §7.2; trig derivative §4.2"
+    },
+    {
+      "id": "math1110-foundations-trig-integral-cos5x",
+      "front": "Find \\(\\int\\cos(5x)\\,dx\\).",
+      "back": "\\(\\frac15\\sin(5x)+C\\). Divide by the inner derivative 5.",
+      "origin": "authored",
+      "tags": [
+        "foundations",
+        "trig",
+        "calculus"
+      ],
+      "source_ref": "Guichard §8.1"
+    },
+    {
+      "id": "math1110-foundations-log-log-meaning",
+      "front": "What does \\(\\log_{10}(1000)=3\\) assert?",
+      "back": "\\(10^3=1000\\). A logarithm asks which exponent produces the number.",
+      "origin": "authored",
+      "tags": [
+        "foundations",
+        "log",
+        "calculus"
+      ],
+      "source_ref": "Guichard §4.6"
+    },
+    {
+      "id": "math1110-foundations-log-ln-meaning",
+      "front": "What does \\(\\ln x\\) mean?",
+      "back": "Natural logarithm: \\(\\log_e x\\), the inverse of \\(e^x\\), defined for real \\(x>0\\).",
+      "origin": "authored",
+      "tags": [
+        "foundations",
+        "log",
+        "calculus"
+      ],
+      "source_ref": "Guichard §4.6"
+    },
+    {
+      "id": "math1110-foundations-log-e-value",
+      "front": "Approximately what is the constant \\(e\\)?",
+      "back": "\\(e\\approx2.71828\\). It is the base of the natural logarithm.",
+      "origin": "authored",
+      "tags": [
+        "foundations",
+        "log",
+        "calculus"
+      ],
+      "source_ref": "Guichard §4.6"
+    },
+    {
+      "id": "math1110-foundations-log-ln-one",
+      "front": "Evaluate \\(\\ln1\\) and \\(\\ln e\\).",
+      "back": "\\(\\ln1=0\\) and \\(\\ln e=1\\), since \\(e^0=1\\) and \\(e^1=e\\).",
+      "origin": "authored",
+      "tags": [
+        "foundations",
+        "log",
+        "calculus"
+      ],
+      "source_ref": "Guichard §4.6"
+    },
+    {
+      "id": "math1110-foundations-log-ln-e-power",
+      "front": "Simplify \\(\\ln(e^3)\\).",
+      "back": "\\(3\\). The natural log reverses exponentiation by \\(e\\).",
+      "origin": "authored",
+      "tags": [
+        "foundations",
+        "log",
+        "calculus"
+      ],
+      "source_ref": "Guichard §4.6"
+    },
+    {
+      "id": "math1110-foundations-log-exp-ln",
+      "front": "Simplify \\(e^{\\ln 7}\\).",
+      "back": "\\(7\\). More generally \\(e^{\\ln x}=x\\) for \\(x>0\\).",
+      "origin": "authored",
+      "tags": [
+        "foundations",
+        "log",
+        "calculus"
+      ],
+      "source_ref": "Guichard §4.6"
+    },
+    {
+      "id": "math1110-foundations-log-ln-domain",
+      "front": "For what real values of \\(x\\) is \\(\\ln x\\) defined?",
+      "back": "Only \\(x>0\\). For instance, \\(\\ln(-2)\\) has no real value.",
+      "origin": "authored",
+      "tags": [
+        "foundations",
+        "log",
+        "calculus"
+      ],
+      "source_ref": "Guichard §4.6"
+    },
+    {
+      "id": "math1110-foundations-log-log-product",
+      "front": "Simplify \\(\\ln(ab)\\) for \\(a,b>0\\).",
+      "back": "\\(\\ln a+\\ln b\\), not \\((\\ln a)(\\ln b)\\).",
+      "origin": "authored",
+      "tags": [
+        "foundations",
+        "log",
+        "calculus"
+      ],
+      "source_ref": "Guichard §4.6"
+    },
+    {
+      "id": "math1110-foundations-log-log-quotient",
+      "front": "Simplify \\(\\ln(a/b)\\) for \\(a,b>0\\).",
+      "back": "\\(\\ln a-\\ln b\\).",
+      "origin": "authored",
+      "tags": [
+        "foundations",
+        "log",
+        "calculus"
+      ],
+      "source_ref": "Guichard §4.6"
+    },
+    {
+      "id": "math1110-foundations-log-log-power",
+      "front": "Simplify \\(\\ln(x^4)\\) for \\(x>0\\).",
+      "back": "\\(4\\ln x\\). The exponent becomes a multiplier.",
+      "origin": "authored",
+      "tags": [
+        "foundations",
+        "log",
+        "calculus"
+      ],
+      "source_ref": "Guichard §4.6"
+    },
+    {
+      "id": "math1110-foundations-log-deriv-ln-inner",
+      "front": "Differentiate \\(\\ln(3x+2)\\) where \\(3x+2>0\\).",
+      "back": "\\(\\frac{3}{3x+2}\\). Chain rule: derivative of the inside is 3.",
+      "origin": "authored",
+      "tags": [
+        "foundations",
+        "log",
+        "calculus"
+      ],
+      "source_ref": "Guichard §4.7"
+    },
+    {
+      "id": "math1110-foundations-log-deriv-exp2",
+      "front": "Differentiate \\(e^{2x}\\).",
+      "back": "\\(2e^{2x}\\), by the chain rule.",
+      "origin": "authored",
+      "tags": [
+        "foundations",
+        "log",
+        "calculus"
+      ],
+      "source_ref": "Guichard §4.7"
+    },
+    {
+      "id": "math1110-foundations-log-integral-1overx",
+      "front": "Find \\(\\int\\frac1x\\,dx\\) on an interval with \\(x\\ne0\\).",
+      "back": "\\(\\ln|x|+C\\). Absolute value handles both positive and negative intervals.",
+      "origin": "authored",
+      "tags": [
+        "foundations",
+        "log",
+        "calculus"
+      ],
+      "source_ref": "Guichard §§4.7, 7.2"
+    },
+    {
+      "id": "math1110-foundations-log-integral-3xplus",
+      "front": "Find \\(\\int\\frac{3}{3x+2}\\,dx\\) where \\(3x+2\\ne0\\).",
+      "back": "\\(\\ln|3x+2|+C\\), since the numerator is the inside derivative.",
+      "origin": "authored",
+      "tags": [
+        "foundations",
+        "log",
+        "calculus"
+      ],
+      "source_ref": "Guichard §8.1"
+    },
+    {
+      "id": "math1110-foundations-abs-bars-meaning",
+      "front": "What does \\(|-7|\\) equal, and what do the bars mean?",
+      "back": "\\(7\\). The bars denote absolute value: distance from 0 on the number line.",
+      "origin": "authored",
+      "tags": [
+        "foundations",
+        "abs",
+        "calculus"
+      ],
+      "source_ref": "Guichard §2.4, Example 2.4.4"
+    },
+    {
+      "id": "math1110-foundations-abs-piecewise",
+      "front": "Rewrite \\(|x|\\) without absolute-value bars.",
+      "back": "\\(|x|=x\\) if \\(x\\ge0\\); \\(|x|=-x\\) if \\(x\\lt 0\\).",
+      "origin": "authored",
+      "tags": [
+        "foundations",
+        "abs",
+        "calculus"
+      ],
+      "source_ref": "Guichard §2.4, Example 2.4.4"
+    },
+    {
+      "id": "math1110-foundations-abs-abs-xminus3",
+      "front": "Write \\(|x-3|\\) as a piecewise expression.",
+      "back": "\\(x-3\\) when \\(x\\ge3\\); \\(3-x\\) when \\(x\\lt 3\\).",
+      "origin": "authored",
+      "tags": [
+        "foundations",
+        "abs",
+        "calculus"
+      ],
+      "source_ref": "Guichard §2.4, absolute-value example"
+    },
+    {
+      "id": "math1110-foundations-abs-derivative-abs",
+      "front": "Where does \\(f(x)=|x|\\) fail to have a derivative?",
+      "back": "At \\(x=0\\): the left slope is \\(-1\\), the right slope is \\(1\\).",
+      "origin": "authored",
+      "tags": [
+        "foundations",
+        "abs",
+        "calculus"
+      ],
+      "source_ref": "Guichard §2.4, Example 2.4.4"
+    },
+    {
+      "id": "math1110-foundations-abs-lnabs-domain",
+      "front": "Why is \\(\\ln|x|\\) defined for negative \\(x\\ne0\\)?",
+      "back": "If \\(x\\lt 0\\), then \\(|x|=-x>0\\), so the log receives a positive argument.",
+      "origin": "authored",
+      "tags": [
+        "foundations",
+        "abs",
+        "calculus"
+      ],
+      "source_ref": "Guichard §4.6; §7.2"
+    },
+    {
+      "id": "math1110-foundations-abs-lnabs-deriv",
+      "front": "Differentiate \\(\\ln|x|\\) for \\(x\\ne0\\).",
+      "back": "\\(1/x\\) for both positive and negative \\(x\\), on either side of 0.",
+      "origin": "authored",
+      "tags": [
+        "foundations",
+        "abs",
+        "calculus"
+      ],
+      "source_ref": "Guichard §4.7; §7.2"
+    }
+  ]
+}

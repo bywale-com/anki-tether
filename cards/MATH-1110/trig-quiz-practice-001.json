@@ -1,0 +1,241 @@
+{
+  "schema_version": 1,
+  "course": "MATH-1110",
+  "deck": "MATH-1110::Trig Quiz Practice",
+  "cards": [
+    {
+      "id": "math1110-trig-quiz-ftc-sin",
+      "front": "Compute \\(\\int_0^{\\pi}\\sin x\\,dx\\).",
+      "back": "Antiderivative is \\(-\\cos x\\). Evaluate \\([-\\cos x]_0^{\\pi}=1-(-1)=2\\).",
+      "tags": [
+        "quiz-nov25",
+        "trig",
+        "practice",
+        "ftc"
+      ],
+      "origin": "authored",
+      "source_ref": "Original quiz drill aligned with Guichard §7.2"
+    },
+    {
+      "id": "math1110-trig-quiz-ftc-cos",
+      "front": "Compute \\(\\int_0^{\\pi/2}\\cos x\\,dx\\).",
+      "back": "Antiderivative is \\(\\sin x\\). Evaluate \\([\\sin x]_0^{\\pi/2}=1\\).",
+      "tags": [
+        "quiz-nov25",
+        "trig",
+        "practice",
+        "ftc"
+      ],
+      "origin": "authored",
+      "source_ref": "Original quiz drill aligned with Guichard §7.2"
+    },
+    {
+      "id": "math1110-trig-quiz-ftc-sin2",
+      "front": "Compute \\(\\int_0^{\\pi/2}2\\sin(2x)\\,dx\\).",
+      "back": "Antiderivative is \\(-\\cos(2x)\\). At \\(\\pi/2\\), value is 1; at 0, -1; result 2.",
+      "tags": [
+        "quiz-nov25",
+        "trig",
+        "practice",
+        "ftc"
+      ],
+      "origin": "authored",
+      "source_ref": "Original quiz drill aligned with Guichard §7.2"
+    },
+    {
+      "id": "math1110-trig-quiz-ftc-cos3",
+      "front": "Compute \\(\\int_0^{\\pi/6}3\\cos(3x)\\,dx\\).",
+      "back": "Antiderivative \\(\\sin(3x)\\). Evaluate \\(\\sin(\\pi/2)-\\sin0=1\\).",
+      "tags": [
+        "quiz-nov25",
+        "trig",
+        "practice",
+        "ftc"
+      ],
+      "origin": "authored",
+      "source_ref": "Original quiz drill aligned with Guichard §7.2"
+    },
+    {
+      "id": "math1110-trig-quiz-ftc-sincos",
+      "front": "Compute \\(\\int_0^{\\pi/2}(\\sin x+\\cos x)\\,dx\\).",
+      "back": "Antiderivative \\(-\\cos x+\\sin x\\). At \\(\\pi/2\\): 1; at 0: -1; result 2.",
+      "tags": [
+        "quiz-nov25",
+        "trig",
+        "practice",
+        "ftc"
+      ],
+      "origin": "authored",
+      "source_ref": "Original quiz drill aligned with Guichard §7.2"
+    },
+    {
+      "id": "math1110-trig-quiz-ftc-epluscos",
+      "front": "Compute \\(\\int_0^{\\pi/2}(e^x+\\sin x)\\,dx\\).",
+      "back": "Antiderivative \\(e^x-\\cos x\\). At upper bound: \\(e^{\\pi/2}\\); at lower: \\(1-1=0\\). Result \\(e^{\\pi/2}\\).",
+      "tags": [
+        "quiz-nov25",
+        "trig",
+        "practice",
+        "ftc"
+      ],
+      "origin": "authored",
+      "source_ref": "Original quiz drill aligned with Guichard §7.2"
+    },
+    {
+      "id": "math1110-trig-quiz-sub-sin3",
+      "front": "Evaluate \\(\\int\\cos(3x)\\,dx\\).",
+      "back": "Let \\(u=3x\\); \\(dx=du/3\\). Result \\(\\frac13\\sin(3x)+C\\).",
+      "tags": [
+        "quiz-nov25",
+        "trig",
+        "practice",
+        "substitution"
+      ],
+      "origin": "authored",
+      "source_ref": "Original quiz drill aligned with Guichard §8.1"
+    },
+    {
+      "id": "math1110-trig-quiz-sub-sin5",
+      "front": "Evaluate \\(\\int\\sin(5x)\\,dx\\).",
+      "back": "Let \\(u=5x\\); \\(dx=du/5\\). Result \\(-\\frac15\\cos(5x)+C\\).",
+      "tags": [
+        "quiz-nov25",
+        "trig",
+        "practice",
+        "substitution"
+      ],
+      "origin": "authored",
+      "source_ref": "Original quiz drill aligned with Guichard §8.1"
+    },
+    {
+      "id": "math1110-trig-quiz-sub-cos-square",
+      "front": "Evaluate \\(\\int2x\\cos(x^2+1)\\,dx\\).",
+      "back": "Let \\(u=x^2+1\\), \\(du=2x\\,dx\\). Result \\(\\sin(x^2+1)+C\\).",
+      "tags": [
+        "quiz-nov25",
+        "trig",
+        "practice",
+        "substitution"
+      ],
+      "origin": "authored",
+      "source_ref": "Original quiz drill aligned with Guichard §8.1"
+    },
+    {
+      "id": "math1110-trig-quiz-sub-sin-square",
+      "front": "Evaluate \\(\\int2x\\sin(x^2)\\,dx\\).",
+      "back": "Let \\(u=x^2\\), \\(du=2x\\,dx\\). Result \\(-\\cos(x^2)+C\\).",
+      "tags": [
+        "quiz-nov25",
+        "trig",
+        "practice",
+        "substitution"
+      ],
+      "origin": "authored",
+      "source_ref": "Original quiz drill aligned with Guichard §8.1"
+    },
+    {
+      "id": "math1110-trig-quiz-sub-sincos",
+      "front": "Evaluate \\(\\int\\sin x\\cos x\\,dx\\).",
+      "back": "Let \\(u=\\sin x\\), \\(du=\\cos x\\,dx\\). Result \\(\\frac12\\sin^2x+C\\).",
+      "tags": [
+        "quiz-nov25",
+        "trig",
+        "practice",
+        "substitution"
+      ],
+      "origin": "authored",
+      "source_ref": "Original quiz drill aligned with Guichard §8.1"
+    },
+    {
+      "id": "math1110-trig-quiz-sub-trigbound",
+      "front": "Compute \\(\\int_0^{\\pi/2}2\\sin x\\cos x\\,dx\\).",
+      "back": "Let \\(u=\\sin x\\); bounds 0 to 1. Then \\(\\int_0^1 2u\\,du=1\\).",
+      "tags": [
+        "quiz-nov25",
+        "trig",
+        "practice",
+        "substitution"
+      ],
+      "origin": "authored",
+      "source_ref": "Original quiz drill aligned with Guichard §8.1"
+    },
+    {
+      "id": "math1110-trig-quiz-parts-xsine",
+      "front": "Evaluate \\(\\int x\\sin(2x)\\,dx\\).",
+      "back": "Use \\(u=x\\), \\(dv=\\sin(2x)dx\\), so \\(v=-\\cos(2x)/2\\). Result \\(-x\\cos(2x)/2+\\sin(2x)/4+C\\).",
+      "tags": [
+        "quiz-nov25",
+        "trig",
+        "practice",
+        "parts"
+      ],
+      "origin": "authored",
+      "source_ref": "Original quiz drill aligned with Guichard §8.4"
+    },
+    {
+      "id": "math1110-trig-quiz-parts-xcos",
+      "front": "Evaluate \\(\\int x\\cos(3x)\\,dx\\).",
+      "back": "Use \\(u=x\\), \\(dv=\\cos(3x)dx\\), so \\(v=\\sin(3x)/3\\). Result \\(x\\sin(3x)/3+\\cos(3x)/9+C\\).",
+      "tags": [
+        "quiz-nov25",
+        "trig",
+        "practice",
+        "parts"
+      ],
+      "origin": "authored",
+      "source_ref": "Original quiz drill aligned with Guichard §8.4"
+    },
+    {
+      "id": "math1110-trig-quiz-parts-x2sine",
+      "front": "Evaluate \\(\\int x^2\\sin x\\,dx\\).",
+      "back": "Parts twice: first \\(u=x^2\\), \\(dv=\\sin xdx\\). Result \\(-x^2\\cos x+2x\\sin x+2\\cos x+C\\).",
+      "tags": [
+        "quiz-nov25",
+        "trig",
+        "practice",
+        "parts"
+      ],
+      "origin": "authored",
+      "source_ref": "Original quiz drill aligned with Guichard §8.4"
+    },
+    {
+      "id": "math1110-trig-quiz-parts-ln2",
+      "front": "Evaluate \\(\\int x\\ln(2x)\\,dx\\) for \\(x>0\\).",
+      "back": "Use \\(u=\\ln(2x)\\), \\(dv=x\\,dx\\), so \\(du=dx/x\\), \\(v=x^2/2\\). Result \\((x^2/2)\\ln(2x)-x^2/4+C\\).",
+      "tags": [
+        "quiz-nov25",
+        "trig",
+        "practice",
+        "parts"
+      ],
+      "origin": "authored",
+      "source_ref": "Original quiz drill aligned with Guichard §8.4"
+    },
+    {
+      "id": "math1110-trig-quiz-parts-xesin",
+      "front": "Evaluate \\(\\int x e^x\\sin x\\,dx\\).",
+      "back": "Use \\(u=x\\), \\(dv=e^x\\sin x\\,dx\\), \\(v=\\frac12e^x(\\sin x-\\cos x)\\). Result \\(\\frac{x}{2}e^x(\\sin x-\\cos x)+\\frac12e^x\\cos x+C\\).",
+      "tags": [
+        "quiz-nov25",
+        "trig",
+        "practice",
+        "parts"
+      ],
+      "origin": "authored",
+      "source_ref": "Original quiz drill aligned with Guichard §8.4"
+    },
+    {
+      "id": "math1110-trig-quiz-parts-xln",
+      "front": "Evaluate \\(\\int x^2\\ln x\\,dx\\) for \\(x>0\\).",
+      "back": "Use \\(u=\\ln x\\), \\(dv=x^2dx\\), \\(v=x^3/3\\). Result \\(x^3\\ln x/3-x^3/9+C\\).",
+      "tags": [
+        "quiz-nov25",
+        "trig",
+        "practice",
+        "parts"
+      ],
+      "origin": "authored",
+      "source_ref": "Original quiz drill aligned with Guichard §8.4"
+    }
+  ]
+}
