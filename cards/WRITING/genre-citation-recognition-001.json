@@ -1,0 +1,507 @@
+{
+  "schema_version": 1,
+  "course": "WRITING",
+  "deck": "WRITING::Genre and Citation Recognition",
+  "cards": [
+    {
+      "id": "writing-recognition-001",
+      "front": "<b>Identify the write-up genre and citation style.</b><br><br>Mendez (2024) argues that remote attendance policies can widen access. Yet access alone is insufficient: universities should also evaluate whether students receive equivalent opportunities to participate.",
+      "back": "<b>Genre:</b> Argumentative essay<br><b>Citation style:</b> APA (narrative)<br><b>Why:</b> Explicit thesis and claim supported by evidence; author + year embedded in sentence.<br><br><i>Sources and people in examples are fictional placeholders; this is recognition practice, not a source to cite.</i>",
+      "tags": [
+        "writing_recognition",
+        "argument_apa"
+      ],
+      "origin": "authored"
+    },
+    {
+      "id": "writing-recognition-002",
+      "front": "<b>Identify the write-up genre and citation style.</b><br><br>A universal phone ban would be easy to enforce, but it would also eliminate useful accessibility tools. Patel describes the classroom as a space requiring &quot;flexible boundaries&quot; (47), a better principle than absolute prohibition.",
+      "back": "<b>Genre:</b> Argumentative essay<br><b>Citation style:</b> MLA<br><b>Why:</b> Evaluative position; parenthetical page number without year.<br><br><i>Sources and people in examples are fictional placeholders; this is recognition practice, not a source to cite.</i>",
+      "tags": [
+        "writing_recognition",
+        "argument_mla"
+      ],
+      "origin": "authored"
+    },
+    {
+      "id": "writing-recognition-003",
+      "front": "<b>Identify the write-up genre and citation style.</b><br><br>Cities should not judge transit projects solely by initial cost. Long-term reliability is a public benefit that must be considered alongside the budget.¹",
+      "back": "<b>Genre:</b> Argumentative essay<br><b>Citation style:</b> Chicago Notes<br><b>Why:</b> Prescriptive thesis; superscript-style footnote marker.<br><br><i>Sources and people in examples are fictional placeholders; this is recognition practice, not a source to cite.</i>",
+      "tags": [
+        "writing_recognition",
+        "argument_chicago"
+      ],
+      "origin": "authored"
+    },
+    {
+      "id": "writing-recognition-004",
+      "front": "<b>Identify the write-up genre and citation style.</b><br><br>Libraries ought to extend evening hours before buying new lobby furniture. Student access surveys indicate that opening times remain a barrier [1], while furniture changes address a different concern.",
+      "back": "<b>Genre:</b> Argumentative essay<br><b>Citation style:</b> IEEE<br><b>Why:</b> Argument with numbered square-bracket source reference.<br><br><i>Sources and people in examples are fictional placeholders; this is recognition practice, not a source to cite.</i>",
+      "tags": [
+        "writing_recognition",
+        "argument_ieee"
+      ],
+      "origin": "authored"
+    },
+    {
+      "id": "writing-recognition-005",
+      "front": "<b>Identify the write-up genre and citation style.</b><br><br>Schools should teach students how recommendation systems rank information. The question is not whether students will encounter algorithms, but whether they will know how to question what those algorithms show them.",
+      "back": "<b>Genre:</b> Argumentative essay<br><b>Citation style:</b> No formal citations<br><b>Why:</b> Defends a claim with rationale; no identifiable citation markers.<br><br><i>Sources and people in examples are fictional placeholders; this is recognition practice, not a source to cite.</i>",
+      "tags": [
+        "writing_recognition",
+        "argument_none"
+      ],
+      "origin": "authored"
+    },
+    {
+      "id": "writing-recognition-006",
+      "front": "<b>Identify the write-up genre and citation style.</b><br><br>Charging for access to municipal data might cover hosting costs, but it can also deter small organizations from using public information (Lee, 2023). A free basic tier therefore deserves priority.",
+      "back": "<b>Genre:</b> Argumentative essay<br><b>Citation style:</b> APA (parenthetical)<br><b>Why:</b> Claim + reasoning; author-year pair in parentheses.<br><br><i>Sources and people in examples are fictional placeholders; this is recognition practice, not a source to cite.</i>",
+      "tags": [
+        "writing_recognition",
+        "argument_apa"
+      ],
+      "origin": "authored"
+    },
+    {
+      "id": "writing-recognition-007",
+      "front": "<b>Identify the write-up genre and citation style.</b><br><br>A single national curriculum would simplify comparisons, but the gain would come at the cost of local flexibility. Ortiz warns against treating distinct community needs as identical (112).",
+      "back": "<b>Genre:</b> Argumentative essay<br><b>Citation style:</b> MLA<br><b>Why:</b> Debatable thesis; author and page, no year.<br><br><i>Sources and people in examples are fictional placeholders; this is recognition practice, not a source to cite.</i>",
+      "tags": [
+        "writing_recognition",
+        "argument_mla"
+      ],
+      "origin": "authored"
+    },
+    {
+      "id": "writing-recognition-008",
+      "front": "<b>Identify the write-up genre and citation style.</b><br><br>Public procurement should measure maintainability, not just sticker price. A cheaper system can impose larger costs when agencies cannot repair or replace its parts.²",
+      "back": "<b>Genre:</b> Argumentative essay<br><b>Citation style:</b> Chicago Notes<br><b>Why:</b> Explicit recommendation and counter-consideration; note number.<br><br><i>Sources and people in examples are fictional placeholders; this is recognition practice, not a source to cite.</i>",
+      "tags": [
+        "writing_recognition",
+        "argument_chicago"
+      ],
+      "origin": "authored"
+    },
+    {
+      "id": "writing-recognition-009",
+      "front": "<b>Identify the write-up genre and citation style.</b><br><br>A common data standard would reduce integration costs among hospitals. Compatibility problems between systems have been documented in technical evaluations [2], strengthening the case for shared interfaces.",
+      "back": "<b>Genre:</b> Argumentative essay<br><b>Citation style:</b> IEEE<br><b>Why:</b> Proposes policy/technical solution; IEEE numbered citation.<br><br><i>Sources and people in examples are fictional placeholders; this is recognition practice, not a source to cite.</i>",
+      "tags": [
+        "writing_recognition",
+        "argument_ieee"
+      ],
+      "origin": "authored"
+    },
+    {
+      "id": "writing-recognition-010",
+      "front": "<b>Identify the write-up genre and citation style.</b><br><br>According to Okafor (2025), low-cost devices can still impose high maintenance costs. Procurement rules should therefore compare total operating cost rather than purchase price alone.",
+      "back": "<b>Genre:</b> Argumentative essay<br><b>Citation style:</b> APA (narrative)<br><b>Why:</b> Author introduced in prose with year; normative conclusion.<br><br><i>Sources and people in examples are fictional placeholders; this is recognition practice, not a source to cite.</i>",
+      "tags": [
+        "writing_recognition",
+        "argument_apa"
+      ],
+      "origin": "authored"
+    },
+    {
+      "id": "writing-recognition-011",
+      "front": "<b>Identify the write-up genre and citation style.</b><br><br>Research on hybrid meetings has produced mixed findings. One study reports improved participation (Chen, 2022), whereas another finds that uneven audio quality can exclude remote attendees (Singh, 2023).",
+      "back": "<b>Genre:</b> Literature review<br><b>Citation style:</b> APA (parenthetical)<br><b>Why:</b> Synthesizes contrasting studies; APA author–year citations.<br><br><i>Sources and people in examples are fictional placeholders; this is recognition practice, not a source to cite.</i>",
+      "tags": [
+        "writing_recognition",
+        "litreview_apa"
+      ],
+      "origin": "authored"
+    },
+    {
+      "id": "writing-recognition-012",
+      "front": "<b>Identify the write-up genre and citation style.</b><br><br>Researchers disagree about why urban gardens succeed. Malik emphasizes volunteer continuity (62), while Brodie places greater weight on access to reliable water (19).",
+      "back": "<b>Genre:</b> Literature review<br><b>Citation style:</b> MLA<br><b>Why:</b> Compares scholarly interpretations; MLA page markers.<br><br><i>Sources and people in examples are fictional placeholders; this is recognition practice, not a source to cite.</i>",
+      "tags": [
+        "writing_recognition",
+        "litreview_mla"
+      ],
+      "origin": "authored"
+    },
+    {
+      "id": "writing-recognition-013",
+      "front": "<b>Identify the write-up genre and citation style.</b><br><br>Scholars have explained archival gaps through two competing models. One emphasizes institutional selection; the other focuses on materials lost before they reached an archive.³",
+      "back": "<b>Genre:</b> Literature review<br><b>Citation style:</b> Chicago Notes<br><b>Why:</b> Maps a scholarly debate without arguing personal position; footnote.<br><br><i>Sources and people in examples are fictional placeholders; this is recognition practice, not a source to cite.</i>",
+      "tags": [
+        "writing_recognition",
+        "litreview_chicago"
+      ],
+      "origin": "authored"
+    },
+    {
+      "id": "writing-recognition-014",
+      "front": "<b>Identify the write-up genre and citation style.</b><br><br>Existing work on sensor drift divides into calibration-based and model-based approaches [3]. Recent comparisons describe a trade-off between deployment simplicity and accuracy under changing temperatures [4].",
+      "back": "<b>Genre:</b> Literature review<br><b>Citation style:</b> IEEE<br><b>Why:</b> Summarizes research categories and trade-off; IEEE [n] references.<br><br><i>Sources and people in examples are fictional placeholders; this is recognition practice, not a source to cite.</i>",
+      "tags": [
+        "writing_recognition",
+        "litreview_ieee"
+      ],
+      "origin": "authored"
+    },
+    {
+      "id": "writing-recognition-015",
+      "front": "<b>Identify the write-up genre and citation style.</b><br><br>Ahmed (2021) attributes reading gains to structured feedback, whereas Vega (2024) emphasizes sustained independent practice. Both accounts suggest that feedback frequency alone is not an adequate explanation.",
+      "back": "<b>Genre:</b> Literature review<br><b>Citation style:</b> APA (narrative)<br><b>Why:</b> Compares and synthesizes named studies; narrative APA.<br><br><i>Sources and people in examples are fictional placeholders; this is recognition practice, not a source to cite.</i>",
+      "tags": [
+        "writing_recognition",
+        "litreview_apa"
+      ],
+      "origin": "authored"
+    },
+    {
+      "id": "writing-recognition-016",
+      "front": "<b>Identify the write-up genre and citation style.</b><br><br>The research can be grouped into three explanations: limited resources, weak coordination, and inconsistent incentives. The remaining disagreement concerns which mechanism matters most in small organizations.",
+      "back": "<b>Genre:</b> Literature review<br><b>Citation style:</b> No formal citations<br><b>Why:</b> Synthesis of literature and research gap; no citation visible.<br><br><i>Sources and people in examples are fictional placeholders; this is recognition practice, not a source to cite.</i>",
+      "tags": [
+        "writing_recognition",
+        "litreview_none"
+      ],
+      "origin": "authored"
+    },
+    {
+      "id": "writing-recognition-017",
+      "front": "<b>Identify the write-up genre and citation style.</b><br><br>The debate over public memory has shifted from monuments to everyday institutions. Bell reads museums as sites of negotiation (83), while Karim examines what ordinary school displays omit (29).",
+      "back": "<b>Genre:</b> Literature review<br><b>Citation style:</b> MLA<br><b>Why:</b> Review of competing academic interpretations; MLA.<br><br><i>Sources and people in examples are fictional placeholders; this is recognition practice, not a source to cite.</i>",
+      "tags": [
+        "writing_recognition",
+        "litreview_mla"
+      ],
+      "origin": "authored"
+    },
+    {
+      "id": "writing-recognition-018",
+      "front": "<b>Identify the write-up genre and citation style.</b><br><br>Prior histories have focused chiefly on founders and early investors. More recent scholarship instead examines how workers shaped the enterprise after its first expansion.⁴",
+      "back": "<b>Genre:</b> Literature review<br><b>Citation style:</b> Chicago Notes<br><b>Why:</b> Situates scholarship and identifies shift; note marker.<br><br><i>Sources and people in examples are fictional placeholders; this is recognition practice, not a source to cite.</i>",
+      "tags": [
+        "writing_recognition",
+        "litreview_chicago"
+      ],
+      "origin": "authored"
+    },
+    {
+      "id": "writing-recognition-019",
+      "front": "<b>Identify the write-up genre and citation style.</b><br><br>Northbank Clinic faced repeated appointment errors after two teams maintained separate patient calendars. It introduced a shared scheduling process, then tracked duplicate bookings for eight weeks (Rao, 2024).",
+      "back": "<b>Genre:</b> Case study<br><b>Citation style:</b> APA (parenthetical)<br><b>Why:</b> Single named organization, problem → intervention → measurement; APA.<br><br><i>Sources and people in examples are fictional placeholders; this is recognition practice, not a source to cite.</i>",
+      "tags": [
+        "writing_recognition",
+        "case_apa"
+      ],
+      "origin": "authored"
+    },
+    {
+      "id": "writing-recognition-020",
+      "front": "<b>Identify the write-up genre and citation style.</b><br><br>At Elm Street Bakery, weekend orders often exceeded the ovens’ capacity. The owner staggered pickup windows and compared missed orders before and after the change.",
+      "back": "<b>Genre:</b> Case study<br><b>Citation style:</b> No formal citations<br><b>Why:</b> Specific bounded organization and action/outcome design; no source marker.<br><br><i>Sources and people in examples are fictional placeholders; this is recognition practice, not a source to cite.</i>",
+      "tags": [
+        "writing_recognition",
+        "case_none"
+      ],
+      "origin": "authored"
+    },
+    {
+      "id": "writing-recognition-021",
+      "front": "<b>Identify the write-up genre and citation style.</b><br><br>A pilot at Harbor Water Works tested wireless meters in one district. Signal loss was recorded during heavy rain, and engineers added a relay node before expanding the trial [5].",
+      "back": "<b>Genre:</b> Case study<br><b>Citation style:</b> IEEE<br><b>Why:</b> Single operational case with sequence and measured issue; IEEE.<br><br><i>Sources and people in examples are fictional placeholders; this is recognition practice, not a source to cite.</i>",
+      "tags": [
+        "writing_recognition",
+        "case_ieee"
+      ],
+      "origin": "authored"
+    },
+    {
+      "id": "writing-recognition-022",
+      "front": "<b>Identify the write-up genre and citation style.</b><br><br>When Eastside Library shifted its checkout desk, staff initially reported longer queues. In the following month, the library repositioned the returns station to separate two traffic flows (Nguyen 58).",
+      "back": "<b>Genre:</b> Case study<br><b>Citation style:</b> MLA<br><b>Why:</b> Specific site and process change; MLA author/page.<br><br><i>Sources and people in examples are fictional placeholders; this is recognition practice, not a source to cite.</i>",
+      "tags": [
+        "writing_recognition",
+        "case_mla"
+      ],
+      "origin": "authored"
+    },
+    {
+      "id": "writing-recognition-023",
+      "front": "<b>Identify the write-up genre and citation style.</b><br><br>The municipal office replaced its paper permit queue with a shared digital dashboard. Early gains in processing speed were accompanied by a new bottleneck in final approvals.⁵",
+      "back": "<b>Genre:</b> Case study<br><b>Citation style:</b> Chicago Notes<br><b>Why:</b> Bounded intervention, nuanced outcome; Chicago note.<br><br><i>Sources and people in examples are fictional placeholders; this is recognition practice, not a source to cite.</i>",
+      "tags": [
+        "writing_recognition",
+        "case_chicago"
+      ],
+      "origin": "authored"
+    },
+    {
+      "id": "writing-recognition-024",
+      "front": "<b>Identify the write-up genre and citation style.</b><br><br>Torres (2023) describes how a small manufacturer reduced inventory discrepancies by assigning one owner to each product record. The case illustrates that accountability can matter as much as the software chosen.",
+      "back": "<b>Genre:</b> Case study<br><b>Citation style:</b> APA (narrative)<br><b>Why:</b> Specific illustrative case and takeaway; narrative author-year.<br><br><i>Sources and people in examples are fictional placeholders; this is recognition practice, not a source to cite.</i>",
+      "tags": [
+        "writing_recognition",
+        "case_apa"
+      ],
+      "origin": "authored"
+    },
+    {
+      "id": "writing-recognition-025",
+      "front": "<b>Identify the write-up genre and citation style.</b><br><br>The nonprofit tested two reminder messages during its spring fundraiser. Response rates increased with the shorter message, but only among donors who had participated before.",
+      "back": "<b>Genre:</b> Case study<br><b>Citation style:</b> No formal citations<br><b>Why:</b> Bounded intervention and qualified result; no formal citation.<br><br><i>Sources and people in examples are fictional placeholders; this is recognition practice, not a source to cite.</i>",
+      "tags": [
+        "writing_recognition",
+        "case_none"
+      ],
+      "origin": "authored"
+    },
+    {
+      "id": "writing-recognition-026",
+      "front": "<b>Identify the write-up genre and citation style.</b><br><br>The university IT team migrated one department to cloud backup before any campus-wide rollout. Restore tests exposed a permissions error that had not appeared in routine uploads [6].",
+      "back": "<b>Genre:</b> Case study<br><b>Citation style:</b> IEEE<br><b>Why:</b> Particular implementation with observed failure; numbered reference.<br><br><i>Sources and people in examples are fictional placeholders; this is recognition practice, not a source to cite.</i>",
+      "tags": [
+        "writing_recognition",
+        "case_ieee"
+      ],
+      "origin": "authored"
+    },
+    {
+      "id": "writing-recognition-027",
+      "front": "<b>Identify the write-up genre and citation style.</b><br><br>I assumed that a detailed plan would make the workshop easier to lead. After watching participants ignore my instructions, I realized that the plan made too few allowances for their questions.",
+      "back": "<b>Genre:</b> Critical reflection<br><b>Citation style:</b> No formal citations<br><b>Why:</b> First-person experience → reconsideration → learning.<br><br><i>Sources and people in examples are fictional placeholders; this is recognition practice, not a source to cite.</i>",
+      "tags": [
+        "writing_recognition",
+        "reflection_none"
+      ],
+      "origin": "authored"
+    },
+    {
+      "id": "writing-recognition-028",
+      "front": "<b>Identify the write-up genre and citation style.</b><br><br>When I first read Ibrahim (2022), I thought the discussion of professional boundaries was overly rigid. During the placement, however, I saw how unclear responsibilities could make a client interaction more difficult.",
+      "back": "<b>Genre:</b> Critical reflection<br><b>Citation style:</b> APA (narrative)<br><b>Why:</b> First-person response to reading with experience; narrative APA.<br><br><i>Sources and people in examples are fictional placeholders; this is recognition practice, not a source to cite.</i>",
+      "tags": [
+        "writing_recognition",
+        "reflection_apa"
+      ],
+      "origin": "authored"
+    },
+    {
+      "id": "writing-recognition-029",
+      "front": "<b>Identify the write-up genre and citation style.</b><br><br>I had treated the narrator as reliable until I reread the final chapter. As Wells observes, small omissions can alter the reader’s sense of what happened (91); I had overlooked exactly those omissions.",
+      "back": "<b>Genre:</b> Critical reflection<br><b>Citation style:</b> MLA<br><b>Why:</b> Personal change in interpretation anchored in reading; MLA.<br><br><i>Sources and people in examples are fictional placeholders; this is recognition practice, not a source to cite.</i>",
+      "tags": [
+        "writing_recognition",
+        "reflection_mla"
+      ],
+      "origin": "authored"
+    },
+    {
+      "id": "writing-recognition-030",
+      "front": "<b>Identify the write-up genre and citation style.</b><br><br>My first instinct was to measure success by how quickly the team finished. Reviewing our debrief notes made me realize that the quietest participants had contributed least to the decision.⁶",
+      "back": "<b>Genre:</b> Critical reflection<br><b>Citation style:</b> Chicago Notes<br><b>Why:</b> Self-assessment and changed perspective; footnote marker.<br><br><i>Sources and people in examples are fictional placeholders; this is recognition practice, not a source to cite.</i>",
+      "tags": [
+        "writing_recognition",
+        "reflection_chicago"
+      ],
+      "origin": "authored"
+    },
+    {
+      "id": "writing-recognition-031",
+      "front": "<b>Identify the write-up genre and citation style.</b><br><br>I was confident in my answer during the presentation, yet the first audience question exposed a gap in my evidence. Next time I will test my conclusion against the strongest objection before speaking.",
+      "back": "<b>Genre:</b> Critical reflection<br><b>Citation style:</b> No formal citations<br><b>Why:</b> First-person self-evaluation and intended improvement.<br><br><i>Sources and people in examples are fictional placeholders; this is recognition practice, not a source to cite.</i>",
+      "tags": [
+        "writing_recognition",
+        "reflection_none"
+      ],
+      "origin": "authored"
+    },
+    {
+      "id": "writing-recognition-032",
+      "front": "<b>Identify the write-up genre and citation style.</b><br><br>I used to interpret silence in group meetings as agreement. Learning about participation barriers made me question that assumption (Park, 2025), especially after I noticed who rarely spoke.",
+      "back": "<b>Genre:</b> Critical reflection<br><b>Citation style:</b> APA (parenthetical)<br><b>Why:</b> Personal learning informed by cited concept; APA parenthetical.<br><br><i>Sources and people in examples are fictional placeholders; this is recognition practice, not a source to cite.</i>",
+      "tags": [
+        "writing_recognition",
+        "reflection_apa"
+      ],
+      "origin": "authored"
+    },
+    {
+      "id": "writing-recognition-033",
+      "front": "<b>Identify the write-up genre and citation style.</b><br><br>I initially thought the device was malfunctioning because the displayed readings varied. After checking the calibration procedure [7], I realized that I had not allowed enough warm-up time.",
+      "back": "<b>Genre:</b> Critical reflection<br><b>Citation style:</b> IEEE<br><b>Why:</b> First-person experience and revised interpretation; IEEE.<br><br><i>Sources and people in examples are fictional placeholders; this is recognition practice, not a source to cite.</i>",
+      "tags": [
+        "writing_recognition",
+        "reflection_ieee"
+      ],
+      "origin": "authored"
+    },
+    {
+      "id": "writing-recognition-034",
+      "front": "<b>Identify the write-up genre and citation style.</b><br><br>Writing the first draft revealed a problem I had missed while researching: I could explain the facts, but I could not state why they supported my conclusion. I changed the outline before revising the prose.",
+      "back": "<b>Genre:</b> Critical reflection<br><b>Citation style:</b> No formal citations<br><b>Why:</b> Metacognitive personal reflection; no citation.<br><br><i>Sources and people in examples are fictional placeholders; this is recognition practice, not a source to cite.</i>",
+      "tags": [
+        "writing_recognition",
+        "reflection_none"
+      ],
+      "origin": "authored"
+    },
+    {
+      "id": "writing-recognition-035",
+      "front": "<b>Identify the write-up genre and citation style.</b><br><br>The city does not need another glossy promise to fix its buses. It needs a timetable that survives Tuesday morning, when real people are trying to get to work.",
+      "back": "<b>Genre:</b> Op-ed / commentary<br><b>Citation style:</b> No formal citations<br><b>Why:</b> Punchy public-facing voice, metaphor, strong opinion.<br><br><i>Sources and people in examples are fictional placeholders; this is recognition practice, not a source to cite.</i>",
+      "tags": [
+        "writing_recognition",
+        "oped_none"
+      ],
+      "origin": "authored"
+    },
+    {
+      "id": "writing-recognition-036",
+      "front": "<b>Identify the write-up genre and citation style.</b><br><br>Morris (2024) reports that residents consistently rank reliable service above new amenities. Perhaps city hall should listen before unveiling one more sparkling transit hub.",
+      "back": "<b>Genre:</b> Op-ed / commentary<br><b>Citation style:</b> APA (narrative)<br><b>Why:</b> Source woven into public-facing argument, rhetorical flourish; APA narrative.<br><br><i>Sources and people in examples are fictional placeholders; this is recognition practice, not a source to cite.</i>",
+      "tags": [
+        "writing_recognition",
+        "oped_apa"
+      ],
+      "origin": "authored"
+    },
+    {
+      "id": "writing-recognition-037",
+      "front": "<b>Identify the write-up genre and citation style.</b><br><br>Everyone loves to announce a digital revolution. But, as Foster notes, older residents still struggle when public offices remove in-person help (33); efficiency for whom, exactly?",
+      "back": "<b>Genre:</b> Op-ed / commentary<br><b>Citation style:</b> MLA<br><b>Why:</b> Audience-facing rhetoric, pointed question; MLA.<br><br><i>Sources and people in examples are fictional placeholders; this is recognition practice, not a source to cite.</i>",
+      "tags": [
+        "writing_recognition",
+        "oped_mla"
+      ],
+      "origin": "authored"
+    },
+    {
+      "id": "writing-recognition-038",
+      "front": "<b>Identify the write-up genre and citation style.</b><br><br>A public park is not a luxury waiting politely at the edge of a spreadsheet. It is where children play when every other space demands a fee.⁷",
+      "back": "<b>Genre:</b> Op-ed / commentary<br><b>Citation style:</b> Chicago Notes<br><b>Why:</b> Vivid metaphor and civic persuasion; footnote.<br><br><i>Sources and people in examples are fictional placeholders; this is recognition practice, not a source to cite.</i>",
+      "tags": [
+        "writing_recognition",
+        "oped_chicago"
+      ],
+      "origin": "authored"
+    },
+    {
+      "id": "writing-recognition-039",
+      "front": "<b>Identify the write-up genre and citation style.</b><br><br>The promise of smart traffic lights sounds irresistible until sensors begin failing after a storm. The design review documents weather-related faults [8]; residents deserve a maintenance plan, not just a launch video.",
+      "back": "<b>Genre:</b> Op-ed / commentary<br><b>Citation style:</b> IEEE<br><b>Why:</b> Accessible opinion with rhetorical contrast; IEEE citation.<br><br><i>Sources and people in examples are fictional placeholders; this is recognition practice, not a source to cite.</i>",
+      "tags": [
+        "writing_recognition",
+        "oped_ieee"
+      ],
+      "origin": "authored"
+    },
+    {
+      "id": "writing-recognition-040",
+      "front": "<b>Identify the write-up genre and citation style.</b><br><br>When did filling out a simple form become an obstacle course? A public service that saves five minutes for administrators but costs an hour for residents has forgotten whom it serves.",
+      "back": "<b>Genre:</b> Op-ed / commentary<br><b>Citation style:</b> No formal citations<br><b>Why:</b> Strong editorial stance and rhetorical question.<br><br><i>Sources and people in examples are fictional placeholders; this is recognition practice, not a source to cite.</i>",
+      "tags": [
+        "writing_recognition",
+        "oped_none"
+      ],
+      "origin": "authored"
+    },
+    {
+      "id": "writing-recognition-041",
+      "front": "<b>Identify the write-up genre and citation style.</b><br><br>New devices will not repair a classroom where no one feels heard. Surveys of student belonging raise that concern (Davis, 2023), even as schools announce another round of technology purchases.",
+      "back": "<b>Genre:</b> Op-ed / commentary<br><b>Citation style:</b> APA (parenthetical)<br><b>Why:</b> Public-facing argument plus author-year source.<br><br><i>Sources and people in examples are fictional placeholders; this is recognition practice, not a source to cite.</i>",
+      "tags": [
+        "writing_recognition",
+        "oped_apa"
+      ],
+      "origin": "authored"
+    },
+    {
+      "id": "writing-recognition-042",
+      "front": "<b>Identify the write-up genre and citation style.</b><br><br>The neighbourhood is not a blank canvas for development. As Ellis documents, its shops and community centres already form an informal network of care (144), whether planners notice it or not.",
+      "back": "<b>Genre:</b> Op-ed / commentary<br><b>Citation style:</b> MLA<br><b>Why:</b> Public-facing pointed language; MLA author and page.<br><br><i>Sources and people in examples are fictional placeholders; this is recognition practice, not a source to cite.</i>",
+      "tags": [
+        "writing_recognition",
+        "oped_mla"
+      ],
+      "origin": "authored"
+    },
+    {
+      "id": "writing-recognition-043",
+      "front": "<b>Identify the write-up genre and citation style.</b><br><br>Recommendation: introduce a single public status page for permit applications. Implementation should begin with two service counters and expand only after staff verify update accuracy.",
+      "back": "<b>Genre:</b> Policy brief<br><b>Citation style:</b> No formal citations<br><b>Why:</b> Actionable institutional recommendation and phased implementation.<br><br><i>Sources and people in examples are fictional placeholders; this is recognition practice, not a source to cite.</i>",
+      "tags": [
+        "writing_recognition",
+        "policy_none"
+      ],
+      "origin": "authored"
+    },
+    {
+      "id": "writing-recognition-044",
+      "front": "<b>Identify the write-up genre and citation style.</b><br><br>Option B would centralize procurement while allowing departments to select approved tools. This approach may reduce duplicate contracts, though transition support will be necessary (Khan, 2024).",
+      "back": "<b>Genre:</b> Policy brief<br><b>Citation style:</b> APA (parenthetical)<br><b>Why:</b> Option appraisal and administrative recommendation; APA.<br><br><i>Sources and people in examples are fictional placeholders; this is recognition practice, not a source to cite.</i>",
+      "tags": [
+        "writing_recognition",
+        "policy_apa"
+      ],
+      "origin": "authored"
+    },
+    {
+      "id": "writing-recognition-045",
+      "front": "<b>Identify the write-up genre and citation style.</b><br><br>Proposed action: require quarterly backup-restoration drills across all regional offices. Technical tests show that successful backups do not guarantee successful restores [9]; compliance should therefore measure restoration outcomes.",
+      "back": "<b>Genre:</b> Policy brief<br><b>Citation style:</b> IEEE<br><b>Why:</b> Action plus operational compliance metric; IEEE.<br><br><i>Sources and people in examples are fictional placeholders; this is recognition practice, not a source to cite.</i>",
+      "tags": [
+        "writing_recognition",
+        "policy_ieee"
+      ],
+      "origin": "authored"
+    },
+    {
+      "id": "writing-recognition-046",
+      "front": "<b>Identify the write-up genre and citation style.</b><br><br>The department should adopt a twelve-month pilot rather than a permanent mandate. The pilot must measure service access, administrative cost, and unintended exclusions.⁸",
+      "back": "<b>Genre:</b> Policy brief<br><b>Citation style:</b> Chicago Notes<br><b>Why:</b> Formal policy recommendation with evaluation framework; footnote.<br><br><i>Sources and people in examples are fictional placeholders; this is recognition practice, not a source to cite.</i>",
+      "tags": [
+        "writing_recognition",
+        "policy_chicago"
+      ],
+      "origin": "authored"
+    },
+    {
+      "id": "writing-recognition-047",
+      "front": "<b>Identify the write-up genre and citation style.</b><br><br>A revised grants policy should reserve part of the budget for first-time applicants. In her review of participation barriers, Hale identifies complex eligibility rules as a recurring obstacle (76).",
+      "back": "<b>Genre:</b> Policy brief<br><b>Citation style:</b> MLA<br><b>Why:</b> Institutional action grounded in named source; MLA.<br><br><i>Sources and people in examples are fictional placeholders; this is recognition practice, not a source to cite.</i>",
+      "tags": [
+        "writing_recognition",
+        "policy_mla"
+      ],
+      "origin": "authored"
+    },
+    {
+      "id": "writing-recognition-048",
+      "front": "<b>Identify the write-up genre and citation style.</b><br><br>Ng (2025) identifies inconsistent reporting definitions as a major obstacle to comparing agencies. The ministry should publish a shared glossary before requiring consolidated quarterly reports.",
+      "back": "<b>Genre:</b> Policy brief<br><b>Citation style:</b> APA (narrative)<br><b>Why:</b> Evidence-led government/organizational prescription; narrative APA.<br><br><i>Sources and people in examples are fictional placeholders; this is recognition practice, not a source to cite.</i>",
+      "tags": [
+        "writing_recognition",
+        "policy_apa"
+      ],
+      "origin": "authored"
+    },
+    {
+      "id": "writing-recognition-049",
+      "front": "<b>Identify the write-up genre and citation style.</b><br><br>Decision required: approve a six-month trial of extended clinic hours. Success will be defined by attendance, cost per appointment, and reported access among patients who work evenings.",
+      "back": "<b>Genre:</b> Policy brief<br><b>Citation style:</b> No formal citations<br><b>Why:</b> Decision-oriented tone with explicit measures.<br><br><i>Sources and people in examples are fictional placeholders; this is recognition practice, not a source to cite.</i>",
+      "tags": [
+        "writing_recognition",
+        "policy_none"
+      ],
+      "origin": "authored"
+    },
+    {
+      "id": "writing-recognition-050",
+      "front": "<b>Identify the write-up genre and citation style.</b><br><br>Risk: the proposed system may create a single point of failure. The architecture review recommends redundant authentication services [10], so procurement should require a failover test before launch.",
+      "back": "<b>Genre:</b> Policy brief<br><b>Citation style:</b> IEEE<br><b>Why:</b> Risk/mitigation/criterion structure; IEEE.<br><br><i>Sources and people in examples are fictional placeholders; this is recognition practice, not a source to cite.</i>",
+      "tags": [
+        "writing_recognition",
+        "policy_ieee"
+      ],
+      "origin": "authored"
+    }
+  ]
+}
