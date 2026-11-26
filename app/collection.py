@@ -11,7 +11,7 @@ from typing import Any, Iterator
 
 import nh3
 
-from app import config
+from app import config, timed_store
 from app.card_format import CARD_HTML_TAGS
 from app.math_render import render_math
 
@@ -159,7 +159,8 @@ def deck_summaries() -> list[dict[str, Any]]:
 
 def select_deck(deck_id: int) -> None:
     with locked_collection() as col:
-        col.decks.set_current(deck_id)
+        if not timed_store.active_id():
+            col.decks.set_current(deck_id)
 
 
 FLAG_REASONS = {
@@ -323,35 +324,32 @@ def next_card(all_due: bool = False) -> dict[str, Any] | None:
 REVIEW_UNDO_LABEL = "Anki Tether review"
 
 
-def answer_card(card_id: int, rating: str, all_due: bool = False) -> None:
+def rate_queued(col, current, rating: str, deck_id: int, undo_label: str = REVIEW_UNDO_LABEL):
     _, CardAnswer = _import_anki()
-    rating_map = {
-        "again": CardAnswer.AGAIN,
-        "hard": CardAnswer.HARD,
-        "good": CardAnswer.GOOD,
-        "easy": CardAnswer.EASY,
-    }
-    if rating not in rating_map:
+    ratings = {"again": CardAnswer.AGAIN, "hard": CardAnswer.HARD, "good": CardAnswer.GOOD, "easy": CardAnswer.EASY}
+    if rating not in ratings:
         raise ValueError("rating must be again, hard, good, or easy")
-    with locked_collection() as col:
-        selected = col.decks.current()["id"]
-        current, _, deck_id = _review_queue(col, all_due)
-        if current is None or current.card.id != card_id:
-            return
-        undo_group = col.add_custom_undo_entry(REVIEW_UNDO_LABEL)
+    selected = col.decks.current()["id"]
+    undo_group = col.add_custom_undo_entry(undo_label)
+    if deck_id != selected:
+        col.decks.set_current(deck_id)
+    try:
+        card = col.get_card(current.card.id)
+        card.start_timer()
+        col.sched.answer_card(col.sched.build_answer(card=card, states=current.states, rating=ratings[rating]))
+    finally:
         if deck_id != selected:
-            col.decks.set_current(deck_id)
-        try:
-            card = col.get_card(card_id)
-            card.start_timer()
-            built = col.sched.build_answer(
-                card=card, states=current.states, rating=rating_map[rating]
-            )
-            col.sched.answer_card(built)
-        finally:
-            if deck_id != selected:
-                col.decks.set_current(selected)
-        col.merge_undo_entries(undo_group)
+            col.decks.set_current(selected)
+    col.merge_undo_entries(undo_group)
+
+
+def answer_card(card_id: int, rating: str, all_due: bool = False) -> None:
+    with locked_collection() as col:
+        if timed_store.active_id():
+            return
+        current, _, deck_id = _review_queue(col, all_due)
+        if current is not None and current.card.id == card_id:
+            rate_queued(col, current, rating, deck_id)
 
 
 def _can_undo_review(col) -> bool:
@@ -365,7 +363,7 @@ def can_undo_review() -> bool:
 
 def undo_review() -> bool:
     with locked_collection() as col:
-        if not _can_undo_review(col):
+        if timed_store.active_id() or not _can_undo_review(col):
             return False
         col.undo()
         return True

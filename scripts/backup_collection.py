@@ -19,6 +19,9 @@ def main() -> None:
         raise SystemExit(f"Collection does not exist: {collection}")
     dest.mkdir(parents=True, exist_ok=False)
     shutil.copy2(collection, dest / collection.name)
+    timed = collection.with_suffix(".timed.sqlite3")
+    if timed.is_file():
+        shutil.copy2(timed, dest / timed.name)
     media = collection.with_suffix(".media")
     if media.is_dir():
         shutil.copytree(media, dest / media.name)

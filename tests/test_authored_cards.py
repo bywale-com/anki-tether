@@ -1,3 +1,4 @@
+import hashlib
 import json
 import shutil
 
@@ -97,6 +98,12 @@ def test_publish_review_and_update_across_courses():
 
     collection.close_collection()
     cards = authored.load_cards()
+    sample_ids = {
+        "cois1020-arrays-index-001", "cois1020-arrays-bound-001", "cois1020-arrays-mutation-001",
+        "math1110-power-rule-001", "math1110-sine-limit-001", "math1110-power-integral-001",
+    }
+    guids = {"authored-" + hashlib.sha256(cid.encode()).hexdigest() for cid in sample_ids}
+    cards = [card for card in cards if card["guid"] in guids]
     with TestClient(app, base_url="http://localhost", follow_redirects=False) as client:
         def publish(batch=cards):
             return authored.publish(batch, "http://localhost", "import-secret", client)

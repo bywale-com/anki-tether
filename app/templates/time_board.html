@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block title %}Time Board · Anki Tether{% endblock %}
+{% block body %}
+<section class="card">
+  <h2>Time Board</h2>
+  <form method="get" class="browse-filters">
+    <div><label for="board-deck">Deck</label><select name="deck" id="board-deck">
+      <option value="">All decks</option>
+      {% for id, title in board.decks %}<option value="{{ id }}"{% if id == deck %} selected{% endif %}>{{ title }}</option>{% endfor %}
+    </select></div>
+    <div><label for="board-mode">Mode</label><select name="mode" id="board-mode">
+      <option value="">All modes</option>
+      {% for id, name in modes.items() %}<option value="{{ id }}"{% if id == mode %} selected{% endif %}>{{ name }}</option>{% endfor %}
+    </select></div>
+    <div><label for="board-target">Target</label><select name="target" id="board-target">
+      <option value="">All targets</option>
+      {% for count in board.targets %}<option value="{{ count }}"{% if count == target %} selected{% endif %}>{{ count }} cards</option>{% endfor %}
+    </select></div>
+    <button>Filter</button>
+  </form>
+</section>
+{% if not board.groups %}<p>No completed timed attempts yet.</p>{% endif %}
+{% for group in board.groups %}
+{% set sample = group[0] %}
+{% set completed = group | selectattr("status", "equalto", "completed") | sort(attribute="finished_at", reverse=true) | list %}
+{% set ranked = group | selectattr("ranked") | sort(attribute="elapsed") | list %}
+<section class="card">
+  <h3>{{ sample.title }} · {{ modes[sample.mode] }} · {{ sample.count }} cards{% if sample.budget_ms %} · {{ sample.budget_ms | duration }} budget{% endif %}</h3>
+  <p>{{ completed | length }} / {{ group | length }} completed · {{ "%.0f" | format(100 * (completed | length) / (group | length)) }}%</p>
+  {% if completed %}
+  <p>Latest completed: {{ completed[0].elapsed | duration }} · <time datetime="{{ completed[0].finished_at }}">{{ completed[0].finished_at[:10] }}</time></p>
+  {% else %}<p>No completed timed attempts yet.</p>{% endif %}
+  {% if ranked %}
+  <p><strong>Personal best {{ ranked[0].elapsed | duration }}</strong>{% if sample.budget_ms %} · {{ ranked[0].remaining | duration }} left{% endif %}</p>
+  <ol>
+    {% for item in ranked %}
+    <li><a href="/timed/{{ item.id }}">{{ item.elapsed | duration }}</a> · {{ "%.0f" | format(item.accuracy) }}% · <time datetime="{{ item.finished_at }}">{{ item.finished_at[:10] }}</time></li>
+    {% endfor %}
+  </ol>
+  {% elif completed %}<p>No ranked attempts. Rankings require at least 90% first-attempt accuracy and no pause.</p>{% endif %}
+</section>
+{% endfor %}
+{% if board.history %}
+<section class="card">
+  <h2>Attempt History</h2>
+  <ul class="browse-results">
+    {% for item in board.history %}
+    <li><a href="/timed/{{ item.id }}">{{ item.title }} · {{ modes[item.mode] }} · {{ item.count }} cards</a>
+        <div class="muted">{{ item.label }} · {{ item.elapsed | duration }} · <time datetime="{{ item.finished_at }}">{{ item.finished_at[:10] }}</time></div></li>
+    {% endfor %}
+  </ul>
+</section>
+{% endif %}
+<script src="/static/timed.js" defer></script>
+{% endblock %}

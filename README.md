@@ -172,3 +172,11 @@ The home/stats **95%** figure is first-attempt review success in a time window. 
 Use the course code as the first deck segment, a topic as the second, and add a narrower subtopic only when it helps navigation. Use existing JSON `tags` for searchable metadata: `topic-derivatives`, plus a knowledge type such as `type-concept`, `type-procedure`, `type-code-output`, `type-debugging`, or `type-application`. Keep IDs stable when editing metadata. Existing tags and batches remain valid.
 
 Use `source_ref` for an actual lecture title, document and page, or a verified URL. The reviewer and card browser show that reference, and standalone HTTP(S) URLs open directly. Omit the reference when the source is unknown.
+
+### Timed Study and Time Board
+
+Use the chevron next to a deck’s **Study** button to open **Timed Study**. The setup counts the cards currently exposed by Anki’s deck queue, including subdecks and subject to its study limits. The attempt freezes those card IDs. It follows Anki’s native queue order for remaining targets and ends incomplete if Anki no longer offers any of them. A card counts once when rated Hard, Good, or Easy. First-attempt accuracy counts distinct targets first rated Hard, Good, or Easy, divided by the full target.
+
+The Time Board ranks completed, unpaused attempts with at least 90% first-attempt accuracy. Deck, mode, target size, and countdown budget define separate groups. A server restart closes any open attempt as interrupted. Anki reviews already committed remain in the collection. If the server stops between committing a review and recording its timing event, the attempt is excluded from rankings.
+
+Timing history is stored in `collection.timed.sqlite3` beside `collection.anki2` on the same Railway volume. The offline backup script includes it. To restore both histories together, stop the app and restore the matching timed database with the collection before restarting.

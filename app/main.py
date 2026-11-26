@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from contextlib import asynccontextmanager
 from typing import Annotated, Any, Literal
+from uuid import UUID, uuid4
 
 from fastapi import FastAPI, Form, HTTPException, Query, Request
 from fastapi.responses import HTMLResponse, JSONResponse, RedirectResponse
@@ -9,10 +10,20 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from pydantic import BaseModel, BeforeValidator, Field
 
-from app import auth, collection, config
+from app import auth, collection, config, timed
 
 templates = Jinja2Templates(directory="app/templates")
 templates.env.globals["flag_reasons"] = collection.FLAG_REASONS
+
+
+def _duration(milliseconds: int) -> str:
+    minutes, seconds = divmod(milliseconds // 1000, 60)
+    hours, minutes = divmod(minutes, 60)
+    prefix = f"{hours:02}:" if hours else ""
+    return f"{prefix}{minutes:02}:{seconds:02}"
+
+
+templates.env.filters["duration"] = _duration
 DeckFilter = Annotated[
     Annotated[int, Field(ge=1, le=2**63 - 1)] | None,
     BeforeValidator(lambda value: None if value == "" else value),
@@ -114,6 +125,99 @@ def home(request: Request):
     )
 
 
+def _timed_redirect():
+    session_id = timed.active_id()
+    if session_id:
+        return RedirectResponse(f"/timed/{session_id}", status_code=303)
+    return None
+
+
+def _timed_page(request, user, template, **context):
+    return templates.TemplateResponse(request=request, name=template, context={
+        "user": user, "csrf": request.cookies.get(auth.CSRF_COOKIE, ""),
+        "modes": timed.MODES, **context,
+    }, headers={"Cache-Control": "no-store"})
+
+
+@app.get("/study/{deck_id}/timed", response_class=HTMLResponse)
+def timed_setup(request: Request, deck_id: int):
+    user, err = _auth_or_login(request)
+    if err:
+        return err
+    active = _timed_redirect()
+    if active:
+        return active
+    details = timed.setup(deck_id) if 0 < deck_id < 2**63 else None
+    if not details:
+        raise HTTPException(404, "Deck not found")
+    title, eligible = details
+    return _timed_page(request, user, "timed_setup.html", title=title, eligible=eligible,
+                       deck_id=deck_id, attempt=uuid4().hex)
+
+
+@app.post("/study/{deck_id}/timed")
+def timed_start(
+    request: Request, deck_id: int, attempt: UUID = Form(...),
+    mode: Literal["countdown", "stopwatch"] = Form(...),
+    target: str = Form(""), minutes: int | None = Form(None), csrf: str = Form(""),
+):
+    _, err = _auth_or_login(request)
+    if err:
+        return err
+    auth.verify_csrf(request, csrf)
+    active = _timed_redirect()
+    if active:
+        return active
+    try:
+        if not 0 < deck_id < 2**63:
+            raise LookupError("Deck not found")
+        session_id = timed.start(deck_id, attempt.hex, mode, int(target) if target else None, minutes)
+    except LookupError as exc:
+        raise HTTPException(404, str(exc)) from exc
+    except ValueError as exc:
+        raise HTTPException(400, str(exc)) from exc
+    return RedirectResponse(f"/timed/{session_id}", status_code=303)
+
+
+@app.get("/timed/{session_id}", response_class=HTMLResponse)
+def timed_review(request: Request, session_id: UUID, show: bool = False):
+    user, err = _auth_or_login(request)
+    if err:
+        return err
+    session = timed.snapshot(session_id.hex, review=True)
+    if not session:
+        raise HTTPException(404, "Timed session not found")
+    return _timed_page(request, user, "timed_review.html", session=session, show=show)
+
+
+@app.post("/timed/{session_id}")
+def timed_action(
+    request: Request, session_id: UUID,
+    action: Literal["rate", "undo", "pause", "resume", "stop"] = Form(...),
+    nonce: UUID = Form(...), card_id: int | None = Form(None),
+    rating: Literal["again", "hard", "good", "easy"] | None = Form(None), csrf: str = Form(""),
+):
+    _, err = _auth_or_login(request)
+    if err:
+        return err
+    auth.verify_csrf(request, csrf)
+    try:
+        timed.act(session_id.hex, action, nonce.hex, card_id, rating)
+    except LookupError as exc:
+        raise HTTPException(404, str(exc)) from exc
+    return RedirectResponse(f"/timed/{session_id.hex}", status_code=303)
+
+
+@app.get("/time-board", response_class=HTMLResponse)
+def time_board(request: Request, deck: DeckFilter = None,
+               mode: Literal["", "countdown", "stopwatch"] = "", target: DeckFilter = None):
+    user, err = _auth_or_login(request)
+    if err:
+        return err
+    return _timed_page(request, user, "time_board.html", board=timed.board(deck, mode, target),
+                       deck=deck, mode=mode, target=target)
+
+
 REVIEW_CURSOR_COOKIE = "anki_review_cursor"
 
 
@@ -132,6 +236,9 @@ def start_study(request: Request, deck_id: int, csrf: str = Form("")):
     if err:
         return err
     auth.verify_csrf(request, csrf)
+    active = _timed_redirect()
+    if active:
+        return active
     collection.select_deck(deck_id)
     return _begin_review("/review")
 
@@ -142,6 +249,9 @@ def start_due(request: Request, csrf: str = Form("")):
     if err:
         return err
     auth.verify_csrf(request, csrf)
+    active = _timed_redirect()
+    if active:
+        return active
     return _begin_review("/review?all_due=1")
 
 
@@ -150,6 +260,9 @@ def review(request: Request, show: int = 0, all_due: bool = False):
     user, err = _auth_or_login(request)
     if err:
         return err
+    active = _timed_redirect()
+    if active:
+        return active
     payload = collection.next_card(all_due=True) if all_due else collection.next_card()
     cursor = request.cookies.get(REVIEW_CURSOR_COOKIE, "")
     fresh = not (cursor.isascii() and cursor.isdecimal() and len(cursor) <= 16)
@@ -188,6 +301,9 @@ def review_answer(
     if err:
         return err
     auth.verify_csrf(request, csrf)
+    active = _timed_redirect()
+    if active:
+        return active
     try:
         if all_due:
             collection.answer_card(card_id, rating, all_due=True)
@@ -204,6 +320,9 @@ def undo_review(request: Request, all_due: bool = Form(False), csrf: str = Form(
     if err:
         return err
     auth.verify_csrf(request, csrf)
+    active = _timed_redirect()
+    if active:
+        return active
     if not collection.undo_review():
         raise HTTPException(409, "The last review is no longer available to undo")
     return RedirectResponse("/review?all_due=1" if all_due else "/review", status_code=303)

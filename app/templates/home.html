@@ -35,10 +35,16 @@
     </div>
     <div class="deck-actions">
       <a href="/browse?deck={{ deck.id }}">Browse</a>
+      <div class="study-split">
       <form method="post" action="/study/{{ deck.id }}">
         <input type="hidden" name="csrf" value="{{ csrf }}">
         <button type="submit">Study</button>
       </form>
+      <details class="study-menu">
+        <summary aria-label="More study options"><span aria-hidden="true">▾</span></summary>
+        <a href="/study/{{ deck.id }}/timed">Timed Study</a>
+      </details>
+      </div>
     </div>
   </div>
   {% else %}

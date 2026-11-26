@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block title %}Timed Study · Anki Tether{% endblock %}
+{% macro state() %}
+<input type="hidden" name="csrf" value="{{ csrf }}">
+<input type="hidden" name="nonce" value="{{ session.nonce }}">
+{% endmacro %}
+{% block body %}
+{% set open = session.status in ("active", "paused") %}
+<section class="card">
+  <h2>{{ modes[session.mode] }}</h2>
+  <p>{{ session.title }}</p>
+  <p><strong>{{ session.completed }} / {{ session.count }}</strong> cards completed</p>
+  <p><strong>{{ "Time left" if session.remaining is not none else "Elapsed" }}</strong>
+    <output class="timed-clock" data-ms="{{ session.remaining if session.remaining is not none else session.elapsed }}"
+            data-clock="{{ ('down' if session.remaining is not none else 'up') if session.status == 'active' else 'fixed' }}">
+      {{ (session.remaining if session.remaining is not none else session.elapsed) | duration }}
+    </output>
+  </p>
+  {% if session.budget_ms %}<p class="muted">Countdown target {{ session.budget_ms | duration }}</p>{% endif %}
+  {% if not open or session.status == "paused" %}
+    <h3>{{ "New personal best" if session.personal_best else session.label }}</h3>
+    <p>{% if session.status == "expired" %}Expired · {% endif %}Elapsed {{ session.elapsed | duration }} · {{ "%.0f" | format(session.accuracy) }}% first-attempt accuracy ·
+       {{ session.again }} Again · {{ session.ratings }} ratings</p>
+  {% endif %}
+</section>
+
+{% if session.card %}
+<article class="card question">
+  {{ (session.card.answer if show else session.card.question) | safe }}
+</article>
+{% if show %}
+<form method="post" class="ratings">
+  {{ state() }}
+  <input type="hidden" name="action" value="rate">
+  <input type="hidden" name="card_id" value="{{ session.card.card_id }}">
+  {% for rating in ("again", "hard", "good", "easy") %}
+  <button class="{{ rating }}" name="rating" value="{{ rating }}">{{ rating | title }}</button>
+  {% endfor %}
+</form>
+{% else %}
+<p><a class="btn full" href="?show=1">Show answer</a></p>
+{% endif %}
+{% endif %}
+
+<form method="post" class="timed-controls">
+  {{ state() }}
+  {% if session.can_undo %}<button name="action" value="undo">Undo last review</button>{% endif %}
+  {% if open %}
+    {% if session.status == "active" %}<button name="action" value="pause">Pause</button>
+    {% else %}<button name="action" value="resume">Resume</button>{% endif %}
+    <button name="action" value="stop">End timed session</button>
+  {% endif %}
+</form>
+{% if not open %}
+  <p><a href="/time-board?deck={{ session.deck_id }}">View Time Board</a> · <a href="/">Back to decks</a></p>
+  {% if session.deck_exists %}
+  <p><a href="/study/{{ session.deck_id }}/timed">Try again</a></p>
+  <form action="/study/{{ session.deck_id }}" method="post">
+    <input type="hidden" name="csrf" value="{{ csrf }}">
+    <button>Continue normally</button>
+  </form>
+  {% endif %}
+{% endif %}
+<script src="/static/timed.js" defer></script>
+{% endblock %}

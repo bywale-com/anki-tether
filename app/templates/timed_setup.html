@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}Timed Study · Anki Tether{% endblock %}
+{% block body %}
+<section class="card">
+  <h2>Timed Study</h2>
+  <p>{{ title }} · {{ eligible }} eligible {{ "card" if eligible == 1 else "cards" }} including any subdecks</p>
+  {% if eligible %}
+  <form method="post" class="timed-setup">
+    <input type="hidden" name="csrf" value="{{ csrf }}">
+    <input type="hidden" name="attempt" value="{{ attempt }}">
+    <fieldset>
+      <legend>Mode</legend>
+      <label><input type="radio" name="mode" value="countdown" checked> Beat the Clock</label>
+      <label><input type="radio" name="mode" value="stopwatch"> Track My Time</label>
+    </fieldset>
+    <label for="minutes">Countdown minutes (Beat the Clock)</label>
+    <input type="number" id="minutes" name="minutes" min="1" max="180" value="5" list="countdown-presets">
+    <datalist id="countdown-presets"><option value="5"><option value="10"><option value="15"><option value="30"></datalist>
+    <label for="target">Target cards</label>
+    <input type="number" id="target" name="target" min="1" max="{{ eligible }}" value="{{ eligible }}" required>
+    <p class="muted">Hard, Good, and Easy complete a card. Pausing makes the attempt unranked.</p>
+    <button>Start Timed Study</button>
+  </form>
+  {% else %}
+  <p>No cards are available in Anki’s queue for this deck right now.</p>
+  <button disabled>Start Timed Study</button>
+  <a href="/browse?deck={{ deck_id }}">Browse this deck</a>
+  {% endif %}
+  <p><a href="/">Back to decks</a></p>
+</section>
+{% endblock %}

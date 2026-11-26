@@ -237,3 +237,29 @@ label { display: block; margin: 0.6rem 0 0.25rem; }
 .question { overflow-wrap: anywhere; }
 
 .btn { display: inline-flex; align-items: center; justify-content: center; text-decoration: none; }
+
+.study-split, .timed-controls { display: flex; align-items: center; gap: 0.4rem; flex-wrap: wrap; }
+.study-menu { position: relative; }
+.study-menu summary {
+  min-height: 48px;
+  min-width: 44px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  cursor: pointer;
+}
+.study-menu a { display: block; padding: 0.65rem; }
+.study-menu[open] { background: var(--card); }
+.timed-clock { font-variant-numeric: tabular-nums; font-size: 1.5rem; margin-left: 0.5rem; }
+.timed-setup input[type=number] {
+  display: block;
+  min-height: 44px;
+  max-width: 100%;
+  padding: 0.4rem;
+  border: 1px solid var(--input-border);
+  border-radius: 8px;
+  background: var(--card);
+  color: var(--ink);
+  font: inherit;
+}
