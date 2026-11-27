@@ -1,0 +1,26 @@
+using System;
+public static class Lab5
+{
+    public static void Main()
+    {
+        int inpMark;
+        string lastName;
+        char grade = "";
+
+        Console.Clear();
+        Console.WriteLine("Enter your lastname: ");
+        lastName = Console.ReadLine();
+        
+        Console.WriteLine("Enter your mark: ");
+        inpMark = Convert.ToInt32(Console.ReadLine());
+        // do{
+        //     inpMark = Convert.ToInt32(Console.ReadLine());
+        // } while(inpMark < 0 || inpMark > 100);
+        
+    }
+
+    // public static MarkToGrade(int mark)
+    // {
+    //     return grade;
+    // }
+}
